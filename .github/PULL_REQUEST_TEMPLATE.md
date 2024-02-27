@@ -6,7 +6,7 @@ JIRA_BOARD_ABBREVIATION-JIRA_TASK_NUMBER: TITLE_OF_JIRA_TASK
 ## 🎯 Summary
 
 <!-- COMPLETE JIRA LINK BELOW -->  
-[MVP-](CHANGE_URL)
+[MVP-](https://citz-imb.atlassian.net/browse/MVP-)
 
 <!-- PROVIDE BELOW an explanation of your changes and any images to support your explanation -->
 
