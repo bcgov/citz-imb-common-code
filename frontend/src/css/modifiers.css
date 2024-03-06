@@ -1,0 +1,13 @@
+/* MODIFIERS */
+
+.bold {
+  font-weight: 700;
+}
+
+.fontSmall {
+  font-size: calc(var(--font-size) * 0.75);
+}
+
+.fontLarge {
+  font-size: calc(var(--font-size) * 1.25);
+}

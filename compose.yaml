@@ -1,0 +1,73 @@
+services:
+  coco-frontend:
+    container_name: coco-frontend
+    tty: true
+    build:
+      context: ./frontend
+      dockerfile: .docker/Dockerfile.dev
+      args:
+        - NODE_IMAGE_TAG=${NODE_IMAGE_TAG:-21.5-bullseye-slim} # Node image tag
+    ports:
+      - ${FRONTEND_PORT:-6500}:6500
+    volumes:
+      - ./frontend/src:/app/src
+      - /app/node_modules
+    depends_on:
+      coco-backend:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  coco-backend:
+    container_name: coco-backend
+    tty: true
+    init: true # Properly handles running as PID 1 inside a container. Source: https://github.com/nodejs/docker-node/blob/main/docs/BestPractices.md#handling-kernel-signals
+    restart: on-failure
+    healthcheck:
+      test: ["CMD-SHELL", "node", "/app/scripts/healthcheck.js"] # Check health endpoint for healthy service.
+      interval: 30s # Perform the health check every 30 seconds.
+      timeout: 10s # Consider the health check a failure if it takes more than 10 seconds.
+      retries: 5 # Retry the health check up to 5 times before considering the container unhealthy.
+    build:
+      context: . # Set to root so backend has access to frontend package.json for parsing
+      dockerfile: ./backend/.docker/Dockerfile.dev
+      args:
+        - NODE_IMAGE_TAG=${NODE_IMAGE_TAG:-21.5-bullseye-slim} # Node image tag
+    env_file: .env
+    ports:
+      - ${BACKEND_PORT:-6600}:6600
+    volumes:
+      - ./backend:/app
+    depends_on:
+      coco-database:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  coco-database:
+    container_name: coco-database
+    image: postgres:16.2-alpine
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=${DATABASE_USER:-postgres}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD:-postgres}
+      - POSTGRES_DB=${DATABASE_NAME:-sandbox}
+    volumes:
+      - database-data:/var/lib/postgresql/data # Named volume binded to Postgres' data store directory.
+    ports:
+      - ${DATABASE_PORT:-6700}:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USER:-postgres}"] # Check if PostgreSQL is ready.
+      interval: 15s # Perform the health check every 15 seconds.
+      timeout: 5s # Consider the health check a failure if it takes more than 5 seconds.
+      retries: 5 # Retry the health check up to 5 times before considering the container unhealthy.
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: "bridge"
+
+volumes:
+  database-data:
+    driver: local # Stores the volume data on the host machine's file system.

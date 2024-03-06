@@ -6,7 +6,7 @@ const fileExtensions = NODE_ENV === 'production' ? 'js' : 'ts';
 
 const ormconfig: DataSourceOptions = {
   type: 'postgres',
-  host: PGHOST ?? 'sandbox-postgres-database',
+  host: PGHOST ?? 'coco-postgres-database',
   port: 5432,
   username: PGUSER ?? 'postgres',
   password: PGPASSWORD ?? 'postgres',

@@ -1,9 +1,7 @@
 import https from 'https';
 import { colors as c } from './src/utils';
 
-import config from './config';
-const { BACKEND_URL } = config;
-
+const { BACKEND_URL } = process.env;
 const healthUrl = `${BACKEND_URL}/health`;
 
 /**
