@@ -3,7 +3,7 @@
   "main": "src/index.ts",
   "scripts": {
     "dev": "nodemon",
-    "prod": "node ./build/src/index.ts",
+    "prod": "node ./build/index.js",
     "build": "tsc",
     "typeorm": "ts-node ./node_modules/typeorm/cli.js ",
     "migration:generate": "npm run typeorm -- migration:generate -d src/dataSource.ts",

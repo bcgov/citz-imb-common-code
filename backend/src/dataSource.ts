@@ -1,16 +1,17 @@
 import { DataSourceOptions, DataSource } from 'typeorm';
 
-const { PGHOST, PGUSER, PGPASSWORD, PGDATABASE, DEBUG, NODE_ENV } = process.env;
+const { DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_NAME, DEBUG, NODE_ENV } =
+  process.env;
 
 const fileExtensions = NODE_ENV === 'production' ? 'js' : 'ts';
 
 const ormconfig: DataSourceOptions = {
   type: 'postgres',
-  host: PGHOST ?? 'coco-postgres-database',
+  host: DATABASE_HOST ?? 'coco-database',
   port: 5432,
-  username: PGUSER ?? 'postgres',
-  password: PGPASSWORD ?? 'postgres',
-  database: PGDATABASE ?? 'sandbox',
+  username: DATABASE_USER ?? 'postgres',
+  password: DATABASE_PASSWORD ?? 'postgres',
+  database: DATABASE_NAME ?? 'sandbox',
   synchronize: false,
   migrationsRun: true,
   logging: DEBUG === 'true' ?? false,

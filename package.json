@@ -1,10 +1,14 @@
 {
   "name": "@bcgov/citz-imb-common-code",
   "license": "Apache-2.0",
+  "//": "SEE README FOR INFORMATION ON SCRIPTS",
   "scripts": {
     "up": "docker compose up -d",
     "down": "docker compose down",
     "prune": "docker compose down --rmi all --volumes",
+    "up:database": "docker compose up -d coco-database",
+    "up:prod-local": "npm run up:database && docker compose -f compose.prod.yaml up -d",
+    "down:prod-local": "docker compose -f compose.prod.yaml down && docker compose down",
     "up:prod": "docker compose -f compose.prod.yaml up -d",
     "down:prod": "docker compose -f compose.prod.yaml down",
     "prune:prod": "docker compose -f compose.prod.yaml down --rmi all --volumes",

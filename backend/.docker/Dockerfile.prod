@@ -3,22 +3,20 @@ FROM node:${NODE_IMAGE_TAG} AS build
 
 WORKDIR /app
 
-COPY . .
+COPY ./backend .
 
 RUN npm i
 
 # Build application
 RUN npm run build
 
-# Re-declare NODE_IMAGE_TAG arg because it is not available in the next stage
-ARG NODE_IMAGE_TAG
 FROM node:${NODE_IMAGE_TAG} AS prod
 
 WORKDIR /app
 
 ENV NODE_ENV=production
 
-COPY package*.json ./
+COPY ./backend/package*.json ./
 
 RUN npm i
 
@@ -32,4 +30,4 @@ RUN chgrp -R 0 /.npm && chmod -R g=u /.npm
 EXPOSE 6600
 
 # Start the application
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "prod"]

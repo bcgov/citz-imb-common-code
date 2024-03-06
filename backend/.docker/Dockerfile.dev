@@ -5,7 +5,7 @@ WORKDIR /app
 
 ENV NODE_ENV=development
 
-COPY . .
+COPY ./backend .
 
 RUN npm install
 

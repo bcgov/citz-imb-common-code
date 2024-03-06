@@ -133,6 +133,40 @@ $ npm run prune
 ```
 
 ```bash
+# Start the database standalone (ensure env vars set).
+$ npm run up:database
+```
+
+```bash
+# Start the web app (ensure env vars set).
+# Runs in production mode with compiled typescript code and nginx frontend server.
+# Starts database so production mode can be tested locally.
+$ npm run up:prod-local
+```
+
+```bash
+# Stop the web app (when running in production mode).
+# Stops production mode services as well as database.
+$ npm run down:prod-local
+```
+
+```bash
+# Start the web app (ensure env vars set).
+# Runs in production mode with compiled typescript code and nginx frontend server.
+$ npm run up:prod
+```
+
+```bash
+# Stop the web app (when running in production mode).
+$ npm run down:prod
+```
+
+```bash
+# Prune all containers, images and volumes (when running in production mode).
+$ npm run prune:prod
+```
+
+```bash
 # Clean install packages in frontend and backend (requires prune and up to affect live site).
 $ npm run install
 ```
