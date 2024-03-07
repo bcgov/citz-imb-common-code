@@ -1,0 +1,23 @@
+{
+  "name": "@bcgov/citz-imb-common-code",
+  "license": "Apache-2.0",
+  "//": "SEE README FOR INFORMATION ON SCRIPTS",
+  "scripts": {
+    "up": "docker compose up -d",
+    "down": "docker compose down",
+    "prune": "docker compose down --rmi all --volumes",
+    "up:database": "docker compose up -d coco-database",
+    "up:prod-local": "npm run up:database && docker compose -f compose.prod.yaml up -d",
+    "down:prod-local": "docker compose -f compose.prod.yaml down && docker compose down",
+    "up:prod": "docker compose -f compose.prod.yaml up -d",
+    "down:prod": "docker compose -f compose.prod.yaml down",
+    "prune:prod": "docker compose -f compose.prod.yaml down --rmi all --volumes",
+    "install": "npm run install:frontend && npm run install:backend",
+    "install:frontend": "cd src/frontend && rm -rf node_modules package-lock.json && npm i",
+    "install:backend": "cd src/backend && rm -rf node_modules package-lock.json && npm i",
+    "rebuild": "npm run prune && npm run install && npm run up",
+    "shell:frontend": "docker exec -it playground-react-frontend sh",
+    "shell:backend": "docker exec -it playground-express-api sh",
+    "shell:database": "docker exec -it playground-postgres-database sh"
+  }
+}

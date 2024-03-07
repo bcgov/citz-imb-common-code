@@ -1,0 +1,35 @@
+@import './reset.css';
+@import './variables.css';
+@import './modifiers.css';
+@import '@bcgov/bc-sans/css/BC_Sans.css';
+
+body {
+  margin: 0;
+  font-family: BC Sans, Calibri, Arial, sans-serif;
+  font-size: var(--font-size);
+  color: var(--text-color);
+  background-color: var(--light-grey);
+}
+
+a {
+  color: var(--link-text-color);
+}
+
+a:hover {
+  color: var(--link-text-color-hover);
+}
+
+button {
+  padding: 6px 12px;
+  color: var(--text-color);
+  border-radius: 4px;
+  text-decoration: none;
+  line-height: 27px;
+  background-color: var(--white);
+  border: 1px solid var(--dark-grey);
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--light-grey2);
+}

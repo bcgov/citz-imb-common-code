@@ -1,0 +1,18 @@
+:root {
+  /* TYPOGRAPHY */
+  --text-color: #292929;
+  --font-size: 16px;
+  --link-text-color: #1a5a96;
+  --link-text-color-hover: #2378c7;
+
+  /* COLOURS */
+  --white: #fff;
+  --black: #000;
+  --light-grey: #faf9f8;
+  --light-grey2: #edebe9;
+  --dark-grey: #323130;
+  --bcgov-yellow: #FCBA19;
+  --bcgov-blue: #234075;
+  --bcgov-light-blue: #1a5a96;
+  --bcgov-dark-blue: #036;
+}
