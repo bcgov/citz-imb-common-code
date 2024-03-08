@@ -8,6 +8,7 @@
   "dependencies": {
     "@bcgov/bc-sans": "2.1.0",
     "@bcgov/citz-imb-kc-react": "0.0.3",
+    "@bcgov/design-system-react-components": "0.0.5",
     "@vitejs/plugin-react": "4.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
