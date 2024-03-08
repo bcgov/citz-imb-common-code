@@ -33,7 +33,7 @@ module.exports = {
   },
   rules: {
     // Override ones from the extended configs.
-    'prettier/prettier': 'warn',
+    'prettier/prettier': 'error',
     'react/prop-types': 'off',
     'no-prototype-builtins': 'off',
     'no-unused-vars': 'warn',
