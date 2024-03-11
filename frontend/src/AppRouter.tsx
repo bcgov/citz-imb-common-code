@@ -1,6 +1,7 @@
 import React, { lazy, Suspense, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { endpoints } from './utils';
+import { Header } from '@bcgov/design-system-react-components';
 
 // Lazy loaded pages.
 const Pages = {
@@ -18,19 +19,22 @@ const AppRouter = () => {
   }, [window.location.origin]);
 
   return (
-    <Router>
-      <Routes>
-        {/* LANDING PAGE */}
-        <Route
-          path="/"
-          element={
-            <Suspense fallback={<p>Loading...</p>}>
-              <Pages.Landing />
-            </Suspense>
-          }
-        />
-      </Routes>
-    </Router>
+    <>
+      <Header title="CITZ IMB Common Code" />
+      <Router>
+        <Routes>
+          {/* LANDING PAGE */}
+          <Route
+            path="/"
+            element={
+              <Suspense fallback={<p>Loading...</p>}>
+                <Pages.Landing />
+              </Suspense>
+            }
+          />
+        </Routes>
+      </Router>
+    </>
   );
 };
 

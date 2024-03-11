@@ -13,11 +13,11 @@
     "down:prod": "docker compose -f compose.prod.yaml down",
     "prune:prod": "docker compose -f compose.prod.yaml down --rmi all --volumes",
     "install": "npm run install:frontend && npm run install:backend",
-    "install:frontend": "cd src/frontend && rm -rf node_modules package-lock.json && npm i",
-    "install:backend": "cd src/backend && rm -rf node_modules package-lock.json && npm i",
+    "install:frontend": "cd frontend && rm -rf node_modules package-lock.json && npm i",
+    "install:backend": "cd backend && rm -rf node_modules package-lock.json && npm i",
     "rebuild": "npm run prune && npm run install && npm run up",
-    "shell:frontend": "docker exec -it playground-react-frontend sh",
-    "shell:backend": "docker exec -it playground-express-api sh",
-    "shell:database": "docker exec -it playground-postgres-database sh"
+    "shell:frontend": "docker exec -it coco-frontend sh",
+    "shell:backend": "docker exec -it coco-backend sh",
+    "shell:database": "docker exec -it coco-database sh"
   }
 }
