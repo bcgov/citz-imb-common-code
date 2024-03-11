@@ -1,4 +1,3 @@
-import './styles.css';
 import React, { CSSProperties, ReactNode, memo, useMemo } from 'react';
 
 type StackProps = {
@@ -24,7 +23,10 @@ const useStyles = (props: StackProps) => {
     const styles: CSSProperties = { display: 'flex', flexDirection: direction, gap, flexWrap };
 
     // Align items.
-    if (alignItems) styles.alignItems = alignItems;
+    if (alignItems && ['row', 'row-reverse'].includes(direction))
+      styles.justifyContent = alignItems;
+    if (alignItems && ['column', 'column-reverse'].includes(direction))
+      styles.alignItems = alignItems;
 
     return { ...styles, ...additionalStyles };
   }, [direction, gap, flexWrap, alignItems, additionalStyles]);
