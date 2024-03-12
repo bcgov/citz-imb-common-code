@@ -1,6 +1,6 @@
 import React, { CSSProperties, MouseEventHandler, ReactNode, memo, useMemo, useState } from 'react';
 
-type CardProps = {
+type ClickableCardProps = {
   children: ReactNode;
   onClick?: MouseEventHandler<HTMLAnchorElement>;
   padding?: string;
@@ -12,7 +12,7 @@ type CardProps = {
   additionalStyles?: CSSProperties;
 };
 
-const useStyles = (props: CardProps, isHovered: boolean) => {
+const useStyles = (props: ClickableCardProps, isHovered: boolean) => {
   const {
     additionalStyles,
     padding = '16px 24px',
@@ -52,7 +52,7 @@ const useStyles = (props: CardProps, isHovered: boolean) => {
   ]);
 };
 
-const ClickableCardComponent = (props: CardProps) => {
+const ClickableCardComponent = (props: ClickableCardProps) => {
   const { children, onClick = () => {} } = props;
 
   const [isHovered, setIsHovered] = useState(false);
@@ -75,9 +75,9 @@ const ClickableCardComponent = (props: CardProps) => {
 
 /**
  * A card that can be assigned an onClick function and has hover effects.
- * @param {CardProps} props - Properties are shown below.
- * @property {ReactNode} children: ReactNode;
- * @property {MouseEventHandler<HTMLAnchorElement>} onClick?: MouseEventHandler<HTMLAnchorElement>;
+ * @param {ClickableCardProps} props - Properties are shown below.
+ * @property {ReactNode} children - Child components filling the content space of the card.
+ * @property {MouseEventHandler<HTMLAnchorElement>} onClick - On click function.
  * @property {string} padding - Css property.
  * @property {string} borderRadius - Css property.
  * @property {string} backgroundColor - Css property.
