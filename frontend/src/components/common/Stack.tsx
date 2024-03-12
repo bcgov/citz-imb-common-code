@@ -38,4 +38,14 @@ const StackComponent = (props: StackProps) => {
   return <div style={styles}>{props.children}</div>;
 };
 
+/**
+ * Stack components vertically or horizontally.
+ * @param {StackProps} props - Properties are shown below.
+ * @property {ReactNode} children: ReactNode;
+ * @property {'row' | 'row-reverse' | 'column' | 'column-reverse'} direction - Css property flexDirection;
+ * @property {string} gap - Css property.
+ * @property {'center' | 'flex-start' | 'flex-end' | 'stretch'} alignItems - Css property.
+ * @property {'wrap' | 'nowrap' | 'wrap-reverse'} flexWrap - Css property.
+ * @property {CSSProperties} additionalStyles - Additional css properties.
+ */
 export const Stack = memo(StackComponent);
