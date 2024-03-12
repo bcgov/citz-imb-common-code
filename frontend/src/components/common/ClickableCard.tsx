@@ -73,4 +73,17 @@ const ClickableCardComponent = (props: CardProps) => {
   );
 };
 
+/**
+ * A card that can be assigned an onClick function and has hover effects.
+ * @param {CardProps} props - Properties are shown below.
+ * @property {ReactNode} children: ReactNode;
+ * @property {MouseEventHandler<HTMLAnchorElement>} onClick?: MouseEventHandler<HTMLAnchorElement>;
+ * @property {string} padding - Css property.
+ * @property {string} borderRadius - Css property.
+ * @property {string} backgroundColor - Css property.
+ * @property {string} hoverBackgroundColor - Css property (on hover).
+ * @property {string} width - Css property.
+ * @property {string} height - Css property.
+ * @property {CSSProperties} additionalStyles - Additional css properties.
+ */
 export const ClickableCard = memo(ClickableCardComponent);
