@@ -36,12 +36,14 @@ jobs:
       # Build the CoCo API Image 
       - name: Build CoCo API Image
         run: |
-          cd backend/.docker && docker build -t ${{ secrets.ARTIFACTORY_IMAGE_REPOSITORY }}/${{ secrets.ARTIFACTORY_REPOSITORY_NAME }}/coco-api:${{github.event.pull_request.number}} -f Dockerfile.prod .
+          cd backend/.docker && docker build -t ${{ secrets.ARTIFACTORY_IMAGE_REPOSITORY }}/${{ secrets.ARTIFACTORY_REPOSITORY_NAME }}/coco-api:1 -f Dockerfile.prod .
+          # cd backend/.docker && docker build -t ${{ secrets.ARTIFACTORY_IMAGE_REPOSITORY }}/${{ secrets.ARTIFACTORY_REPOSITORY_NAME }}/coco-api:${{github.event.pull_request.number}} -f Dockerfile.prod .
 
       # Push the Coco API Image to Artifactory
       - name: Push the CoCo API Image to Artifactory
         run: |
-          docker push ${{ secrets.ARTIFACTORY_IMAGE_REPOSITORY }}/${{ secrets.ARTIFACTORY_REPOSITORY_NAME }}/coco-api:${{github.event.pull_request.number}}
+          docker push ${{ secrets.ARTIFACTORY_IMAGE_REPOSITORY }}/${{ secrets.ARTIFACTORY_REPOSITORY_NAME }}/coco-api:1
+          # docker push ${{ secrets.ARTIFACTORY_IMAGE_REPOSITORY }}/${{ secrets.ARTIFACTORY_REPOSITORY_NAME }}/coco-api:${{github.event.pull_request.number}}
 
   Update_Wiki_Tags:
     needs: [CoCo-API-Build-Tag-Push]
