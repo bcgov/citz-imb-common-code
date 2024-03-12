@@ -41,7 +41,7 @@ const StackComponent = (props: StackProps) => {
 /**
  * Stack components vertically or horizontally.
  * @param {StackProps} props - Properties are shown below.
- * @property {ReactNode} children: ReactNode;
+ * @property {ReactNode} children - Child components, or stacked components.
  * @property {'row' | 'row-reverse' | 'column' | 'column-reverse'} direction - Css property flexDirection;
  * @property {string} gap - Css property.
  * @property {'center' | 'flex-start' | 'flex-end' | 'stretch'} alignItems - Css property.
