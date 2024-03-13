@@ -3,7 +3,7 @@ FROM node:${NODE_IMAGE_TAG} AS build
 
 WORKDIR /app
 
-COPY ./backend .
+COPY package*.json .
 
 RUN npm i
 
