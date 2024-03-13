@@ -3,7 +3,7 @@ FROM node:${NODE_IMAGE_TAG} AS build
 
 WORKDIR /app
 
-COPY ./backend .
+COPY . .
 
 RUN npm i
 
@@ -16,7 +16,7 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-COPY ./backend/package*.json ./
+COPY . .
 
 RUN npm i
 
