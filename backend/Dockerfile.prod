@@ -1,0 +1,33 @@
+ARG NODE_IMAGE_TAG
+FROM node:${NODE_IMAGE_TAG} AS build
+
+WORKDIR /app
+
+COPY . .
+
+RUN npm i
+
+# Build application
+RUN npm run build
+
+FROM node:${NODE_IMAGE_TAG} AS prod
+
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+COPY . .
+
+RUN npm i
+
+# Copy only the necessary files from the previous stage
+COPY --from=build /app/build ./build
+
+RUN mkdir /.npm
+RUN chgrp -R 0 /.npm && chmod -R g=u /.npm
+
+# Expose your application port
+EXPOSE 6600
+
+# Start the application
+CMD ["npm", "run", "prod"]
