@@ -14,11 +14,26 @@ const validateRequestSchema = (
     return schema.parse(obj);
   } catch (error) {
     if (error instanceof ZodError) {
+      const formattedErrors = error.errors
+        .map((e) => {
+          const path = e.path;
+          const message = e.message;
+
+          let expected = '';
+          let received = '';
+
+          // Expected and received only exist on type ZodIssueCode, where type of e wants to be ZodIssue
+          if ('expected' in e && 'received' in e) {
+            expected = e.expected as string;
+            received = e.received as string;
+          }
+
+          return `${path}: (Expected: ${expected}, Received: ${received}, Message: ${message})`;
+        })
+        .join(', ');
+
       // If validation fails, throw an error with detailed information
-      throw new HttpError(
-        `${errorMsgPrefix}${error.errors.map((e) => e.message).join(', ')}`,
-        httpStatusCode.BAD_REQUEST,
-      );
+      throw new HttpError(`${errorMsgPrefix}${formattedErrors}`, httpStatusCode.BAD_REQUEST);
     }
     // For unexpected errors, rethrow them
     throw error;

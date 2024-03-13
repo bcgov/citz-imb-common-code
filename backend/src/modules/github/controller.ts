@@ -1,17 +1,19 @@
 import { Request, Response } from 'express';
-import { HttpError, errorWrapper, getParams, httpStatusCode } from '../../utils';
-import { getOpenIssuesParamsSchema } from './schemas';
+import { HttpError, errorWrapper, getParams, getQuery, httpStatusCode } from '../../utils';
+import { paramSchemas, querySchemas } from './schemas';
 
 /**
- * Use github api to lookup open issues for a repo.
+ * Use github api to lookup issues for a repo.
  * @method GET
- * @route /github/issues/open/:repo
+ * @route /github/issues/:repo
+ * @param {'open' | 'closed' | 'all'} state - Query param.
  */
-export const getOpenIssues = errorWrapper(async (req: Request, res: Response) => {
-  const { repo } = getParams(req, getOpenIssuesParamsSchema);
+export const getIssues = errorWrapper(async (req: Request, res: Response) => {
+  const { repo } = getParams(req, paramSchemas.getIssues);
+  const { state } = getQuery(req, querySchemas.getIssues);
   const OWNER = 'bcgov';
 
-  const url = `https://api.github.com/repos/${OWNER}/${repo}/issues?state=open`;
+  const url = `https://api.github.com/repos/${OWNER}/${repo}/issues?state=${state}`;
 
   const response = await fetch(url);
   if (!response.ok)
