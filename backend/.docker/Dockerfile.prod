@@ -16,7 +16,7 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-COPY ./backend/package*.json ./
+COPY ./package*.json ./
 
 RUN npm i
 
