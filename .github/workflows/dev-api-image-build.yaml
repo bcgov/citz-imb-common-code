@@ -33,17 +33,17 @@ jobs:
       # Login to BCGov Artifactory 
       - name: Login to BCGov Artifactory 
         run: |
-          docker login artifacts.developer.gov.bc.ca:443/artifactory/tec1-citz-imb-coco/ -u ${{ secrets.ARTIFACTORY_SA_USERNAME }} -p ${{ secrets.ARTIFACTORY_SA_PASSWORD }}
+          docker login artifacts.developer.gov.bc.ca/tec1-citz-imb-coco -u ${{ secrets.ARTIFACTORY_SA_USERNAME }} -p ${{ secrets.ARTIFACTORY_SA_PASSWORD }}
 
       # Build the CoCo API Image 
       - name: Build CoCo API Image
         run: |
-          cd backend && docker build --build-arg NODE_IMAGE_TAG=${NODE_IMAGE_TAG} -t artifacts.developer.gov.bc.ca:443/artifactory/tec1-citz-imb-coco/coco-api:1 -f Dockerfile.prod .
+          cd backend && docker build --build-arg NODE_IMAGE_TAG=${NODE_IMAGE_TAG} -t artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-api:1 -f Dockerfile.prod .
 
       # Push the Coco API Image to Artifactory
       - name: Push the CoCo API Image to Artifactory
         run: |
-          docker push https://artifacts.developer.gov.bc.ca:443/artifactory/tec1-citz-imb-coco/coco-api:1
+          docker push https://artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-api:1
 
   Update_Wiki_Tags:
     needs: [CoCo-API-Build-Tag-Push]
