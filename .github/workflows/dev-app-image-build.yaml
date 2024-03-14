@@ -7,11 +7,14 @@ on:
     branches: [main]
     paths:
       - 'frontend/**' # Triggers on changes to files in the express-api/ directory.
+  workflow_dispatch:
 
 jobs:
-  ReactJS-Build-Tag-Push:
+  CoCo-ReactJS-Build-Tag-Push:
     environment: dev
     runs-on: ubuntu-latest
+    env:
+      NGINX_IMAGE_TAG: ${{ vars.NGINX_IMAGE_TAG }}
     steps:
       # check out the repo
       - name: Checkout
@@ -30,20 +33,20 @@ jobs:
       # Login to BC Gov Docker Image Repository
       - name: Login to Openshift Docker
         run: |
-          docker login ${{ secrets.ARTIFACTORY_IMAGE_REPOSITORY }} -u ${{ secrets.ARTIFACTORY_SA_USERNAME }} -p ${{ secrets.ARTIFACTORY_SA_PASSWORD }}
+          docker login artifacts.developer.gov.bc.ca/tec1-citz-imb-coco  -u ${{ secrets.ARTIFACTORY_SA_USERNAME }} -p ${{ secrets.ARTIFACTORY_SA_PASSWORD }}
 
       # Build the ReactJS Image 
       - name: Build ReactJS Image
         run: |
-          cd frontend/.docker && docker build -t ${{ secrets.ARTIFACTORY_IMAGE_REPOSITORY }}/${{ secrets.ARTIFACTORY_REPOSITORY_NAME }}/coco-frontend:${{github.event.pull_request.number}} -f Dockerfile.prod .
+          cd frontend && docker build --build-arg NGINX_IMAGE_TAG=${NGINX_IMAGE_TAG} -t artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-frontend:1 -f Dockerfile.prod .
 
       # Push the ReactJS Image 
       - name: Push API Image
         run: |
-          docker push ${{ secrets.ARTIFACTORY_IMAGE_REPOSITORY }}/${{ secrets.ARTIFACTORY_REPOSITORY_NAME }}/coco-frontend:${{github.event.pull_request.number}}
+          docker push artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-frontend:1
 
   Update_Wiki_Tags:
-    needs: [ReactJS-Build-Tag-Push]
+    needs: [CoCo-ReactJS-Build-Tag-Push]
     name: Update table in wiki
     runs-on: ubuntu-latest
     env:
