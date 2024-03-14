@@ -13,9 +13,6 @@ objects:
       openshift.io/generated-by: OpenShiftWebConsole
     resourceVersion: '9397549275'
     name: ${APPLICATION_NAME}
-    uid: b1fd41ab-3484-4a9d-ba92-48212749cfb6
-    creationTimestamp: '2024-03-14T17:34:24Z'
-    generation: 5
     namespace: ${LICENSE_PLATE}-${ENVIRONMENT}
     labels:
       app: ${APPLICATION_NAME}
