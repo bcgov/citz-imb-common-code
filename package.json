@@ -6,9 +6,6 @@
     "up": "docker compose up -d",
     "down": "docker compose down",
     "prune": "docker compose down --rmi all --volumes",
-    "up:database": "docker compose up -d coco-database",
-    "up:prod-local": "npm run up:database && docker compose -f compose.prod.yaml up -d",
-    "down:prod-local": "docker compose -f compose.prod.yaml down && docker compose down",
     "up:prod": "docker compose -f compose.prod.yaml up -d",
     "down:prod": "docker compose -f compose.prod.yaml down",
     "prune:prod": "docker compose -f compose.prod.yaml down --rmi all --volumes",
@@ -17,7 +14,6 @@
     "install:backend": "cd backend && rm -rf node_modules package-lock.json && npm i",
     "rebuild": "npm run prune && npm run install && npm run up",
     "shell:frontend": "docker exec -it coco-frontend sh",
-    "shell:backend": "docker exec -it coco-backend sh",
-    "shell:database": "docker exec -it coco-database sh"
+    "shell:backend": "docker exec -it coco-backend sh"
   }
 }

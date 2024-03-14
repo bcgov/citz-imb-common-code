@@ -1,17 +1,6 @@
 // Environment variables set in compose file.
-const {
-  NODE_ENV,
-  ENVIRONMENT,
-  DEBUG,
-  VERBOSE_DEBUG,
-  FRONTEND_URL,
-  BACKEND_URL,
-  BACKEND_PORT,
-  DATABASE_HOST,
-  DATABASE_USER,
-  DATABASE_PASSWORD,
-  DATABASE_NAME,
-} = process.env;
+const { NODE_ENV, ENVIRONMENT, DEBUG, VERBOSE_DEBUG, FRONTEND_URL, BACKEND_URL, BACKEND_PORT } =
+  process.env;
 
 // Exported configuration values.
 export default {
@@ -23,8 +12,4 @@ export default {
   ENVIRONMENT,
   FRONTEND_URL,
   BACKEND_URL,
-  DATABASE_HOST,
-  DATABASE_USER,
-  DATABASE_PASSWORD,
-  DATABASE_NAME,
 };
