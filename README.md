@@ -7,7 +7,6 @@
 [![Typescript](https://img.shields.io/badge/TypeScript_5-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](Typescript)
 [![React](https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=for-the-badge)](React)
 [![Express](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)](Express)
-![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 
 <br />
 
@@ -25,7 +24,7 @@
 
 This application will be used to showcase the code, packages, and services that the Common Code team offers. It will also serve as a testing grounds for packages before new versions are published.
 
-- Running on a NodeJS:20 with React, Express, and Postgres.
+- Running on a NodeJS:20 with React, and Express.
 
 ---
 
@@ -60,12 +59,10 @@ This application will be used to showcase the code, packages, and services that 
 |   ├── backend/                            # Express API.
 |   |   ├── scripts/                        # Utility scripts used to run the server.
 |   |   ├── src/                             
-|   |   |   ├── migrations/                 # Migrations on database (check src/backend/README).
 |   |   |   ├── modules/                    # Modules of functionality (routes, controllers, entities, services).
 |   |   |   └── utils/                      # Utility functions for the express api.
-|   |   ├── dataSource.ts                   # Connection to database and configuration with typeorm.
 |   |   ├── express.ts                      # Express configuration and base route configuration.
-|   |   ├── index.ts                        # Server and database connection initialization.
+|   |   ├── index.ts                        # Server initialization.
 |   |   └── package.json                    # Configure packages.
 |   ├── frontend/                           # React.
 |   |   ├── src/                             
@@ -130,24 +127,6 @@ $ npm run down
 ```bash
 # Prune all containers, images and volumes.
 $ npm run prune
-```
-
-```bash
-# Start the database standalone (ensure env vars set).
-$ npm run up:database
-```
-
-```bash
-# Start the web app (ensure env vars set).
-# Runs in production mode with compiled typescript code and nginx frontend server.
-# Starts database so production mode can be tested locally.
-$ npm run up:prod-local
-```
-
-```bash
-# Stop the web app (when running in production mode).
-# Stops production mode services as well as database.
-$ npm run down:prod-local
 ```
 
 ```bash

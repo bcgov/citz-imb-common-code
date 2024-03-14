@@ -38,36 +38,9 @@ services:
       - ${BACKEND_PORT:-6600}:6600
     volumes:
       - ./backend:/app
-    depends_on:
-      coco-database:
-        condition: service_healthy
-    networks:
-      - app-network
-
-  coco-database:
-    container_name: coco-database
-    image: postgres:16.2-alpine
-    restart: unless-stopped
-    environment:
-      - POSTGRES_USER=${DATABASE_USER:-postgres}
-      - POSTGRES_PASSWORD=${DATABASE_PASSWORD:-postgres}
-      - POSTGRES_DB=${DATABASE_NAME:-sandbox}
-    volumes:
-      - database-data:/var/lib/postgresql/data # Named volume binded to Postgres' data store directory.
-    ports:
-      - ${DATABASE_PORT:-6700}:5432
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USER:-postgres}"] # Check if PostgreSQL is ready.
-      interval: 15s # Perform the health check every 15 seconds.
-      timeout: 5s # Consider the health check a failure if it takes more than 5 seconds.
-      retries: 5 # Retry the health check up to 5 times before considering the container unhealthy.
     networks:
       - app-network
 
 networks:
   app-network:
     driver: "bridge"
-
-volumes:
-  database-data:
-    driver: local # Stores the volume data on the host machine's file system.
