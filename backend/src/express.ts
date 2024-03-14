@@ -3,7 +3,7 @@ import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import { keycloak } from '@bcgov/citz-imb-kc-express';
 import { CORS_OPTIONS, KEYCLOAK_OPTIONS, RATE_LIMIT_OPTIONS } from './config';
-import { healthRouter, configRouter } from './modules';
+import { healthRouter, configRouter, githubRouter } from './modules';
 
 // Define Express App
 const app = express();
@@ -32,5 +32,6 @@ app.disable('x-powered-by');
 // Routing
 app.use('/health', healthRouter);
 app.use('/config', configRouter);
+app.use('/github', githubRouter);
 
 export default app;
