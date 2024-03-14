@@ -39,7 +39,7 @@ jobs:
       # Build the ReactJS Image 
       - name: Build ReactJS Image
         run: |
-          cd frontend && docker build --build-arg NGINX_IMAGE_TAG=${NGINX_IMAGE_TAG} NODE_IMAGE_TAG=${NODE_IMAGE_TAG} -t artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-frontend:1 -f Dockerfile.prod .
+          cd frontend && docker build --build-arg NGINX_IMAGE_TAG=${NGINX_IMAGE_TAG} --build-arg NODE_IMAGE_TAG=${NODE_IMAGE_TAG} -t artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-frontend:1 -f Dockerfile.prod .
 
       # Push the ReactJS Image 
       - name: Push ReactJS Image Image
