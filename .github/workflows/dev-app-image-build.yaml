@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NGINX_IMAGE_TAG: ${{ vars.NGINX_IMAGE_TAG }}
+      NODE_IMAGE_TAG: ${{ vars.NODE_IMAGE_TAG }}
     steps:
       # check out the repo
       - name: Checkout
@@ -38,7 +39,7 @@ jobs:
       # Build the ReactJS Image 
       - name: Build ReactJS Image
         run: |
-          cd frontend && docker build --build-arg NGINX_IMAGE_TAG=${NGINX_IMAGE_TAG} -t artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-frontend:1 -f Dockerfile.prod .
+          cd frontend && docker build --build-arg NGINX_IMAGE_TAG=${NGINX_IMAGE_TAG} NODE_IMAGE_TAG=${NODE_IMAGE_TAG} -t artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-frontend:1 -f Dockerfile.prod .
 
       # Push the ReactJS Image 
       - name: Push API Image
