@@ -1,12 +1,12 @@
 # GitHub Actions workflow for building and tagging the API image on PR
-name: ReactJS Frontend - Image Build
+name: Common Code Frontend - Image Build, Tag Push
 
 on:
   pull_request:
     types: [opened, synchronize, ready_for_review] # Triggered by opened or changed pull requests.
     branches: [main]
     paths:
-      - 'frontend/**' # Triggers on changes to files in the express-api/ directory.
+      - 'frontend/**' # Triggers on changes to files in the frontend directory.
   workflow_dispatch:
 
 jobs:
@@ -42,7 +42,7 @@ jobs:
           cd frontend && docker build --build-arg NGINX_IMAGE_TAG=${NGINX_IMAGE_TAG} NODE_IMAGE_TAG=${NODE_IMAGE_TAG} -t artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-frontend:1 -f Dockerfile.prod .
 
       # Push the ReactJS Image 
-      - name: Push API Image
+      - name: Push ReactJS Image Image
         run: |
           docker push artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-frontend:1
 
