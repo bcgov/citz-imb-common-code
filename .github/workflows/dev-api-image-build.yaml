@@ -43,7 +43,7 @@ jobs:
       # Push the Coco API Image to Artifactory
       - name: Push the CoCo API Image to Artifactory
         run: |
-          docker push https://artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-api:1
+          docker push artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-api:1
 
   Update_Wiki_Tags:
     needs: [CoCo-API-Build-Tag-Push]
