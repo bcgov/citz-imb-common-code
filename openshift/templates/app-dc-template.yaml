@@ -1,0 +1,103 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: ${APPLICATION_NAME}-template
+labels:
+  template: ${APPLICATION_NAME}-template
+objects:
+- kind: kind: DeploymentConfig
+  apiVersion: apps.openshift.io/v1
+  metadata:
+    annotations:
+      app.openshift.io/connects-to: >-
+        [{"apiVersion":"apps.openshift.io/v1","kind":"DeploymentConfig","name":"coco-api"}]
+      app.openshift.io/route-disabled: 'false'
+      openshift.io/generated-by: OpenShiftWebConsole
+    resourceVersion: '9397223366'
+    name: ${APPLICATION_NAME}
+    namespace: ${LICENSE_PLATE}-${ENVIRONMENT}
+    labels:
+      app: ${APPLICATION_NAME}
+      app.kubernetes.io/component: ${APPLICATION_NAME}
+      app.kubernetes.io/instance: ${APPLICATION_NAME}
+      app.kubernetes.io/name: ${APPLICATION_NAME}
+      app.kubernetes.io/part-of: coco-demo
+      app.openshift.io/runtime: js
+      app.openshift.io/runtime-namespace: ${LICENSE_PLATE}-${ENVIRONMENT}
+  spec:
+    strategy:
+      type: Rolling
+      rollingParams:
+        updatePeriodSeconds: 1
+        intervalSeconds: 1
+        timeoutSeconds: 600
+        maxUnavailable: 25%
+        maxSurge: 25%
+      resources: {}
+      activeDeadlineSeconds: 21600
+    triggers:
+      - type: ImageChange
+        imageChangeParams:
+          automatic: true
+          containerNames:
+            - ${APPLICATION_NAME}
+          from:
+            kind: ImageStreamTag
+            namespace: ${LICENSE_PLATE}-${ENVIRONMENT}
+            name: '${APPLICATION_NAME}:${IMAGE_TAG_NUMBER}'
+          lastTriggeredImage: >-
+            image-registry.openshift-image-registry.svc:5000/baf95e-dev/coco-frontend@sha256:054cc578ba55db7ee640da6cdc3db8fe1c4e32d4e56b64c0805b703e57c899f8
+      - type: ConfigChange
+    replicas: 1
+    revisionHistoryLimit: 10
+    test: false
+    selector:
+      app: ${APPLICATION_NAME}
+      deploymentconfig: ${APPLICATION_NAME}
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: ${APPLICATION_NAME}
+          deploymentconfig: ${APPLICATION_NAME}
+        annotations:
+          openshift.io/generated-by: OpenShiftWebConsole
+      spec:
+        containers:
+          - name: ${APPLICATION_NAME}
+            image: >-
+              image-registry.openshift-image-registry.svc:5000/baf95e-dev/coco-frontend@sha256:054cc578ba55db7ee640da6cdc3db8fe1c4e32d4e56b64c0805b703e57c899f8
+            ports:
+              - containerPort: 6500
+                protocol: TCP
+              - containerPort: 80
+                protocol: TCP
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            imagePullPolicy: IfNotPresent
+        restartPolicy: Always
+        terminationGracePeriodSeconds: 30
+        dnsPolicy: ClusterFirst
+        securityContext: {}
+        schedulerName: default-scheduler
+
+parameters:
+  - description: Application Name
+    displayName: AppName
+    name: APPLICATION_NAME
+    required: true
+    value: coco-frontend
+  - description: Environment
+    displayName: Environment
+    name: ENVIRONMENT
+    required: true
+    value: dev
+  - description: License Plate
+    displayName: License Plate
+    name: LICENSE_PLATE
+    required: true
+    value: baf95e
+  - description: Image Tag Number
+    displayName: Image Tag Number
+    name: IMAGE_TAG_NUMBER
