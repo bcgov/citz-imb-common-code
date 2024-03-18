@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { HttpError, errorWrapper, getParams, getQuery, httpStatusCode } from '../../utils';
+import { HttpError, errorWrapper, httpStatusCode } from '../../utils';
 import { paramSchemas, querySchemas } from './schemas';
 
 /**
@@ -9,10 +9,11 @@ import { paramSchemas, querySchemas } from './schemas';
  * @param {'open' | 'closed' | 'all'} state - Query param.
  */
 export const getIssues = errorWrapper(async (req: Request, res: Response) => {
-  const { repo } = getParams(req, paramSchemas.getIssues);
-  const { state } = getQuery(req, querySchemas.getIssues);
-  const OWNER = 'bcgov';
+  const { getZodValidatedParams, getZodValidatedQuery } = req;
+  const { repo } = getZodValidatedParams(paramSchemas.getIssues);
+  const { state } = getZodValidatedQuery(querySchemas.getIssues);
 
+  const OWNER = 'bcgov';
   const url = `https://api.github.com/repos/${OWNER}/${repo}/issues?state=${state}`;
 
   const response = await fetch(url);

@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Request } from 'express';
 import { ZodError, z } from 'zod';
 import { HttpError } from './HttpError';
 import { httpStatusCode } from './httpStatusCode';
 
-const validateRequestSchema = (
+export const validateZodRequestSchema = (
   obj: Record<string, any>,
   schema: z.ZodSchema<unknown>,
   errorMsgPrefix: string,
@@ -39,12 +38,3 @@ const validateRequestSchema = (
     throw error;
   }
 };
-
-export const getQuery = (req: Request, schema: z.ZodSchema<unknown>): any =>
-  validateRequestSchema(req.query, schema, 'Request is malformed. Invalid query parameters: ');
-
-export const getParams = (req: Request, schema: z.ZodSchema<unknown>): any =>
-  validateRequestSchema(req.params, schema, 'Request is malformed. Invalid path parameters: ');
-
-export const getBody = (req: Request, schema: z.ZodSchema<unknown>): any =>
-  validateRequestSchema(req.body, schema, 'Request is malformed. Invalid request body: ');

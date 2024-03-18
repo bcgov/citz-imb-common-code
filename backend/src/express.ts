@@ -4,6 +4,7 @@ import rateLimit from 'express-rate-limit';
 import { keycloak } from '@bcgov/citz-imb-kc-express';
 import { CORS_OPTIONS, KEYCLOAK_OPTIONS, RATE_LIMIT_OPTIONS } from './config';
 import { healthRouter, configRouter, githubRouter } from './modules';
+import { zodValidationMiddleware } from './utils';
 
 // Define Express App
 const app = express();
@@ -28,6 +29,9 @@ app.use(rateLimit(RATE_LIMIT_OPTIONS));
 
 // Disabled because it exposes information about the used framework to potential attackers.
 app.disable('x-powered-by');
+
+// Add zod validation functions.
+app.use(zodValidationMiddleware);
 
 // Routing
 app.use('/health', healthRouter);
