@@ -7,5 +7,3 @@ export * from './express-requests/httpStatusCode';
 export * from './express-requests/HttpError';
 export * from './express-requests/validateRequestSchema';
 export * from './zod';
-export * from './auth/activateKeycloakIdirUser';
-export * from './auth/activateUser';
