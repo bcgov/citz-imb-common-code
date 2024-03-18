@@ -39,7 +39,7 @@ objects:
             - ${APPLICATION_NAME}
           from:
             kind: ImageStreamTag
-            namespace: ${LICENSE_PLATE}-${ENVIRONMENT
+            namespace: ${LICENSE_PLATE}-${ENVIRONMENT}
             name: '${APPLICATION_NAME}:${IMAGE_TAG}'
           lastTriggeredImage: >-
             image-registry.openshift-image-registry.svc:5000/baf95e-dev/coco-api@sha256:960a8ae0c98173cfc6827511ef9e821859d5caf81be60072303c08870e0fd8aa
