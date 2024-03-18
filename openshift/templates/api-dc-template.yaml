@@ -10,8 +10,6 @@ objects:
   metadata:
     annotations:
       app.openshift.io/route-disabled: 'false'
-      openshift.io/generated-by: OpenShiftWebConsole
-    resourceVersion: '9397549275'
     name: ${APPLICATION_NAME}
     namespace: ${LICENSE_PLATE}-${ENVIRONMENT}
     labels:
@@ -106,26 +104,6 @@ objects:
                   secretKeyRef:
                     name: sso-connection
                     key: SSO_INTEGRATION_ID
-              - name: DATABASE_HOST
-                valueFrom:
-                  secretKeyRef:
-                    name: postgres-connection
-                    key: DATABASE_HOST
-              - name: DATABASE_USER
-                valueFrom:
-                  secretKeyRef:
-                    name: postgres-connection
-                    key: DATABASE_USER
-              - name: DATABASE_PASSWORD
-                valueFrom:
-                  secretKeyRef:
-                    name: postgres-connection
-                    key: DATABASE_PASSWORD
-              - name: DATABASE_NAME
-                valueFrom:
-                  secretKeyRef:
-                    name: postgres-connection
-                    key: DATABASE_NAME
             resources: {}
             terminationMessagePath: /dev/termination-log
             terminationMessagePolicy: File
