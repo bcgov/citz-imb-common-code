@@ -53,7 +53,7 @@ objects:
           - name: ${APPLICATION_NAME}
             image: artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-api:${IMAGE_TAG}
             imagePullSecrets:
-            - name: artifactory-pull-secret
+            - name: artifacts-pull-default-ethmgh
             ports:
               - containerPort: 6600
                 protocol: TCP
