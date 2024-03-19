@@ -38,7 +38,5 @@ app.use('/health', healthRouter);
 app.use('/config', configRouter);
 app.use('/github', githubRouter);
 
-console.log("rip Brady, u da real 1");
-
 
 export default app;
