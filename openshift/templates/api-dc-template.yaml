@@ -51,7 +51,7 @@ objects:
         serviceAccountName: baf95e-vault
         containers:
           - name: ${APPLICATION_NAME}
-            image: artifacts.developer.gov.bc.ca/t354-pims-image-repository/pims-api-v2:${IMAGE_TAG}
+            image: artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-api:${IMAGE_TAG}
             imagePullSecrets:
             - name: artifactory-pull-secret
             ports:
