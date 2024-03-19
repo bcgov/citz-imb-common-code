@@ -121,6 +121,6 @@ parameters:
     name: LICENSE_PLATE
     required: true
     value: baf95e
-  - description: Image Tag Number
-    displayName: Image Tag Number
+  - description: Image Tag
+    displayName: Image Tag
     name: IMAGE_TAG
