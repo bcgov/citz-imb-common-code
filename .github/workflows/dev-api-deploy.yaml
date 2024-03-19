@@ -126,12 +126,7 @@ jobs:
 
       # Run update wiki python script
       - name: Run update wiki python script
-        run: python ./.github/helpers/update-wiki-table.py ./wiki/Image-tags.md API "Deployed Image Tag in DEV" "${{ env.IMAGE_TAG }}"
-
-       # Run update wiki python script for Migration If needed
-      - name: Update wiki for Migration If needed
-        if: github.event.inputs.migration_tag || needs.Deploy-To-OpenShift.outputs.migration == 'true'
-        run: python ./.github/helpers/update-wiki-table.py ./wiki/Image-tags.md MIGRATION "Deployed Image Tag in DEV" "${{ env.MIGRATION_IMAGE }}"
+        run: python ./.github/helpers/update-wiki-table.py ./wiki/Image-tags.md CoCo-API "Deployed Image Tag in DEV" "${{ env.IMAGE_TAG }}"
       
       # Commit and push changes to wiki
       - name: Commit and push changes to wiki
