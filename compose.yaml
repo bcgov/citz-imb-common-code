@@ -18,8 +18,8 @@ services:
     networks:
       - app-network
 
-  coco-backend:
-    container_name: coco-backend
+  coco-api:
+    container_name: coco-api
     tty: true
     init: true # Properly handles running as PID 1 inside a container. Source: https://github.com/nodejs/docker-node/blob/main/docs/BestPractices.md#handling-kernel-signals
     restart: on-failure
