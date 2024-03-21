@@ -1,4 +1,4 @@
-# GitHub Actions workflow for deploying API image on PR merge to main branch
+# GitHub Actions workflow for deploying APP image on PR merge to main branch
 name: Common Code Frontend - Deploy to DEV
 
 on:
