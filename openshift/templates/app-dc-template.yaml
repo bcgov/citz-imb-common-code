@@ -24,6 +24,7 @@ objects:
       app.kubernetes.io/part-of: coco-demo
       app.openshift.io/runtime: js
       app.openshift.io/runtime-namespace: ${LICENSE_PLATE}-${ENVIRONMENT}
+      image: ${IMAGE_TAG}
   spec:
     strategy:
       type: Rolling
@@ -36,17 +37,6 @@ objects:
       resources: {}
       activeDeadlineSeconds: 21600
     triggers:
-      - type: ImageChange
-        imageChangeParams:
-          automatic: true
-          containerNames:
-            - ${APPLICATION_NAME}
-          from:
-            kind: ImageStreamTag
-            namespace: ${LICENSE_PLATE}-${ENVIRONMENT}
-            name: '${APPLICATION_NAME}:${IMAGE_TAG_NUMBER}'
-          lastTriggeredImage: >-
-            image-registry.openshift-image-registry.svc:5000/baf95e-dev/coco-frontend@sha256:054cc578ba55db7ee640da6cdc3db8fe1c4e32d4e56b64c0805b703e57c899f8
       - type: ConfigChange
     replicas: 1
     revisionHistoryLimit: 10
@@ -65,8 +55,9 @@ objects:
       spec:
         containers:
           - name: ${APPLICATION_NAME}
-            image: >-
-              image-registry.openshift-image-registry.svc:5000/baf95e-dev/coco-frontend@sha256:054cc578ba55db7ee640da6cdc3db8fe1c4e32d4e56b64c0805b703e57c899f8
+            image: artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-frontend:${IMAGE_TAG}
+            imagePullSecrets:
+            - name: artifacts-pull-artifactory-gyyypy
             ports:
               - containerPort: 6500
                 protocol: TCP
@@ -100,4 +91,4 @@ parameters:
     value: baf95e
   - description: Image Tag Number
     displayName: Image Tag Number
-    name: IMAGE_TAG_NUMBER
+    name: IMAGE_TAG
