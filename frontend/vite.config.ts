@@ -14,7 +14,7 @@ export default defineConfig({
     port: 6500,
     proxy: {
       '/api': {
-        target: 'http://coco-backend:6600/',
+        target: 'http://coco-api:6600/',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
