@@ -15,6 +15,7 @@ app.listen(PORT, () => {
     console.info(CURRENT_NODE_VERSION);
     console.info(UTC_DATE_TIME);
     console.info(PACIFIC_DATE_TIME);
+    console.log("Hello, I'm listening.");
     if (DEBUG) console.info(DEBUG_ENABLED);
   } catch (error) {
     // Log any error that occurs during the server start.
