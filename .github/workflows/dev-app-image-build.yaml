@@ -39,12 +39,12 @@ jobs:
       # Build the ReactJS Image 
       - name: Build ReactJS Image
         run: |
-          cd frontend && docker build --build-arg NGINX_IMAGE_TAG=${NGINX_IMAGE_TAG} --build-arg NODE_IMAGE_TAG=${NODE_IMAGE_TAG} -t artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-frontend:1 -f Dockerfile.prod .
+          cd frontend && docker build --build-arg NGINX_IMAGE_TAG=${NGINX_IMAGE_TAG} --build-arg NODE_IMAGE_TAG=${NODE_IMAGE_TAG} -t artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-frontend:${{github.event.pull_request.number}} -f Dockerfile.prod .
 
       # Push the ReactJS Image 
       - name: Push ReactJS Image Image
         run: |
-          docker push artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-frontend:1
+          docker push artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-frontend:${{github.event.pull_request.number}}
 
   Update_Wiki_Tags:
     needs: [CoCo-ReactJS-Build-Tag-Push]
@@ -72,7 +72,7 @@ jobs:
 
       # Run the update wiki Python script
       - name: Run update wiki Python script
-        run: python ./.github/helpers/update-wiki-table.py ./wiki/Image-tags.md "Frontend" "Latest Build Image Tag" "${{github.event.pull_request.number}}"
+        run: python ./.github/helpers/update-wiki-table.py ./wiki/Image-tags.md "CoCo Frontend" "Latest Build Image Tag" "${{github.event.pull_request.number}}"
 
       # Commit and push changes to the wiki
       - name: Commit and push changes to wiki
@@ -86,7 +86,7 @@ jobs:
             exit 0
           fi
           echo "Pushing changes to wiki"
-          git commit -m "Value populated at image build API" && git push "https://$GITHUB_ACTOR:$GH_TOKEN@github.com/$GITHUB_REPOSITORY.wiki.git"
+          git commit -m "Value populated at image build Frontend" && git push "https://$GITHUB_ACTOR:$GH_TOKEN@github.com/$GITHUB_REPOSITORY.wiki.git"
 
       # Add comment to the PR
       - name: Add Comment To the PR
@@ -98,5 +98,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: "🚀 **Deployment Information**\n\nThe Express API Image has been built with the tag: **`${{github.event.pull_request.number}}`**. Please make sure to utilize this specific tag when promoting these changes to the TEST and PROD environments during the API deployment. For more updates please monitor [Image Tags](https://github.com/bcgov/PIMS/wiki/Image-tags) Page on Wiki."
+              body: "🚀 **Deployment Information**\n\nThe ReactJS Frontend Image has been built with the tag: **`${{github.event.pull_request.number}}`**. Please make sure to utilize this specific tag when promoting these changes to the TEST and PROD environments during the Frontend deployment. For more updates please monitor [Image Tags](https://github.com/bcgov/citz-imb-common-code/wiki/Image-tags) Page on Wiki."
             })
