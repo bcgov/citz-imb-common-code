@@ -32,26 +32,3 @@ hr {
   margin-top: 10px;
   margin-bottom: 20px;
 }
-
-a {
-  color: var(--link-text-color);
-}
-
-a:hover {
-  color: var(--link-text-color-hover);
-}
-
-button {
-  padding: 6px 12px;
-  color: var(--text-color);
-  border-radius: 4px;
-  text-decoration: none;
-  line-height: 27px;
-  background-color: var(--white);
-  border: 1px solid var(--dark-grey);
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: var(--light-grey2);
-}
