@@ -20,15 +20,11 @@ export const zodValidationMiddleware = (req: Request, res: Response, next: NextF
 
   // Query.
   req.getZodValidatedQuery = (schema: ZodSchema<unknown>): any =>
-    validateZodRequestSchema(
-      req.params,
-      schema,
-      'Request is malformed. Invalid query parameters: ',
-    );
+    validateZodRequestSchema(req.query, schema, 'Request is malformed. Invalid query parameters: ');
 
   // Request body.
   req.getZodValidatedBody = (schema: ZodSchema<unknown>): any =>
-    validateZodRequestSchema(req.params, schema, 'Request is malformed. Invalid request body: ');
+    validateZodRequestSchema(req.body, schema, 'Request is malformed. Invalid request body: ');
 
   next();
 };
