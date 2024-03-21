@@ -2,6 +2,9 @@ import React, { CSSProperties, ReactNode, memo, useMemo } from 'react';
 
 type StackProps = {
   children: ReactNode;
+  id?: string;
+  className?: string;
+  ariaLabel?: string;
   direction?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
   gap?: string;
   alignItems?: 'center' | 'flex-start' | 'flex-end' | 'stretch';
@@ -35,13 +38,20 @@ const useStyles = (props: StackProps) => {
 const StackComponent = (props: StackProps) => {
   const styles = useStyles(props);
 
-  return <div style={styles}>{props.children}</div>;
+  return (
+    <div id={props.id} className={props.className} aria-label={props.ariaLabel} style={styles}>
+      {props.children}
+    </div>
+  );
 };
 
 /**
  * Stack components vertically or horizontally.
  * @param {StackProps} props - Properties are shown below.
  * @property {ReactNode} children - Child components, or stacked components.
+ * @property {string} id - (optional) Identifier.
+ * @property {string} className - (optional) CSS class names.
+ * @property {string} ariaLabel - (optional) Aria label.
  * @property {'row' | 'row-reverse' | 'column' | 'column-reverse'} direction - Css property flexDirection;
  * @property {string} gap - Css property.
  * @property {'center' | 'flex-start' | 'flex-end' | 'stretch'} alignItems - Css property.

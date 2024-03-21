@@ -2,6 +2,9 @@ import React, { CSSProperties, MouseEventHandler, ReactNode, memo, useMemo, useS
 
 type ClickableCardProps = {
   children: ReactNode;
+  id?: string;
+  className?: string;
+  ariaLabel?: string;
   onClick?: MouseEventHandler<HTMLAnchorElement>;
   padding?: string;
   borderRadius?: string;
@@ -63,6 +66,9 @@ const ClickableCardComponent = (props: ClickableCardProps) => {
 
   return (
     <a
+      id={props.id}
+      className={props.className}
+      aria-label={props.ariaLabel}
       onClick={onClick}
       style={styles}
       onMouseEnter={handleMouseEnter}
@@ -77,6 +83,9 @@ const ClickableCardComponent = (props: ClickableCardProps) => {
  * A card that can be assigned an onClick function and has hover effects.
  * @param {ClickableCardProps} props - Properties are shown below.
  * @property {ReactNode} children - Child components filling the content space of the card.
+ * @property {string} id - (optional) Identifier.
+ * @property {string} className - (optional) CSS class names.
+ * @property {string} ariaLabel - (optional) Aria label.
  * @property {MouseEventHandler<HTMLAnchorElement>} onClick - On click function.
  * @property {string} padding - Css property.
  * @property {string} borderRadius - Css property.
