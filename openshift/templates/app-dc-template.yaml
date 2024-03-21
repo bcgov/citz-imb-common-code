@@ -13,7 +13,6 @@ objects:
         [{"apiVersion":"apps.openshift.io/v1","kind":"DeploymentConfig","name":"coco-api"}]
       app.openshift.io/route-disabled: 'false'
       openshift.io/generated-by: OpenShiftWebConsole
-    resourceVersion: '9397223366'
     name: ${APPLICATION_NAME}
     namespace: ${LICENSE_PLATE}-${ENVIRONMENT}
     labels:
