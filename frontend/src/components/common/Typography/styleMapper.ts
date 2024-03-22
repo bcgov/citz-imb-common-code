@@ -38,5 +38,6 @@ export const styleMapper = (props: TypographyProps) => {
     whiteSpace: ellipsis ? 'nowrap' : undefined,
   };
 
+  // Adds additionalStyles after styles, so they will override any style properties of styles object.
   return { ...styles, ...additionalStyles };
 };
