@@ -45,7 +45,7 @@ const HeadingComponent = (props: HeadingProps) => {
 /**
  * Text heading component.
  * @param {HeadingProps} props - Properties are shown below.
- * @property {ReactNode} children - Child components, or stacked components.
+ * @property {ReactNode} children - Child components (text).
  * @property {string} id - (optional) Identifier.
  * @property {string} className - (optional) CSS class names.
  * @property {'x-small' | 'small' | 'medium' | 'large' | 'x-large'} size - (optional) Size of heading. Default is 'medium'.
