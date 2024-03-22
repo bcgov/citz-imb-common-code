@@ -52,7 +52,7 @@ jobs:
       - name: Login to OpenShift
         uses: redhat-actions/oc-login@v1
         env:
-          OPENSHIFT_USER: github-actions
+          OPENSHIFT_USER: baf95e-vault
           OPENSHIFT_PROJECT: '${{ secrets.LICENSE_PLATE }}-test'
         with:
           openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
@@ -74,7 +74,7 @@ jobs:
       - name: Login to OpenShift
         uses: redhat-actions/oc-login@v1
         env:
-          OPENSHIFT_USER: github-actions
+          OPENSHIFT_USER: baf95e-vault
           OPENSHIFT_PROJECT: '${{ secrets.LICENSE_PLATE }}-test'
         with:
           openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
