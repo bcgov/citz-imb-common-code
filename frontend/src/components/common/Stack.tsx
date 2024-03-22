@@ -29,7 +29,7 @@ const useStyles = (props: StackProps) => {
       styles.alignItems = alignItems;
 
     return { ...styles, ...additionalStyles };
-  }, [direction, gap, flexWrap, alignItems, additionalStyles]);
+  }, [props]);
 };
 
 const StackComponent = (props: StackProps) => {
@@ -41,11 +41,11 @@ const StackComponent = (props: StackProps) => {
 /**
  * Stack components vertically or horizontally.
  * @param {StackProps} props - Properties are shown below.
- * @property {ReactNode} children - Child components, or stacked components.
- * @property {'row' | 'row-reverse' | 'column' | 'column-reverse'} direction - Css property flexDirection;
- * @property {string} gap - Css property.
- * @property {'center' | 'flex-start' | 'flex-end' | 'stretch'} alignItems - Css property.
- * @property {'wrap' | 'nowrap' | 'wrap-reverse'} flexWrap - Css property.
- * @property {CSSProperties} additionalStyles - Additional css properties.
+ * @property {ReactNode} children - The content within the stack component.
+ * @property {'row' | 'row-reverse' | 'column' | 'column-reverse'} [direction='row'] - Css property flexDirection.
+ * @property {string} [gap='5px'] - The space between child components.
+ * @property {'center' | 'flex-start' | 'flex-end' | 'stretch'} [alignItems='stretch'] - Aligns children in the cross axis.
+ * @property {'wrap' | 'nowrap' | 'wrap-reverse'} [flexWrap='nowrap'] - Controls children wrapping.
+ * @property {CSSProperties} [additionalStyles] - Additional inline styles to apply to the stack component.
  */
 export const Stack = memo(StackComponent);

@@ -3,12 +3,12 @@ import React, { CSSProperties, MouseEventHandler, ReactNode, memo, useMemo, useS
 type ClickableCardProps = {
   children: ReactNode;
   onClick?: MouseEventHandler<HTMLAnchorElement>;
-  padding?: string;
+  padding?: string | number;
   borderRadius?: string;
   backgroundColor?: string;
   hoverBackgroundColor?: string;
-  width?: string;
-  height?: string;
+  width?: string | number;
+  height?: string | number;
   additionalStyles?: CSSProperties;
 };
 
@@ -40,16 +40,7 @@ const useStyles = (props: ClickableCardProps, isHovered: boolean) => {
     };
 
     return { ...styles, ...additionalStyles };
-  }, [
-    padding,
-    borderRadius,
-    backgroundColor,
-    hoverBackgroundColor,
-    additionalStyles,
-    width,
-    height,
-    isHovered,
-  ]);
+  }, [props, isHovered]);
 };
 
 const ClickableCardComponent = (props: ClickableCardProps) => {
@@ -76,14 +67,14 @@ const ClickableCardComponent = (props: ClickableCardProps) => {
 /**
  * A card that can be assigned an onClick function and has hover effects.
  * @param {ClickableCardProps} props - Properties are shown below.
- * @property {ReactNode} children - Child components filling the content space of the card.
- * @property {MouseEventHandler<HTMLAnchorElement>} onClick - On click function.
- * @property {string} padding - Css property.
- * @property {string} borderRadius - Css property.
- * @property {string} backgroundColor - Css property.
- * @property {string} hoverBackgroundColor - Css property (on hover).
- * @property {string} width - Css property.
- * @property {string} height - Css property.
- * @property {CSSProperties} additionalStyles - Additional css properties.
+ * @property {ReactNode} children - The content inside the card.
+ * @property {MouseEventHandler<HTMLAnchorElement>} [onClick] - Function to execute on card click.
+ * @property {string | number} [padding='16px 24px'] - Internal spacing of the card.
+ * @property {string} [borderRadius='4px'] - Corner roundness of the card.
+ * @property {string} [backgroundColor='var(--white)'] - Background color of the card.
+ * @property {string} [hoverBackgroundColor='var(--light-grey2)'] - Background color on hover.
+ * @property {string | number} [width='100%'] - Width of the card.
+ * @property {string | number} [height='100px'] - Height of the card.
+ * @property {CSSProperties} [additionalStyles] - Additional inline styles to apply to the stack component.
  */
 export const ClickableCard = memo(ClickableCardComponent);
