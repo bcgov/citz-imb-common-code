@@ -20,7 +20,7 @@ objects:
       app.kubernetes.io/part-of: coco-demo
       app.openshift.io/runtime: nodejs
       app.openshift.io/runtime-namespace: ${LICENSE_PLATE}-${ENVIRONMENT}
-  spec:
+  spec:  
     strategy:
       type: Rolling
       rollingParams:
@@ -47,7 +47,23 @@ objects:
           deploymentconfig: ${APPLICATION_NAME}
         annotations:
           openshift.io/generated-by: OpenShiftWebConsole
+          vault.hashicorp.com/agent-inject: 'true'
+          vault.hashicorp.com/agent-inject-token: 'false' 
+          vault.hashicorp.com/agent-pre-populate-only: 'true' 
+          vault.hashicorp.com/auth-path: 'auth/k8s-silver'
+          vault.hashicorp.com/namespace: 'platform-services'
+          vault.hashicorp.com/role: baf95e-nonprod 
+          vault.hashicorp.com/agent-inject-secret-coco-secrets-dev: baf95e-nonprod/dev/sso-integration
+          vault.hashicorp.com/agent-inject-template-coco-secrets-dev: |
+            {{- with secret "baf95e-nonprod/dev/sso-integration" }}  
+            export SSO_AUTH_SERVER_URL="{{ .Data.data.SSO_AUTH_SERVER_URL }}"
+            export SSO_CLIENT_ID="{{ .Data.data.SSO_CLIENT_ID }}"
+            export SSO_CLIENT_SECRET="{{ .Data.data.SSO_CLIENT_SECRET }}"
+            export SSO_ENVIRONMENT="{{ .Data.data.SSO_ENVIRONMENT }}"
+            export SSO_INTEGRATION_ID="{{ .Data.data.SSO_INTEGRATION_ID }}"
+            {{- end }}
       spec:
+        serviceAccountName: baf95e-vault
         containers:
           - name: ${APPLICATION_NAME}
             image: artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-api:${IMAGE_TAG}
@@ -65,35 +81,14 @@ objects:
                 value: 'false'
               - name: BACKEND_PORT
                 value: '6600'
-              - name: DATABASE_PORT
-                value: '6700'
+              - name: FRONTEND_PORT
+                value: '6500'
               - name: FRONTEND_URL
-                value: 'http://coco-app:6500'
-              - name: SSO_AUTH_SERVER_URL
-                valueFrom:
-                  secretKeyRef:
-                    name: sso-connection
-                    key: SSO_AUTH_SERVER_URL
-              - name: SSO_CLIENT_ID
-                valueFrom:
-                  secretKeyRef:
-                    name: sso-connection
-                    key: SSO_CLIENT_ID
-              - name: SSO_CLIENT_SECRET
-                valueFrom:
-                  secretKeyRef:
-                    name: sso-connection
-                    key: SSO_CLIENT_SECRET
-              - name: SSO_ENVIRONMENT
-                valueFrom:
-                  secretKeyRef:
-                    name: sso-connection
-                    key: SSO_ENVIRONMENT
-              - name: SSO_INTEGRATION_ID
-                valueFrom:
-                  secretKeyRef:
-                    name: sso-connection
-                    key: SSO_INTEGRATION_ID
+                value: 'http://coco-frontend:6500'
+            command:
+              ['sh', '-c']
+            args:
+              ['. /vault/secrets/coco-secrets-dev && npm run prod']
             resources: {}
             terminationMessagePath: /dev/termination-log
             terminationMessagePolicy: File
