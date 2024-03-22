@@ -14,6 +14,7 @@
     "install:backend": "cd backend && rm -rf node_modules package-lock.json && npm i",
     "rebuild": "npm run prune && npm run install && npm run up",
     "shell:frontend": "docker exec -it coco-frontend sh",
-    "shell:backend": "docker exec -it coco-api sh"
+    "shell:backend": "docker exec -it coco-api sh",
+    "setup-git-aliases": "node scripts/setupGitAliases"
   }
 }

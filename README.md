@@ -86,11 +86,16 @@ This application will be used to showcase the code, packages, and services that 
 
 ## Git Aliases
 
-These aliases are available within the repository.
+These aliases are available within the repository after using the following setup command:
+
+```bash
+# Sets git aliases.
+$ npm run setup-git-aliases
+```
 
 ```bash
 # List all available aliases.
-$ git aliases
+$ git list-aliases
 ```
 
 ```bash
@@ -183,9 +188,8 @@ $ npm run shell:backend
 ```
 
 ```bash
-# Shell into database container.
-# Type 'exit' + ENTER to exit shell.
-$ npm run shell:database
+# Sets git aliases.
+$ npm run setup-git-aliases
 ```
 
 [Return to Top](#citz-imb-common-code)
