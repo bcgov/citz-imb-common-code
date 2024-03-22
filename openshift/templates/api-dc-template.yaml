@@ -85,6 +85,8 @@ objects:
                 value: '6500'
               - name: FRONTEND_URL
                 value: 'http://coco-frontend:6500'
+              - name: BACKEND_URL
+                value: 'http://coco-api:6600'
             command:
               ['sh', '-c']
             args:
