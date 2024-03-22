@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import { ClickableCard, PageLayout, Stack, Typography } from 'components/common';
 import { useKeycloak } from '@bcgov/citz-imb-kc-react';
@@ -9,9 +8,9 @@ const Landing = () => {
   // Function to generate greeting based on time of day
   const getTimeBasedGreeting = (): string => {
     const hour = new Date().getHours();
-    if (hour < 12) return 'Good morning';
-    if (hour < 18) return 'Good afternoon';
-    return 'Good evening';
+    if (hour < 12) return 'Good morning'; // From 0:00 (midnight) to 11:59
+    if (hour < 18) return 'Good afternoon'; // From 12:00 (noon) to 17:59 [5:59pm]
+    return 'Good evening'; // From 18:00 [6:00pm] to 23:59 [11:59pm]
   };
 
   return (
@@ -38,7 +37,7 @@ const Landing = () => {
             </Typography>
             <Typography size="small">
               An npm package that offers an integration solution for React applications requiring
-              authentication through the B.C. government's Single Sign-On SSO service.
+              authentication through the B.C. government&apos;s Single Sign-On SSO service.
             </Typography>
           </Stack>
         </ClickableCard>
@@ -49,7 +48,7 @@ const Landing = () => {
             </Typography>
             <Typography size="small">
               An npm package that offers an integration solution for Express applications requiring
-              authentication through the B.C. government's Single Sign-On SSO service.
+              authentication through the B.C. government&apos;s Single Sign-On SSO service.
             </Typography>
           </Stack>
         </ClickableCard>
