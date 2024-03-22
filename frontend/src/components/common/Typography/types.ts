@@ -12,7 +12,7 @@ export type TypographyProps = {
   textTransform?: 'none' | 'capitalize' | 'uppercase' | 'lowercase';
   textDecoration?: 'none' | 'underline' | 'overline' | 'line-through';
   letterSpacing?: string | number;
-  display?: 'block' | 'inline' | 'inline-block';
+  display?: 'block' | 'inline' | 'inline-block' | 'flex';
   margin?: string | number;
   padding?: string | number;
   additionalStyles?: CSSProperties;
