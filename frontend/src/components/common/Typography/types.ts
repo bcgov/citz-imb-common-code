@@ -15,6 +15,5 @@ export type TypographyProps = {
   display?: 'block' | 'inline' | 'inline-block';
   margin?: string | number;
   padding?: string | number;
-  ellipsis?: boolean;
   additionalStyles?: CSSProperties;
 };

@@ -30,7 +30,6 @@ const TypographyComponent = (props: TypographyProps) => {
  * @property {'block' | 'inline' | 'inline-block'} [display] - The CSS display property of the text component.
  * @property {string | number} [margin] - External spacing around the text component.
  * @property {string | number} [padding] - Internal spacing within the text component.
- * @property {boolean} [ellipsis=false] - If true, text will be truncated with an ellipsis when it overflows its container.
  * @property {CSSProperties} [additionalStyles] - Additional inline styles to apply to the text component.
  */
 export const Typography = memo(TypographyComponent);

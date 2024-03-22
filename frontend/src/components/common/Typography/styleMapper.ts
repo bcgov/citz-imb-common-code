@@ -17,7 +17,6 @@ export const styleMapper = (props: TypographyProps) => {
     display,
     margin,
     padding,
-    ellipsis,
     additionalStyles,
   } = props;
 
@@ -33,9 +32,6 @@ export const styleMapper = (props: TypographyProps) => {
     display,
     margin,
     padding,
-    overflow: ellipsis ? 'hidden' : undefined,
-    textOverflow: ellipsis ? 'ellipsis' : undefined,
-    whiteSpace: ellipsis ? 'nowrap' : undefined,
   };
 
   // Adds additionalStyles after styles, so they will override any style properties of styles object.
