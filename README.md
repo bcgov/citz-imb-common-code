@@ -108,6 +108,11 @@ $ git undo-last-commit-soft
 $ git undo-last-commit-hard
 ```
 
+```bash
+# See files changed in relation to main branch.
+$ git changes
+```
+
 [Return to Top](#citz-imb-common-code)
 
 <br />
