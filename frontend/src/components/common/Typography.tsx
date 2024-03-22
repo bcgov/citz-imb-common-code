@@ -39,11 +39,11 @@ const useStyles = (props: TypographyProps) => {
   // Memoize for better performance.
   return useMemo(() => {
     const fontSizes = {
-      'x-small': '0.5em',
-      small: '0.75em',
+      'x-small': '0.7em',
+      small: '0.85em',
       medium: '1em',
-      large: '1.25em',
-      'x-large': '1.5em',
+      large: '1.15em',
+      'x-large': '1.3em',
     };
 
     const colors = {
