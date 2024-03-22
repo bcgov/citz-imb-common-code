@@ -37,7 +37,7 @@ const Landing = () => {
               SSO React
             </Typography>
             <Typography size="small">
-              Npm package that offers an integration solution for React applications requiring
+              An npm package that offers an integration solution for React applications requiring
               authentication through the B.C. government's Single Sign-On SSO service.
             </Typography>
           </Stack>
@@ -48,7 +48,7 @@ const Landing = () => {
               SSO Express
             </Typography>
             <Typography size="small">
-              Npm package that offers an integration solution for Express applications requiring
+              An npm package that offers an integration solution for Express applications requiring
               authentication through the B.C. government's Single Sign-On SSO service.
             </Typography>
           </Stack>
