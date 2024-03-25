@@ -28,7 +28,7 @@ jobs:
         uses: redhat-actions/oc-login@v1
         with:
           openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
-          openshift_token: ${{env.OPENSHIFT_SA_TEST_TOKEN}}
+          openshift_token: ${{ secrets.OPENSHIFT_SA_TEST_TOKEN }}
           namespace: '${{ secrets.LICENSE_PLATE }}-test'
 
       # Process and Apply CoCo API DeploymentConfig
