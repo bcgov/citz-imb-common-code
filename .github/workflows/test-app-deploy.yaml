@@ -27,8 +27,8 @@ jobs:
       - name: Login to OpenShift
         uses: redhat-actions/oc-login@v1
         with:
-          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
-          openshift_token: ${{ env.OPENSHIFT_SA_TEST_TOKEN }}
+          openshift_server_url: '${{ secrets.OPENSHIFT_SERVER_URL }}'
+          openshift_token: '${{ secrets.OPENSHIFT_SA_TEST_TOKEN }}'
           namespace: '${{ secrets.LICENSE_PLATE }}-test'
 
       # Process and Apply APP DeploymentConfig
@@ -53,11 +53,11 @@ jobs:
       - name: Login to OpenShift
         uses: redhat-actions/oc-login@v1
         env:
-          OPENSHIFT_USER: baf95e-vault
+          OPENSHIFT_USER: 'default'
           OPENSHIFT_PROJECT: '${{ secrets.LICENSE_PLATE }}-test'
         with:
-          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
-          openshift_token: ${{ env.OPENSHIFT_TOKEN }}
+          openshift_server_url: '${{ secrets.OPENSHIFT_SERVER_URL }}'
+          openshift_token: '${{ secrets.OPENSHIFT_SA_TEST_TOKEN }}'
           namespace: '${{ secrets.LICENSE_PLATE }}-test'
 
       # Check Deployment Status
@@ -75,11 +75,11 @@ jobs:
       - name: Login to OpenShift
         uses: redhat-actions/oc-login@v1
         env:
-          OPENSHIFT_USER: baf95e-vault
+          OPENSHIFT_USER: 'default'
           OPENSHIFT_PROJECT: '${{ secrets.LICENSE_PLATE }}-test'
         with:
-          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
-          openshift_token: ${{ env.OPENSHIFT_TOKEN }}
+          openshift_server_url: '${{ secrets.OPENSHIFT_SERVER_URL }}'
+          openshift_token: '${{ secrets.OPENSHIFT_SA_TEST_TOKEN }}'
           namespace: '${{ secrets.LICENSE_PLATE }}-test'
 
       # Remove previous objects
