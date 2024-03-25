@@ -1,5 +1,5 @@
 # GitHub Actions workflow for deploying APP image to TEST env
-name: Common Code APP - Deploy to TEST
+name: Common Code Frontend - Deploy to TEST
 
 on:
   workflow_dispatch:
