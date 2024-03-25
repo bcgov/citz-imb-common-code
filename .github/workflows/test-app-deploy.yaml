@@ -63,7 +63,7 @@ jobs:
       # Check Deployment Status
       - name: Check Deployment Status
         run: |
-          oc rollout status -n ${{ format('{0}-{1}', secrets.LICENSE_PLATE, env.ENVIRONMENT) }} dc/coco-frontend --watch
+          oc rollout status -n '${{ secrets.LICENSE_PLATE }}-test' dc/coco-frontend --watch
 
   # Job to clean up previous objects in OpenShift
   Clean-Up:
