@@ -126,7 +126,7 @@ jobs:
 
       # Run update wiki python script
       - name: Run update wiki python script
-        run: python ./.github/helpers/update-wiki-table.py ./wiki/Image-tags.md "CoCo-APP" "Deployed Image Tag in DEV" "${{ env.IMAGE_TAG }}"
+        run: python ./.github/helpers/update-wiki-table.py ./wiki/Image-tags.md "CoCo APP" "Deployed Image Tag in DEV" "${{ env.IMAGE_TAG }}"
       
       # Commit and push changes to wiki
       - name: Commit and push changes to wiki
