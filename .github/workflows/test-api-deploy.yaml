@@ -34,7 +34,7 @@ jobs:
       # Process and Apply CoCo API DeploymentConfig
       - name: Process and Apply API DeploymentConfig
         env:
-          NAMESPACE: '${{ secrets.${LICENSE_PLATE}-test }}'
+          NAMESPACE: '${{ secrets.LICENSE_PLATE }}-test'
           DC_TEMPLATE: 'api-dc-template.yaml'
           IMAGE_TAG: '${{ env.IMAGE_TAG }}'
           APPLICATION_NAME: 'coco-api'
