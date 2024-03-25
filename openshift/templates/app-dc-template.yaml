@@ -52,6 +52,7 @@ objects:
         annotations:
           openshift.io/generated-by: OpenShiftWebConsole
       spec:
+        serviceAccountName: baf95e-vault
         containers:
           - name: ${APPLICATION_NAME}
             image: artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-frontend:${IMAGE_TAG}
