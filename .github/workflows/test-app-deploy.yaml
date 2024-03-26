@@ -26,6 +26,9 @@ jobs:
       # Login to OpenShift
       - name: Login to OpenShift
         uses: redhat-actions/oc-login@v1
+        env:
+          OPENSHIFT_USER: 'default'
+          OPENSHIFT_PROJECT: '${{ secrets.LICENSE_PLATE }}-test'
         with:
           openshift_server_url: '${{ secrets.OPENSHIFT_SERVER_URL }}'
           openshift_token: '${{ secrets.OPENSHIFT_SA_TEST_TOKEN }}'
