@@ -177,15 +177,9 @@ $ npm run shell:frontend
 $ npm run shell:backend
 ```
 
-```bash
-# Shell into database container.
-# Type 'exit' + ENTER to exit shell.
-$ npm run shell:database
-```
-
 [Return to Top](#citz-imb-common-code)
 
 <!-- Link References -->
 
-[@bcgov/citz-imb-kc-react]: https://github.com/bcgov/citz-imb-kc-react
-[@bcgov/citz-imb-kc-express]: https://github.com/bcgov/citz-imb-kc-express
+[@bcgov/citz-imb-sso-react]: https://github.com/bcgov/citz-imb-sso-react
+[@bcgov/citz-imb-sso-express]: https://github.com/bcgov/citz-imb-sso-express
