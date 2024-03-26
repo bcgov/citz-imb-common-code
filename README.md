@@ -196,5 +196,5 @@ $ npm run setup-git-aliases
 
 <!-- Link References -->
 
-[@bcgov/citz-imb-kc-react]: https://github.com/bcgov/citz-imb-kc-react
-[@bcgov/citz-imb-kc-express]: https://github.com/bcgov/citz-imb-kc-express
+[@bcgov/citz-imb-sso-react]: https://github.com/bcgov/citz-imb-sso-react
+[@bcgov/citz-imb-sso-express]: https://github.com/bcgov/citz-imb-sso-express
