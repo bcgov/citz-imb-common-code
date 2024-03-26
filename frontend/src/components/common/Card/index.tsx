@@ -1,7 +1,7 @@
 import React, { memo, useState } from 'react';
 import { CardProps } from './types';
 import { styleMapper } from './styleMapper';
-import { useDynamicStyles } from 'hooks/useDynamicStyles';
+import { useDynamicStyles } from 'hooks';
 
 const CardComponent = (props: CardProps) => {
   const [isHovered, setIsHovered] = useState(false);
