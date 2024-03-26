@@ -1,7 +1,8 @@
 import React, { lazy, Suspense, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { endpoints } from './utils';
-import { Header } from '@bcgov/design-system-react-components';
+import { Button, Header } from '@bcgov/design-system-react-components';
+import { useKeycloak } from '@bcgov/citz-imb-kc-react';
 
 // Lazy loaded pages.
 const Pages = {
@@ -9,6 +10,8 @@ const Pages = {
 };
 
 const AppRouter = () => {
+  const { isAuthenticated, login, logout } = useKeycloak();
+
   // Load config when origin changes.
   useEffect(() => {
     (async () => {
@@ -20,7 +23,17 @@ const AppRouter = () => {
 
   return (
     <>
-      <Header title="CITZ IMB Common Code" />
+      <Header title="CITZ IMB Common Code">
+        {isAuthenticated ? (
+          <Button variant="secondary" onPress={() => logout()}>
+            LOGOUT
+          </Button>
+        ) : (
+          <Button variant="secondary" onPress={() => login({ idpHint: 'idir' })}>
+            LOGIN WITH IDIR
+          </Button>
+        )}
+      </Header>
       <Router>
         <Routes>
           {/* LANDING PAGE */}

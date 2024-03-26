@@ -86,11 +86,16 @@ This application will be used to showcase the code, packages, and services that 
 
 ## Git Aliases
 
-These aliases are available within the repository.
+These aliases are available within the repository after using the following setup command:
+
+```bash
+# Sets git aliases.
+$ npm run setup-git-aliases
+```
 
 ```bash
 # List all available aliases.
-$ git aliases
+$ git list-aliases
 ```
 
 ```bash
@@ -106,6 +111,11 @@ $ git undo-last-commit-soft
 ```bash
 # Undo the last commit and discard it's changes.
 $ git undo-last-commit-hard
+```
+
+```bash
+# See files changed in relation to main branch.
+$ git changes
 ```
 
 [Return to Top](#citz-imb-common-code)
@@ -175,6 +185,11 @@ $ npm run shell:frontend
 # Shell into backend container (used when working with migrations).
 # Type 'exit' + ENTER to exit shell.
 $ npm run shell:backend
+```
+
+```bash
+# Sets git aliases.
+$ npm run setup-git-aliases
 ```
 
 [Return to Top](#citz-imb-common-code)
