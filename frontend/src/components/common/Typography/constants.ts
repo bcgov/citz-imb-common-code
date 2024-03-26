@@ -4,7 +4,7 @@ import { TypographyProps } from './types';
 export const FONT_SIZES: Record<Exclude<TypographyProps['size'], undefined>, string | number> = {
   'x-small': '0.7em',
   small: '0.85em',
-  medium: '1em',
+  medium: '1em', // 1x the size of the default text sizing
   large: '1.15em',
   'x-large': '1.3em',
 };
