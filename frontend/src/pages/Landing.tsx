@@ -30,7 +30,7 @@ const Landing = () => {
         </>
       )}
       <Stack gap="20px">
-        <Card height="125px">
+        <Card>
           <Stack direction="column">
             <Typography size="large" color="blue" bold>
               SSO React
@@ -41,7 +41,7 @@ const Landing = () => {
             </Typography>
           </Stack>
         </Card>
-        <Card height="125px">
+        <Card>
           <Stack direction="column">
             <Typography size="large" color="blue" bold>
               SSO Express
