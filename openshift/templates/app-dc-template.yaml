@@ -56,7 +56,7 @@ objects:
           - name: ${APPLICATION_NAME}
             image: artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-frontend:${IMAGE_TAG}
             imagePullSecrets:
-            - name: artifacts-pull-artifactory-nexuxk
+            - name: artifacts-pull-default-kewqng
             ports:
               - containerPort: 6500
                 protocol: TCP
