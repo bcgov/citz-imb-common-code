@@ -53,9 +53,9 @@ objects:
           vault.hashicorp.com/auth-path: 'auth/k8s-silver'
           vault.hashicorp.com/namespace: 'platform-services'
           vault.hashicorp.com/role: ${VAULT_ENVIRONMENT}
-          vault.hashicorp.com/agent-inject-secret-coco-secrets-dev: ${VAULT_ENVIRONMENT}/dev/sso-integration
-          vault.hashicorp.com/agent-inject-template-coco-secrets-dev: |
-            {{- with secret "${VAULT_ENVIRONMENT}/dev/sso-integration" }}  
+          vault.hashicorp.com/agent-inject-secret-coco-secrets-${ENVIRONMENT}: ${VAULT_ENVIRONMENT}/${ENVIRONMENT}/sso-integration
+          vault.hashicorp.com/agent-inject-template-coco-secrets-${ENVIRONMENT}: |
+            {{- with secret "${VAULT_ENVIRONMENT}/${ENVIRONMENT}/sso-integration" }}  
             export SSO_AUTH_SERVER_URL="{{ .Data.data.SSO_AUTH_SERVER_URL }}"
             export SSO_CLIENT_ID="{{ .Data.data.SSO_CLIENT_ID }}"
             export SSO_CLIENT_SECRET="{{ .Data.data.SSO_CLIENT_SECRET }}"
@@ -90,7 +90,7 @@ objects:
             command:
               ['sh', '-c']
             args:
-              ['. /vault/secrets/coco-secrets-dev && npm run prod']
+              ['. /vault/secrets/coco-secrets-${ENVIRONMENT} && npm run prod']
             resources: {}
             terminationMessagePath: /dev/termination-log
             terminationMessagePolicy: File
