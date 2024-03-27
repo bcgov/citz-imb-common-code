@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, PageLayout, Stack, Typography } from 'components/common';
+import { Card, Icon, PageLayout, Stack, Typography } from 'components/common';
 import { useKeycloak } from '@bcgov/citz-imb-kc-react';
 
 const Landing = () => {
@@ -16,40 +16,45 @@ const Landing = () => {
   return (
     <PageLayout>
       {isAuthenticated && (
-        <>
-          <Typography display="flex" size="large" margin="20px 0 5px 0">
-            {getTimeBasedGreeting()}&nbsp;
-            <Typography color="blue" bold>
-              {user?.given_name}
-            </Typography>
-            !
+        <Typography display="flex" size="large" margin="20px 0 5px 0">
+          {getTimeBasedGreeting()}&nbsp;
+          <Typography color="blue" bold>
+            {user?.given_name}
           </Typography>
-          <Typography size="large" margin="0 0 25px 0">
-            Browse our code offerings below and click on one for more details.
-          </Typography>
-        </>
+          !
+        </Typography>
       )}
+      <Typography size="large" margin="0 0 25px 0">
+        Browse our code offerings below and click on one for more details.
+      </Typography>
       <Stack gap="20px">
         <Card>
-          <Stack direction="column">
-            <Typography size="large" color="blue" bold>
-              SSO React
-            </Typography>
-            <Typography size="small">
-              An npm package that offers an integration solution for React applications requiring
-              authentication through the B.C. government&apos;s Single Sign-On SSO service.
-            </Typography>
+          <Stack>
+            <Icon icon="Authenticate" margin="0 8px 0 0" />
+            <Stack direction="column">
+              <Typography size="large" color="blue" bold>
+                SSO React
+              </Typography>
+              <Typography size="small">
+                An npm package that offers an integration solution for React applications requiring
+                authentication through the B.C. government&apos;s Single Sign-On SSO service.
+              </Typography>
+            </Stack>
           </Stack>
         </Card>
         <Card>
-          <Stack direction="column">
-            <Typography size="large" color="blue" bold>
-              SSO Express
-            </Typography>
-            <Typography size="small">
-              An npm package that offers an integration solution for Express applications requiring
-              authentication through the B.C. government&apos;s Single Sign-On SSO service.
-            </Typography>
+          <Stack>
+            <Icon icon="Authenticate" margin="0 8px 0 0" />
+            <Stack direction="column">
+              <Typography size="large" color="blue" bold>
+                SSO Express
+              </Typography>
+              <Typography size="small">
+                An npm package that offers an integration solution for Express applications
+                requiring authentication through the B.C. government&apos;s Single Sign-On SSO
+                service.
+              </Typography>
+            </Stack>
           </Stack>
         </Card>
       </Stack>
