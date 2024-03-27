@@ -84,9 +84,9 @@ objects:
               - name: FRONTEND_PORT
                 value: '6500'
               - name: FRONTEND_URL
-                value: 'http://coco-frontend:6500'
+                value: 'https://coco-frontend-${LICENSE_PLATE}-${ENVIRONMENT}.apps.silver.devops.gov.bc.ca'
               - name: BACKEND_URL
-                value: 'http://coco-api:6600'
+                value: 'https://coco-api-${LICENSE_PLATE}-${ENVIRONMENT}.apps.silver.devops.gov.bc.ca'
             command:
               ['sh', '-c']
             args:
