@@ -1,5 +1,5 @@
 import React from 'react';
-import { ClickableCard, Icon, PageLayout, Stack, Typography } from 'components/common';
+import { Card, Icon, PageLayout, Stack, Typography } from 'components/common';
 import { useKeycloak } from '@bcgov/citz-imb-kc-react';
 
 const Landing = () => {
@@ -28,7 +28,7 @@ const Landing = () => {
         Browse our code offerings below and click on one for more details.
       </Typography>
       <Stack gap="20px">
-        <ClickableCard height="125px">
+        <Card>
           <Stack>
             <Icon icon="Authenticate" margin="0 8px 0 0" />
             <Stack direction="column">
@@ -41,8 +41,8 @@ const Landing = () => {
               </Typography>
             </Stack>
           </Stack>
-        </ClickableCard>
-        <ClickableCard height="125px">
+        </Card>
+        <Card>
           <Stack>
             <Icon icon="Authenticate" margin="0 8px 0 0" />
             <Stack direction="column">
@@ -56,7 +56,7 @@ const Landing = () => {
               </Typography>
             </Stack>
           </Stack>
-        </ClickableCard>
+        </Card>
       </Stack>
     </PageLayout>
   );
