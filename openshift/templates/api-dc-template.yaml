@@ -52,10 +52,10 @@ objects:
           vault.hashicorp.com/agent-pre-populate-only: 'true' 
           vault.hashicorp.com/auth-path: 'auth/k8s-silver'
           vault.hashicorp.com/namespace: 'platform-services'
-          vault.hashicorp.com/role: baf95e-nonprod 
-          vault.hashicorp.com/agent-inject-secret-coco-secrets-dev: baf95e-nonprod/dev/sso-integration
+          vault.hashicorp.com/role: ${VAULT_ENVIRONMENT}
+          vault.hashicorp.com/agent-inject-secret-coco-secrets-dev: ${VAULT_ENVIRONMENT}/dev/sso-integration
           vault.hashicorp.com/agent-inject-template-coco-secrets-dev: |
-            {{- with secret "baf95e-nonprod/dev/sso-integration" }}  
+            {{- with secret "${VAULT_ENVIRONMENT}/dev/sso-integration" }}  
             export SSO_AUTH_SERVER_URL="{{ .Data.data.SSO_AUTH_SERVER_URL }}"
             export SSO_CLIENT_ID="{{ .Data.data.SSO_CLIENT_ID }}"
             export SSO_CLIENT_SECRET="{{ .Data.data.SSO_CLIENT_SECRET }}"
@@ -120,3 +120,8 @@ parameters:
   - description: Image Tag Number
     displayName: Image Tag Number
     name: IMAGE_TAG
+  - description: Vault Environment
+    displayName: Vault Environment
+    name: VAULT_ENVIRONMENT
+    required: true
+    value: nonprod
