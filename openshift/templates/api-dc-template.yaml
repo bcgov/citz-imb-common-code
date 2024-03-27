@@ -67,6 +67,8 @@ objects:
         containers:
           - name: ${APPLICATION_NAME}
             image: artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-api:${IMAGE_TAG}
+            imagePullSecrets:
+            - name: artifactory-creds
             ports:
               - containerPort: 6600
                 protocol: TCP
@@ -118,7 +120,3 @@ parameters:
   - description: Image Tag Number
     displayName: Image Tag Number
     name: IMAGE_TAG
-  - description: Artifact Pull Secret
-    displayName: Artifact Pull Secret
-    name: ARTIFACT_PULL_SECRET
-
