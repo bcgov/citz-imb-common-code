@@ -55,8 +55,6 @@ objects:
         containers:
           - name: ${APPLICATION_NAME}
             image: artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-frontend:${IMAGE_TAG}
-            imagePullSecrets:
-            - name: ${ARTIFACT_PULL_SECRET}
             ports:
               - containerPort: 6500
                 protocol: TCP
