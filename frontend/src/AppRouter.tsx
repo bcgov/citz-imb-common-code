@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { endpoints } from './utils';
 import { Button, Header } from '@bcgov/design-system-react-components';
 import { useKeycloak } from '@bcgov/citz-imb-kc-react';
+import { Breadcrumbs } from 'components/Breadcrumbs';
 
 // Lazy loaded pages.
 const Pages = {
@@ -34,6 +35,7 @@ const AppRouter = () => {
           </Button>
         )}
       </Header>
+      <Breadcrumbs />
       <Router>
         <Routes>
           {/* LANDING PAGE */}
