@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { endpoints } from './utils';
 import { Button, Header } from '@bcgov/design-system-react-components';
 import { useSSO } from '@bcgov/citz-imb-sso-react';
+import { Spinner } from 'components/common';
 
 // Lazy loaded pages.
 const Pages = {
@@ -40,7 +41,7 @@ const AppRouter = () => {
           <Route
             path="/"
             element={
-              <Suspense fallback={<p>Loading...</p>}>
+              <Suspense fallback={<Spinner />}>
                 <Pages.Landing />
               </Suspense>
             }
