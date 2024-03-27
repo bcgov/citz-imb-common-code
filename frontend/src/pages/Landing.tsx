@@ -1,5 +1,5 @@
 import React from 'react';
-import { ClickableCard, PageLayout, Stack, Typography } from 'components/common';
+import { Card, PageLayout, Stack, Typography } from 'components/common';
 import { useSSO } from '@bcgov/citz-imb-sso-react';
 
 const Landing = () => {
@@ -30,7 +30,7 @@ const Landing = () => {
         </>
       )}
       <Stack gap="20px">
-        <ClickableCard height="125px">
+        <Card>
           <Stack direction="column">
             <Typography size="large" color="blue" bold>
               SSO React
@@ -40,8 +40,8 @@ const Landing = () => {
               authentication through the B.C. government&apos;s Single Sign-On SSO service.
             </Typography>
           </Stack>
-        </ClickableCard>
-        <ClickableCard height="125px">
+        </Card>
+        <Card>
           <Stack direction="column">
             <Typography size="large" color="blue" bold>
               SSO Express
@@ -51,7 +51,7 @@ const Landing = () => {
               authentication through the B.C. government&apos;s Single Sign-On SSO service.
             </Typography>
           </Stack>
-        </ClickableCard>
+        </Card>
       </Stack>
     </PageLayout>
   );
