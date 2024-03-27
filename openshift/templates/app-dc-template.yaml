@@ -56,7 +56,7 @@ objects:
           - name: ${APPLICATION_NAME}
             image: artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-frontend:${IMAGE_TAG}
             imagePullSecrets:
-            - name: artifacts-pull-default-kewqng
+            - name: ${ARTIFACT_PULL_SECRET}
             ports:
               - containerPort: 6500
                 protocol: TCP
@@ -91,3 +91,6 @@ parameters:
   - description: Image Tag Number
     displayName: Image Tag Number
     name: IMAGE_TAG
+  - description: Artifact Pull Secret
+    displayName: Artifact Pull Secret
+    name: ARTIFACT_PULL_SECRET
