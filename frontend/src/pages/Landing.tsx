@@ -1,9 +1,9 @@
 import React from 'react';
 import { ClickableCard, PageLayout, Stack, Typography } from 'components/common';
-import { useKeycloak } from '@bcgov/citz-imb-kc-react';
+import { useSSO } from '@bcgov/citz-imb-sso-react';
 
 const Landing = () => {
-  const { user, isAuthenticated } = useKeycloak();
+  const { user, isAuthenticated } = useSSO();
 
   // Function to generate greeting based on time of day
   const getTimeBasedGreeting = (): string => {
@@ -20,7 +20,7 @@ const Landing = () => {
           <Typography display="flex" size="large" margin="20px 0 5px 0">
             {getTimeBasedGreeting()}&nbsp;
             <Typography color="blue" bold>
-              {user?.given_name}
+              {user?.first_name}
             </Typography>
             !
           </Typography>
