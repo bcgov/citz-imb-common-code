@@ -1,4 +1,3 @@
-import React from 'react';
 import { AuthenticateProps } from './types';
 
 export const Authenticate = (props: AuthenticateProps) => {

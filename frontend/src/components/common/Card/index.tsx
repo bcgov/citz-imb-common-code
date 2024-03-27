@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import { memo, useState } from 'react';
 import { CardProps } from './types';
 import { styleMapper } from './styleMapper';
 import { useDynamicStyles } from 'hooks';

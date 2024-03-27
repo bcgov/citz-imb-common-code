@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSSO } from '@bcgov/citz-imb-sso-react';
 import { Card, Icon, PageLayout, Stack, Typography } from 'components/common';
 

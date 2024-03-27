@@ -1,5 +1,4 @@
-import React from 'react';
-
+// Loading spinner.
 export const Spinner = () => {
   const styles = {
     border: '4px solid rgba(0, 0, 0, 0.1)',
