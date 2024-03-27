@@ -120,7 +120,3 @@ parameters:
   - description: Image Tag Number
     displayName: Image Tag Number
     name: IMAGE_TAG
-  - description: Artifact Pull Secret
-    displayName: Artifact Pull Secret
-    name: ARTIFACT_PULL_SECRET
-
