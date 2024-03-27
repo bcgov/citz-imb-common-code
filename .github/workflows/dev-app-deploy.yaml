@@ -47,7 +47,6 @@ jobs:
           ENVIRONMENT: 'dev'
           APPLICATION_NAME: 'coco-frontend'
           LICENSE_PLATE: '${{ secrets.LICENSE_PLATE }}'
-          ARTIFACT_PULL_SECRET: '${{ secrets.DEV_ARTIFACT_PULL_SECRET }}'
         run: |
           ./.github/helpers/deploy.sh
 
