@@ -30,7 +30,7 @@ const Landing = () => {
       <Stack gap="20px">
         <ClickableCard height="125px">
           <Stack>
-            <Icon icon="Authenticate" />
+            <Icon icon="Authenticate" margin="0 8px 0 0" />
             <Stack direction="column">
               <Typography size="large" color="blue" bold>
                 SSO React
@@ -44,7 +44,7 @@ const Landing = () => {
         </ClickableCard>
         <ClickableCard height="125px">
           <Stack>
-            <Icon icon="Authenticate" />
+            <Icon icon="Authenticate" margin="0 8px 0 0" />
             <Stack direction="column">
               <Typography size="large" color="blue" bold>
                 SSO Express
