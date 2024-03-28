@@ -1,9 +1,10 @@
-import React, { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { endpoints } from './utils';
 import { Button, Header } from '@bcgov/design-system-react-components';
 import { useSSO } from '@bcgov/citz-imb-sso-react';
 import { Spinner } from 'components/common';
+import { Breadcrumbs } from 'components/Breadcrumbs';
 
 // Lazy loaded pages.
 const Pages = {
@@ -35,8 +36,8 @@ const AppRouter = () => {
           </Button>
         )}
       </Header>
-      <Breadcrumbs />
       <Router>
+        <Breadcrumbs />
         <Routes>
           {/* LANDING PAGE */}
           <Route
