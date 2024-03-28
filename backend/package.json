@@ -7,7 +7,7 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@bcgov/citz-imb-sso-express": "1.0.0-alpha",
+    "@bcgov/citz-imb-sso-express": "1.0.0-alpha2",
     "cors": "2.8.5",
     "express": "4.18.3",
     "express-rate-limit": "7.2.0",
