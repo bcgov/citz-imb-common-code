@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
-import { keycloak } from '@bcgov/citz-imb-kc-express';
-import { CORS_OPTIONS, KEYCLOAK_OPTIONS, RATE_LIMIT_OPTIONS } from './config';
+import { sso } from '@bcgov/citz-imb-sso-express';
+import { CORS_OPTIONS, SSO_OPTIONS, RATE_LIMIT_OPTIONS } from './config';
 import { healthRouter, configRouter, githubRouter } from './modules';
 import { zodValidationMiddleware } from './utils';
 
@@ -12,8 +12,8 @@ const app = express();
 // Allow frontend use of a proxy (Nginx).
 app.set('trust proxy', 1);
 
-// Initialize keycloak integration.
-keycloak(app, KEYCLOAK_OPTIONS);
+// Initialize SSO integration.
+sso(app, SSO_OPTIONS);
 
 /**
  * Middleware for parsing request bodies.

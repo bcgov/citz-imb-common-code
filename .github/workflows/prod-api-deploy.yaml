@@ -1,14 +1,7 @@
-# GitHub Actions workflow for deploying API image on PR merge to main branch
-name: Common Code API - Deploy to DEV
+# GitHub Actions workflow for deploying API image to PROD env
+name: Commmon Code API - Deploy to PROD
 
 on:
-  pull_request:
-    types:
-      - closed
-    branches: [main]
-    paths:
-      - 'backend/**' # Triggers on changes to files in the backend/ directory.
-
   workflow_dispatch:
       inputs:
         image_tag:
@@ -16,12 +9,12 @@ on:
           required: true
 
 env:
-  IMAGE_TAG: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.image_tag || github.event.pull_request.number }}
+  IMAGE_TAG: ${{ github.event.inputs.image_tag }}
+  ENVIRONMENT: 'prod'
 
 jobs:
   # Job to deploy API image to OpenShift
   Deploy-To-OpenShift:
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event.pull_request.merged }}
     name: Deploy to OpenShift
     runs-on: ubuntu-latest
     steps:
@@ -35,22 +28,21 @@ jobs:
         uses: redhat-actions/oc-login@v1
         with:
           openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
-          openshift_token: ${{ secrets.OPENSHIFT_SA_DEV_TOKEN }}
-          namespace: ${{ secrets.OPENSHIFT_DEV_NAMESPACE }}
+          openshift_token: ${{ secrets.OPENSHIFT_SA_PROD_TOKEN }}
+          namespace: '${{ secrets.LICENSE_PLATE }}-prod'
 
-      # Process and Apply API DeploymentConfig
+      # Process and Apply CoCo API DeploymentConfig
       - name: Process and Apply API DeploymentConfig
         env:
-          NAMESPACE: '${{ secrets.OPENSHIFT_DEV_NAMESPACE }}'
+          NAMESPACE: '${{ secrets.LICENSE_PLATE }}-prod'
           DC_TEMPLATE: 'api-dc-template.yaml'
-          IMAGE_TAG: ${{ env.IMAGE_TAG }}
-          ENVIRONMENT: 'dev'
+          IMAGE_TAG: '${{ env.IMAGE_TAG }}'
           APPLICATION_NAME: 'coco-api'
           LICENSE_PLATE: '${{ secrets.LICENSE_PLATE }}'
         run: |
           ./.github/helpers/deploy.sh
 
-  # Job to check the health of the deployed API
+  # Job to check the health of the deployed CoCo API
   Health-Check:
     name: Check Deployment Health
     runs-on: ubuntu-latest
@@ -60,17 +52,17 @@ jobs:
       - name: Login to OpenShift
         uses: redhat-actions/oc-login@v1
         env:
-          OPENSHIFT_USER: github-actions
-          OPENSHIFT_PROJECT: ${{ secrets.OPENSHIFT_DEV_NAMESPACE }}
+          OPENSHIFT_USER: 'default'
+          OPENSHIFT_PROJECT: '${{ secrets.LICENSE_PLATE }}-prod'
         with:
-          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
-          openshift_token: ${{ secrets.OPENSHIFT_SA_DEV_TOKEN }}
-          namespace: ${{ secrets.OPENSHIFT_DEV_NAMESPACE }}
+          openshift_server_url: '${{ secrets.OPENSHIFT_SERVER_URL }}'
+          openshift_token: '${{ secrets.OPENSHIFT_SA_PROD_TOKEN }}'
+          namespace: '${{ secrets.LICENSE_PLATE }}-prod'
 
       # Check Deployment Status
       - name: Check Deployment Status
         run: |
-          oc rollout status -n ${{ secrets.OPENSHIFT_DEV_NAMESPACE }} dc/coco-api --watch
+          oc rollout status -n '${{ secrets.LICENSE_PLATE }}-prod' dc/coco-api --watch
 
   # Job to clean up previous objects in OpenShift
   Clean-Up:
@@ -82,22 +74,22 @@ jobs:
       - name: Login to OpenShift
         uses: redhat-actions/oc-login@v1
         env:
-          OPENSHIFT_USER: github-actions
-          OPENSHIFT_PROJECT: ${{ secrets.OPENSHIFT_DEV_NAMESPACE }}
+          OPENSHIFT_USER: 'default'
+          OPENSHIFT_PROJECT: '${{ secrets.LICENSE_PLATE }}-prod'
         with:
-          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
-          openshift_token: ${{ secrets.OPENSHIFT_SA_DEV_TOKEN }}
-          namespace: ${{ secrets.OPENSHIFT_DEV_NAMESPACE }}
+          openshift_server_url: '${{ secrets.OPENSHIFT_SERVER_URL }}'
+          openshift_token: '${{ secrets.OPENSHIFT_SA_PROD_TOKEN }}'
+          namespace: '${{ secrets.LICENSE_PLATE }}-prod'
 
       # Remove previous objects
       - name: Remove previous objects
         run: |
-          oc delete pod -n ${{ secrets.OPENSHIFT_DEV_NAMESPACE }} --field-selector status.phase=Succeeded
+          oc delete pod -n '${{ secrets.LICENSE_PLATE }}-prod' --field-selector status.phase=Succeeded
 
       # Remove previous replication controllers
       - name: Remove previous replication controllers
         run: |
-          oc delete rc -n ${{ secrets.OPENSHIFT_DEV_NAMESPACE }} --field-selector status.replicas=0
+          oc delete rc -n '${{ secrets.LICENSE_PLATE }}-prod' --field-selector status.replicas=0
 
   # Job to update the wiki with deployed image tag information
   Update_Wiki_Tags:
@@ -126,7 +118,7 @@ jobs:
 
       # Run update wiki python script
       - name: Run update wiki python script
-        run: python ./.github/helpers/update-wiki-table.py ./wiki/Image-tags.md "CoCo API" "Deployed Image Tag in DEV" "${{ env.IMAGE_TAG }}"
+        run: python ./.github/helpers/update-wiki-table.py ./wiki/Image-tags.md 'CoCo API' "Deployed Image Tag in PROD" "${{ env.IMAGE_TAG }}"
       
       # Commit and push changes to wiki
       - name: Commit and push changes to wiki
@@ -140,4 +132,4 @@ jobs:
             exit 0
           fi
           echo "Pushing changes to wiki"
-          git commit -m "Value populated at Deploy API" && git push "https://$GITHUB_ACTOR:$GH_TOKEN@github.com/$GITHUB_REPOSITORY.wiki.git"
+          git commit -m "Value populated at Deploy CoCo API" && git push "https://$GITHUB_ACTOR:$GH_TOKEN@github.com/$GITHUB_REPOSITORY.wiki.git"

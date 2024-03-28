@@ -2,8 +2,8 @@ import React, { lazy, Suspense, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { endpoints } from './utils';
 import { Button, Header } from '@bcgov/design-system-react-components';
-import { useKeycloak } from '@bcgov/citz-imb-kc-react';
-import { Breadcrumbs } from 'components/Breadcrumbs';
+import { useSSO } from '@bcgov/citz-imb-sso-react';
+import { Spinner } from 'components/common';
 
 // Lazy loaded pages.
 const Pages = {
@@ -11,7 +11,7 @@ const Pages = {
 };
 
 const AppRouter = () => {
-  const { isAuthenticated, login, logout } = useKeycloak();
+  const { isAuthenticated, login, logout } = useSSO();
 
   // Load config when origin changes.
   useEffect(() => {
@@ -42,7 +42,7 @@ const AppRouter = () => {
           <Route
             path="/"
             element={
-              <Suspense fallback={<p>Loading...</p>}>
+              <Suspense fallback={<Spinner />}>
                 <Pages.Landing />
               </Suspense>
             }
