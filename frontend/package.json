@@ -5,7 +5,7 @@
     "dev": "vite",
     "build": "npx vite build --mode production",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watchAll"
   },
   "dependencies": {
     "@bcgov/bc-sans": "2.1.0",

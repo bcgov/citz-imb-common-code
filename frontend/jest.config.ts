@@ -2,7 +2,7 @@ import type { Config } from 'jest';
 
 const config: Config = {
   verbose: true,
-  roots: ['<rootDir>/src'],
+  roots: ['<rootDir>/src', '<rootDir>/__tests__'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
