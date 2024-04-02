@@ -1,4 +1,4 @@
-type GitHubIssue = {
+export type GitHubIssue = {
   url: string;
   number: number;
   title: string;
@@ -25,5 +25,5 @@ type GitHubIssue = {
 };
 
 export type GitHubIssuesProps = {
-  issues?: GitHubIssue[];
+  repo: string;
 };

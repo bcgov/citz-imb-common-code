@@ -1,11 +1,22 @@
-import { memo } from 'react';
-import { GitHubIssuesProps } from './types';
+import { memo, useEffect, useState } from 'react';
+import { GitHubIssue, GitHubIssuesProps } from './types';
 import { SectionCard, Spinner, Typography } from 'components/common';
 import { IssueCardProps } from '../IssueCard/types';
 import { IssueCard } from '../IssueCard';
+import { ENDPOINTS } from 'utils';
 
 const GitHubIssuesComponent = (props: GitHubIssuesProps) => {
-  const { issues } = props;
+  const { repo } = props;
+
+  const [issues, setIssues] = useState<GitHubIssue[] | undefined>();
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch(ENDPOINTS.GITHUB_ISSUES(repo, 'open'));
+      const issues = await response.json();
+      setIssues(issues);
+    })();
+  }, []);
 
   // Component to render a list of GitHub issues using IssueCard components
   const IssuesList = () => {
