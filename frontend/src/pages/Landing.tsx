@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSSO } from '@bcgov/citz-imb-sso-react';
-import { Card, Icon, PageLayout, Stack, Typography } from 'components/common';
+import { PageLayout, Stack, Typography } from 'components/common';
+import { PackageCard } from 'components/cards';
 
 const Landing = () => {
   const { user, isAuthenticated } = useSSO();
@@ -30,35 +31,18 @@ const Landing = () => {
         Browse our code offerings below and click on one for more details.
       </Typography>
       <Stack gap="20px">
-        <Card>
-          <Stack>
-            <Icon icon="Authenticate" margin="0 8px 0 0" />
-            <Stack direction="column">
-              <Typography size="large" color="blue" bold>
-                SSO React
-              </Typography>
-              <Typography size="small">
-                An npm package that offers an integration solution for React applications requiring
-                authentication through the B.C. government&apos;s Single Sign-On SSO service.
-              </Typography>
-            </Stack>
-          </Stack>
-        </Card>
-        <Card>
-          <Stack>
-            <Icon icon="Authenticate" margin="0 8px 0 0" />
-            <Stack direction="column">
-              <Typography size="large" color="blue" bold>
-                SSO Express
-              </Typography>
-              <Typography size="small">
-                An npm package that offers an integration solution for Express applications
-                requiring authentication through the B.C. government&apos;s Single Sign-On SSO
-                service.
-              </Typography>
-            </Stack>
-          </Stack>
-        </Card>
+        <PackageCard
+          icon="Authenticate"
+          title="SSO React"
+          summary="An npm package that offers an integration solution for React applications requiring
+                authentication through the B.C. government's Single Sign-On SSO service."
+        />
+        <PackageCard
+          icon="Authenticate"
+          title="SSO Express"
+          summary="An npm package that offers an integration solution for Express applications requiring
+                authentication through the B.C. government's Single Sign-On SSO service."
+        />
       </Stack>
     </PageLayout>
   );
