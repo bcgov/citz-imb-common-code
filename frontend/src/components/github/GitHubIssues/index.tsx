@@ -55,7 +55,17 @@ const GitHubIssuesComponent = (props: GitHubIssuesProps) => {
         </Typography>
       }
     >
-      {issues ? <IssuesList /> : <Spinner height="100px" />}
+      {issues ? (
+        issues.length > 0 ? (
+          <IssuesList />
+        ) : (
+          <Typography align="center" padding="20px">
+            No open issues.
+          </Typography>
+        )
+      ) : (
+        <Spinner height="100px" />
+      )}
     </SectionCard>
   );
 };
