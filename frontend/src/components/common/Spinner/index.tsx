@@ -1,6 +1,10 @@
-import React from 'react';
+import './styles.css';
+import { SpinnerProps } from './types';
 
-export const Spinner = () => {
+// Loading spinner.
+export const Spinner = (props: SpinnerProps) => {
+  const { height } = props;
+
   const styles = {
     border: '4px solid rgba(0, 0, 0, 0.1)',
     borderTop: '4px solid #3498db',
@@ -17,7 +21,7 @@ export const Spinner = () => {
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
-        height: '100vh',
+        height: height ?? '100vh',
       }}
     >
       <div style={styles}></div>
