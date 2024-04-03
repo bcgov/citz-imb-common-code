@@ -2,6 +2,10 @@ import { Button } from '@bcgov/design-system-react-components';
 import { Heading, PageLayout, Stack, Typography } from 'components/common';
 import { GitHubIssues } from 'components/github';
 
+import githubIcon from '../assets/github-icon.png';
+import npmIcon from '../assets/npm-icon.webp';
+import exchangeLabIcon from '../assets/exchange-lab-icon.svg';
+
 type PackageProps = {
   repo: string;
   title: string;
@@ -29,21 +33,21 @@ const Package = (props: PackageProps) => {
       <Stack gap="30px">
         {/* GITHUB LINK */}
         <Stack gap="0" additionalStyles={{ alignItems: 'center' }}>
-          <img src="src/assets/github-icon.png" alt="GitHub" width="25px" height="25px" />
+          <img src={githubIcon} alt="GitHub" width="25px" height="25px" />
           <Button variant="link" onPress={() => openGitHubRepoInNewTab()}>
             GitHub Repository
           </Button>
         </Stack>
         {/* NPM LINK */}
         <Stack gap="0" additionalStyles={{ alignItems: 'center' }}>
-          <img src="src/assets/npm-icon.webp" alt="GitHub" width="35px" height="35px" />
+          <img src={npmIcon} alt="NPM" width="35px" height="35px" />
           <Button variant="link" onPress={() => openNPMInNewTab()}>
             Package on NPM
           </Button>
         </Stack>
         {/* DOCUMENTATION LINK */}
         <Stack gap="0" additionalStyles={{ alignItems: 'center' }}>
-          <img src="src/assets/exchange-lab-icon.svg" alt="GitHub" width="25px" height="25px" />
+          <img src={exchangeLabIcon} alt="Documentation" width="25px" height="25px" />
           <Button variant="link" onPress={() => openDocsInNewTab()}>
             Package Documentation
           </Button>
