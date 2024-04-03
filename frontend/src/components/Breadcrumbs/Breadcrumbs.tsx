@@ -1,47 +1,27 @@
-import { BreadCrumbProps } from './types';
+import { makeCrumb } from './makeCrumb';
+import { BreadCrumbProps, BreadCrumbStyles, CrumbProperty } from './types';
+import { styleMapper } from './styleMapper';
+import { useDynamicStyles } from 'hooks';
+import { Crumb } from './Crumb';
 
-type crumb = {
-  label: string;
-  path: string;
-};
+export const Breadcrumbs = (props: BreadCrumbProps) => {
+  console.log('Breadcrumbs', props);
+  const { pathname } = props;
 
-const makeCrumb = (crumb: string, index: number, myPath: string): crumb | undefined => {
-  if (index === 0 && crumb === '') {
-    return {
-      label: 'Home',
-      path: '/',
-    };
-  }
+  const styles = useDynamicStyles(props, styleMapper) as BreadCrumbStyles;
 
-  if (index !== 0 && crumb === '') {
-    return undefined;
-  }
-
-  return {
-    label: crumb,
-    path: myPath.slice(0, myPath.indexOf(crumb) + crumb.length),
-  };
-};
-
-export const Breadcrumbs = ({ pathname }: BreadCrumbProps) => {
-  const myPath = '/page/next/olf/lkj/';
-
-  const crumbs: crumb[] = myPath
+  const crumbs: CrumbProperty[] = pathname
     .split('/')
-    .map((crumb, index) => makeCrumb(crumb, index, myPath))
-    .filter((crumb) => crumb !== undefined) as crumb[];
-
-  console.log('crumbs', crumbs);
+    .map((crumb, index) => makeCrumb(crumb, index, pathname))
+    .filter((crumb) => crumb !== undefined) as CrumbProperty[];
 
   return (
-    <ul className="breadcrumbs">
-      {crumbs.map((crumb, index) => (
-        <li key={index} className="crumb">
-          <a className="link" href={crumb.path}>
-            {crumb.label}
-          </a>
-        </li>
-      ))}
-    </ul>
+    <div style={styles.div}>
+      <ul style={styles.ul}>
+        {crumbs.map((crumb) => (
+          <Crumb key={crumb.label} crumb={crumb} pathname={pathname} style={styles} />
+        ))}
+      </ul>
+    </div>
   );
 };

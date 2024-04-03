@@ -1,5 +1,4 @@
-import { PageLayout } from 'components/common';
-import { GitHubIssues } from 'components/github';
+import { GitHubIssues } from 'components';
 
 type PackageProps = {
   repo: string;
@@ -8,11 +7,7 @@ type PackageProps = {
 const Package = (props: PackageProps) => {
   const { repo } = props;
 
-  return (
-    <PageLayout>
-      <GitHubIssues repo={repo} />
-    </PageLayout>
-  );
+  return <GitHubIssues repo={repo} />;
 };
 
 export default Package;

@@ -1,5 +1,5 @@
 import { useSSO } from '@bcgov/citz-imb-sso-react';
-import { Card, Icon, PageLayout, Stack, Typography } from 'components/common';
+import { Card, Icon, Stack, Typography } from 'components';
 import { useNavigate } from 'react-router-dom';
 
 const Landing = () => {
@@ -15,7 +15,7 @@ const Landing = () => {
   };
 
   return (
-    <PageLayout>
+    <>
       {isAuthenticated && (
         <>
           <Typography display="flex" size="large" margin="20px 0 5px 0">
@@ -61,7 +61,7 @@ const Landing = () => {
           </Stack>
         </Card>
       </Stack>
-    </PageLayout>
+    </>
   );
 };
 
