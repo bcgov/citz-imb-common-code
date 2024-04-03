@@ -3,16 +3,35 @@
     "skipLibCheck": true,
     "target": "ESNext",
     "module": "ESNext",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "moduleResolution": "Node",
     "baseUrl": "src",
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "jsx": "react-jsx",
-    "types": ["jest", "node"],
-    "strict": true
+    "types": [
+      "jest",
+      "node"
+    ],
+    "strict": true,
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
   },
-  "include": ["src", "__tests__"],
-  "exclude": ["tsconfig.json", "node_modules"]
+  "include": [
+    "src",
+    "__tests__",
+    "vite.config.ts"
+  ],
+  "exclude": [
+    "tsconfig.json",
+    "node_modules"
+  ]
 }
