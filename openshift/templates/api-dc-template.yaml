@@ -74,7 +74,7 @@ objects:
                 protocol: TCP
             env:
               - name: ENVIRONMENT
-                value: prod
+                value: '${ENVIRONMENT}'
               - name: DEBUG
                 value: 'false'
               - name: VERBOSE_DEBUG
