@@ -1,9 +1,23 @@
-// import { useLocation } from 'react-router-dom';
+import { BreadCrumbProps } from './types';
 
-export const Breadcrumbs = () => {
-  // const { pathname } = useLocation();
+export const Breadcrumbs = (props: BreadCrumbProps) => {
+  console.log('Breadcrumb props:', props);
 
-  // console.log(pathname);
+  const pathname = { ...props };
 
-  return <div>Breadcrumbs</div>;
+  console.log(pathname);
+
+  // const crumbs = pathname.split('/').filter((crumb: string) => crumb !== '');
+
+  // console.log(crumbs);
+
+  return (
+    <ul className="breadcrumbs">
+      <li className="crumb">
+        <a className="link" href="/">
+          Home
+        </a>
+      </li>
+    </ul>
+  );
 };
