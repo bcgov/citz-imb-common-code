@@ -1,9 +1,10 @@
-import React from 'react';
 import { useSSO } from '@bcgov/citz-imb-sso-react';
 import { Card, Icon, PageLayout, Stack, Typography } from 'components/common';
+import { useNavigate } from 'react-router-dom';
 
 const Landing = () => {
   const { user, isAuthenticated } = useSSO();
+  const navigate = useNavigate();
 
   // Function to generate greeting based on time of day
   const getTimeBasedGreeting = (): string => {
@@ -30,7 +31,7 @@ const Landing = () => {
         Browse our code offerings below and click on one for more details.
       </Typography>
       <Stack gap="20px">
-        <Card>
+        <Card onClick={() => navigate('/sso-react')}>
           <Stack>
             <Icon icon="Authenticate" margin="0 8px 0 0" />
             <Stack direction="column">
@@ -44,7 +45,7 @@ const Landing = () => {
             </Stack>
           </Stack>
         </Card>
-        <Card>
+        <Card onClick={() => navigate('/sso-express')}>
           <Stack>
             <Icon icon="Authenticate" margin="0 8px 0 0" />
             <Stack direction="column">

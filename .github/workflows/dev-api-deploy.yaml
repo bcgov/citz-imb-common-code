@@ -47,6 +47,7 @@ jobs:
           ENVIRONMENT: 'dev'
           APPLICATION_NAME: 'coco-api'
           LICENSE_PLATE: '${{ secrets.LICENSE_PLATE }}'
+          VAULT_ENVIRONMENT: 'nonprod'
         run: |
           ./.github/helpers/deploy.sh
 

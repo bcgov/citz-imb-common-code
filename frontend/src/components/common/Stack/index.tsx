@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 import { StackProps } from './types';
 import { styleMapper } from './styleMapper';
 import { useDynamicStyles } from 'hooks';
