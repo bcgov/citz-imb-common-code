@@ -1,6 +1,5 @@
 import { Button } from '@bcgov/design-system-react-components';
-import { Heading, PageLayout, Stack, Typography } from 'components/common';
-import { GitHubIssues } from 'components/github';
+import { Heading, GitHubIssues, Stack, Typography } from 'components';
 
 import githubIcon from '../assets/github-icon.png';
 import npmIcon from '../assets/npm-icon.webp';
