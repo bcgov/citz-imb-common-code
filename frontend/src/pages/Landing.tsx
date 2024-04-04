@@ -27,7 +27,7 @@ const Landing = () => {
           </Typography>
         </>
       )}
-      <Typography size="large" margin="0 0 25px 0">
+      <Typography size="large" margin="25px 0 25px 0">
         Browse our code offerings below and click on one for more details.
       </Typography>
       <Stack gap="20px">
