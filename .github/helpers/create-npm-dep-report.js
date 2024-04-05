@@ -250,6 +250,19 @@ const escapeForGitHubActions = (str) =>
       outputDeps(devDeps, packagePath, true),
     ]);
 
+    // Add hidden data.
+    results[packagePath] += line(
+      `<!-- PercentagePackagesUpToDate: ${percentageUpToDate} -->`
+    );
+    results[packagePath] += line(
+      `<!-- TotalPackagesCount: ${deps.total + devDeps.total} -->`
+    );
+    results[packagePath] += line(
+      `<!-- TotalOutdatedPackagesCount: ${deps.outdated + devDeps.outdated} -->`
+    );
+    results[packagePath] += line(`<!-- PublishDate: ${getFormattedDate()} -->`);
+
+    // Format for GitHub.
     results[packagePath] = escapeForGitHubActions(results[packagePath]);
   });
 
