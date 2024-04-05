@@ -16,7 +16,7 @@ const ModalComponent = (props: ModalProps) => {
   return (
     <div style={overlayStyles}>
       <div id={props.id} className={props.className} aria-label={props.ariaLabel} style={styles}>
-        <Stack alignItems="center" additionalStyles={{ justifyContent: 'space-between' }}>
+        <Stack alignItems="center" spaceBetween>
           <Heading size="x-small" margin="0" bold>
             {title}
           </Heading>

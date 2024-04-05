@@ -23,6 +23,9 @@ const StackComponent = (props: StackProps) => {
  * @property {'row' | 'row-reverse' | 'column' | 'column-reverse'} [direction='row'] - Css property flexDirection.
  * @property {string | number} [gap='5px'] - The space between child components.
  * @property {'center' | 'flex-start' | 'flex-end' | 'stretch'} [alignItems='stretch'] - Aligns children in the cross axis.
+ * @property {boolean} [spaceAround=false] - Space before the first element and after the last element is half the size of the space between elements. Will not work with alignItems set. Choose one of spacearound, spaceBetween, or spaceEvenly.
+ * @property {boolean} [spaceBetween=false] - Space is added between the elements. Will not work with alignItems set. Choose one of spacearound, spaceBetween, or spaceEvenly.
+ * @property {boolean} [spaceEvenly=false] - Equal size spacing before, after, and between elements. Will not work with alignItems set. Choose one of spacearound, spaceBetween, or spaceEvenly.
  * @property {'wrap' | 'nowrap' | 'wrap-reverse'} [flexWrap='nowrap'] - Controls children wrapping.
  * @property {CSSProperties} [additionalStyles] - Additional inline styles to apply to the stack component.
  */

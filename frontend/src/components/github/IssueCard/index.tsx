@@ -60,7 +60,7 @@ const IssueCardComponent = (props: IssueCardProps) => {
 
   return (
     <div style={styles}>
-      <Stack additionalStyles={{ justifyContent: 'space-between' }}>
+      <Stack spaceBetween>
         <Stack direction="column" gap="0">
           <Stack>
             <Button

@@ -10,6 +10,9 @@ export const styleMapper = (props: StackProps) => {
     gap = PROP_DEFAULTS.gap,
     alignItems,
     flexWrap = PROP_DEFAULTS.flexWrap,
+    spaceAround = PROP_DEFAULTS.spaceAround,
+    spaceBetween = PROP_DEFAULTS.spaceBetween,
+    spaceEvenly = PROP_DEFAULTS.spaceEvenly,
     additionalStyles,
   } = props;
 
@@ -19,7 +22,15 @@ export const styleMapper = (props: StackProps) => {
     gap,
     flexWrap,
     justifyContent:
-      alignItems && ['row', 'row-reverse'].includes(direction!) ? alignItems : 'normal',
+      alignItems && ['row', 'row-reverse'].includes(direction!)
+        ? alignItems // Prioritizes alignItems props.
+        : spaceAround
+          ? 'space-around'
+          : spaceBetween
+            ? 'space-between'
+            : spaceEvenly
+              ? 'space-evenly'
+              : 'normal', // Default to normal.
     alignItems:
       alignItems && ['column', 'column-reverse'].includes(direction!) ? alignItems : 'normal',
   };
