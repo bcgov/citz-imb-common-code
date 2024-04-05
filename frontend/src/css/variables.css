@@ -8,6 +8,9 @@
   /* COLOURS */
   --white: #fff;
   --black: #000;
+  --grey: #8d8d8d;
+  --transparent-black: rgba(41, 41, 41, 0.5);
+  --transparent-grey: rgba(97, 97, 97, 0.5);
   --light-grey: #faf9f8;
   --light-grey2: #edebe9;
   --light-grey3: #d8d8d8;

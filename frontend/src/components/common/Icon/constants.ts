@@ -13,6 +13,7 @@ export const SIZES: Record<Exclude<IconProps['size'], undefined>, string | numbe
 export const COLORS: Record<Exclude<IconProps['color'], undefined>, string> = {
   dark: 'var(--text-color)',
   white: 'var(--white)',
+  grey: 'var(--grey)',
   blue: 'var(--bcgov-light-blue)',
 };
 
