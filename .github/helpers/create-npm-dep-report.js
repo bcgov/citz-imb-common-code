@@ -251,6 +251,7 @@ const escapeForGitHubActions = (str) =>
     ]);
 
     // Add hidden data.
+    results[packagePath] += lineBreak();
     results[packagePath] += line(
       `<!-- PercentagePackagesUpToDate: ${percentageUpToDate} -->`
     );
