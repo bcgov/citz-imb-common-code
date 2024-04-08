@@ -6,3 +6,4 @@ export * from './Icon';
 export * from './SectionCard';
 export * from './PageLayout';
 export * from './Spinner';
+export * from './Modal';
