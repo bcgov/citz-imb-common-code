@@ -1,6 +1,6 @@
 import { Breadcrumbs, Spinner } from 'components';
 import { Suspense, lazy } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 
 // Lazy loaded pages.
 const Pages = {
@@ -9,9 +9,11 @@ const Pages = {
 };
 
 const Router = () => {
+  const pathname = useLocation().pathname;
+
   return (
     <>
-      <Breadcrumbs pathname={window.location.pathname} />
+      <Breadcrumbs pathname={pathname} />
       <Routes>
         {/* LANDING PAGE */}
         <Route

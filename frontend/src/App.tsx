@@ -9,7 +9,6 @@ import Router from './Router';
 const AppRouter = () => {
   const { isAuthenticated, login, logout } = useSSO();
 
-  console.log({ isAuthenticated, window: window.location});
   // Load config when origin changes.
   useEffect(() => {
     (async () => {
@@ -27,7 +26,10 @@ const AppRouter = () => {
             LOGOUT
           </Button>
         ) : (
-          <Button variant="secondary" onPress={() => login({ idpHint: 'idir', redirectURL: '/sso-react' })}>
+          <Button
+            variant="secondary"
+            onPress={() => login({ idpHint: 'idir', redirectURL: '/sso-react' })}
+          >
             LOGIN WITH IDIR
           </Button>
         )}
