@@ -9,6 +9,8 @@ export const Breadcrumbs = (props: BreadCrumbProps) => {
 
   const styles = useDynamicStyles(props, styleMapper) as BreadCrumbStyles;
 
+  if (pathname === '/') return null;
+
   const crumbs: CrumbProperty[] = pathname
     .split('/')
     .map((crumb, index) => makeCrumb(crumb, index, pathname))
