@@ -49,7 +49,6 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'warn',
     '@typescript-eslint/no-non-null-assertion': 'off', // Allow use of non-null assertion operator (!).
     '@typescript-eslint/no-explicit-any': 'warn', // Warn if 'any' type is used.
-    'react/react-in-jsx-scope': 'off', // Don't require import of 'React' for jsx
     '@typescript-eslint/ban-types': [
       'error',
       {
