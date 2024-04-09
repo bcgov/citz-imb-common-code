@@ -1,10 +1,8 @@
-import { memo } from 'react';
-import { ModalProps } from './types';
-import { styleMapper, styleMapperOverlay } from './styleMapper';
+import { Heading, Icon, Stack } from 'components';
 import { useDynamicStyles } from 'hooks';
-import { Stack } from '../Stack';
-import { Heading } from '../Heading';
-import { Icon } from '../Icon';
+import { memo } from 'react';
+import { styleMapper, styleMapperOverlay } from './styleMapper';
+import { ModalProps } from './types';
 
 const ModalComponent = (props: ModalProps) => {
   const { title, isOpen, onClose, divider } = props;

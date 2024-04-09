@@ -45,7 +45,6 @@ export const styleMapper = (props: BreadCrumbProps, isHovered?: boolean) => {
     a: {
       textDecoration: 'none',
       padding: '0 0.5rem',
-      textTransform: 'capitalize',
     },
     current: {
       color: 'red',

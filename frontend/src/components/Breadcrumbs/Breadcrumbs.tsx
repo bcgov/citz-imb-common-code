@@ -1,8 +1,8 @@
-import { makeCrumb } from './makeCrumb';
-import { BreadCrumbProps, BreadCrumbStyles, CrumbProperty } from './types';
-import { styleMapper } from './styleMapper';
 import { useDynamicStyles } from 'hooks';
 import { Crumb } from './Crumb';
+import { makeCrumb } from './makeCrumb';
+import { styleMapper } from './styleMapper';
+import { BreadCrumbProps, BreadCrumbStyles, CrumbProperty } from './types';
 
 export const Breadcrumbs = (props: BreadCrumbProps) => {
   const { pathname } = props;

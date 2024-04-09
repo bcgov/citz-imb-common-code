@@ -1,26 +1,22 @@
-import { Stack } from 'components/common';
-import { PackageCard } from 'components/cards';
-import { Greeting } from 'components/text';
+import { Greeting, IconProps, PackageCard, Stack } from 'components';
+import { Link } from 'react-router-dom';
+import packages from '../packages.json';
 
 const Landing = () => {
   return (
     <>
       <Greeting />
       <Stack gap="20px">
-        <PackageCard
-          icon="Authenticate"
-          title="SSO React"
-          pageRoute="/sso-react"
-          summary="An npm package that offers an integration solution for React applications requiring
-                authentication through the B.C. government's Single Sign-On SSO service."
-        />
-        <PackageCard
-          icon="Authenticate"
-          title="SSO Express"
-          pageRoute="/sso-express"
-          summary="An npm package that offers an integration solution for Express applications requiring
-                authentication through the B.C. government's Single Sign-On SSO service."
-        />
+        {packages.map((pkg) => (
+          <Link key={pkg.title} to={pkg.pageRoute} style={{ textDecoration: 'none' }}>
+            <PackageCard
+              icon={pkg.icon as IconProps['icon']}
+              title={pkg.title}
+              pageRoute={pkg.pageRoute}
+              summary={pkg.summary}
+            />
+          </Link>
+        ))}
       </Stack>
     </>
   );

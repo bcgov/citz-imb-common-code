@@ -1,11 +1,11 @@
-import { memo } from 'react';
-import { IssueCardProps } from './types';
-import { styleMapper } from './styleMapper';
-import { useDynamicStyles } from 'hooks';
-import { Stack, Typography } from 'components/common';
 import { Button } from '@bcgov/design-system-react-components';
+import { Stack, Typography } from 'components';
+import { useDynamicStyles } from 'hooks';
+import { memo } from 'react';
+import { formatTimeDifferenceString } from 'utils';
 import { REACTIONS } from './constants';
-import { formatTimeDifferenceString } from 'utils/formatTimeDifferenceString';
+import { styleMapper } from './styleMapper';
+import { IssueCardProps } from './types';
 
 const IssueCardComponent = (props: IssueCardProps) => {
   const {

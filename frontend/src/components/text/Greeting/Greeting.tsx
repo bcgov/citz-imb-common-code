@@ -1,5 +1,5 @@
 import { useSSO } from '@bcgov/citz-imb-sso-react';
-import { Typography } from 'components/common';
+import { Typography } from 'components';
 import { getTimeBasedGreeting } from 'utils';
 
 export const Greeting = () => {

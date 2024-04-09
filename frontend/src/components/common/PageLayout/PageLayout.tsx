@@ -1,13 +1,5 @@
-import { ReactNode } from 'react';
-
-type PageLayoutProps = {
-  children: ReactNode;
-};
-
-const styles = {
-  margin: '20px 14%', // Top/Bottom: 20px, Left/Right: 14% (responsive)
-  minHeight: 'calc(100dvh - 105px)', // Header: 65px + Margin: 40px = 105px offset
-};
+import { PageLayoutProps } from './types';
+import { styles } from './styles';
 
 /**
  * Layout for page components.

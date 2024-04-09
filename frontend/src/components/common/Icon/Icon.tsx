@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { useDynamicStyles } from 'hooks';
 import { IconProps } from './types';
 import { styleMapper } from './styleMapper';
-import { Icons } from '../../icons';
+import { Icons } from 'components';
 import { COLORS, PROP_DEFAULTS, SIZES } from './constants';
 
 const IconComponent = (props: IconProps) => {

@@ -1,14 +1,11 @@
-import { Card, Icon, Stack, Typography } from 'components/common';
+import { Card, Icon, Stack, Typography } from 'components';
 import { PackageCardProps } from './types';
-import { useNavigate } from 'react-router-dom';
 
 export const PackageCard = (props: PackageCardProps) => {
-  const { icon, title, summary, pageRoute } = props;
-
-  const navigate = useNavigate();
+  const { icon, title, summary } = props;
 
   return (
-    <Card onClick={() => navigate(`${pageRoute}`)}>
+    <Card>
       <Stack>
         <Icon icon={icon} margin="0 8px 0 0" />
         <Stack direction="column">
