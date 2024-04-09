@@ -12,6 +12,8 @@
     "baseUrl": "src",
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "sourceMap": true,
     "jsx": "react-jsx",
     "types": [
