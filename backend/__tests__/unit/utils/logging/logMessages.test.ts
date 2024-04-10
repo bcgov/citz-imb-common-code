@@ -26,13 +26,17 @@ describe('Constants', () => {
     const expectedUTCDateTime = `${c.Yellow}[UTC]${c.Reset} Current date and time: ${
       getCurrentDateTime().formattedDateUTC
     }, ${getCurrentDateTime().formattedTimeUTC}`;
-    expect(logMessages.UTC_DATE_TIME).toEqual(expectedUTCDateTime);
+    // Slice last 3 digits to account for differing timing of function calls
+    expect(logMessages.UTC_DATE_TIME.slice(0, -3)).toEqual(expectedUTCDateTime.slice(0, -3));
   });
 
   it('PACIFIC_DATE_TIME should have correct value', () => {
     const expectedPacificDateTime = `${c.Yellow}[${getCurrentDateTime().pacificTimeZone}]${c.Reset} Current date and time: ${
       getCurrentDateTime().formattedDatePacific
     }, ${getCurrentDateTime().formattedTimePacific}`;
-    expect(logMessages.PACIFIC_DATE_TIME).toEqual(expectedPacificDateTime);
+    // Slice last 3 digits to account for differing timing of function calls
+    expect(logMessages.PACIFIC_DATE_TIME.slice(0, -3)).toEqual(
+      expectedPacificDateTime.slice(0, -3),
+    );
   });
 });
