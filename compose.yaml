@@ -11,6 +11,7 @@ services:
       - ${FRONTEND_PORT:-6500}:6500
     volumes:
       - ./frontend/src:/app/src
+      - ../citz-imb-sso-react/build:/app/node_modules/@bcgov/citz-imb-sso-react/build
       - /app/node_modules
     depends_on:
       coco-api:
@@ -38,6 +39,7 @@ services:
       - ${BACKEND_PORT:-6600}:6600
     volumes:
       - ./backend:/app
+      - ../citz-imb-sso-express/build:/app/node_modules/@bcgov/citz-imb-sso-express/build
     networks:
       - app-network
 
