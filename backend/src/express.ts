@@ -38,5 +38,4 @@ app.use('/health', healthRouter);
 app.use('/config', configRouter);
 app.use('/github', githubRouter);
 
-
 export default app;
