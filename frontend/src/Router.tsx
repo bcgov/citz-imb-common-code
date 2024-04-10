@@ -1,17 +1,32 @@
-import { createBrowserRouter } from 'react-router-dom';
-import packages from './packages.json';
+import { PackageType, packages } from 'packagedata';
 import Landing from 'pages/Landing';
-import Package from 'pages/Package';
+import { createBrowserRouter } from 'react-router-dom';
+import PackagePage from 'pages/Package';
+import { RootLayout } from 'Layouts';
+import { NotFound } from 'pages/NotFound';
+
+const packageLoader = (): PackageType[] => packages;
 
 const packageRoutes = packages.map((pkg) => ({
   path: pkg.pageRoute,
-  element: <Package repo={pkg.repo} title={pkg.title} summary={pkg.details} />,
+  element: <PackagePage repo={pkg.repo} title={pkg.title} summary={pkg.details} />,
 }));
 
-export const router = createBrowserRouter([
+const routes = [
   {
     path: '/',
-    element: <Landing />,
+    element: <RootLayout />,
+    loader: packageLoader,
+    errorElement: <NotFound />,
+    children: [
+      {
+        path: '/',
+        loader: packageLoader,
+        element: <Landing />,
+      },
+      ...packageRoutes,
+    ],
   },
-  ...packageRoutes,
-]);
+];
+
+export const router = createBrowserRouter(routes);

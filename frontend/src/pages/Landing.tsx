@@ -1,8 +1,10 @@
-import { Greeting, IconProps, PackageCard, Stack } from 'components';
-import { Link } from 'react-router-dom';
-import packages from '../packages.json';
+import { Greeting, PackageCard, Stack } from 'components';
+import { PackageType } from 'packagedata';
+import { Link, useLoaderData } from 'react-router-dom';
 
 const Landing = () => {
+  const packages = useLoaderData() as PackageType[];
+
   return (
     <>
       <Greeting />
@@ -10,7 +12,7 @@ const Landing = () => {
         {packages.map((pkg) => (
           <Link key={pkg.title} to={pkg.pageRoute} style={{ textDecoration: 'none' }}>
             <PackageCard
-              icon={pkg.icon as IconProps['icon']}
+              icon={pkg.iconType}
               title={pkg.title}
               pageRoute={pkg.pageRoute}
               summary={pkg.summary}

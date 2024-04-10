@@ -3,6 +3,7 @@ import { Styles } from 'types';
 
 export type BreadCrumbProps = {
   pathname: string;
+  labels: string;
   styles?: Styles;
 };
 
