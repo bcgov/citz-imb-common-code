@@ -25,7 +25,7 @@ describe('getIssues controller', () => {
       ok: true,
       json: jest.fn().mockResolvedValue([
         {
-          url: 'https://api.github.com/repos/bcgov/developer-experience-team/issues/1',
+          html_url: 'https://github.com/bcgov/developer-experience-team/issues/1',
           number: 1,
           title: 'Example Issue',
           comments: 2,
@@ -35,7 +35,7 @@ describe('getIssues controller', () => {
           user: {
             login: 'exampleuser',
             avatar_url: 'https://example.com/avatar.jpg',
-            url: 'https://api.github.com/users/exampleuser',
+            html_url: 'https://github.com/exampleuser',
           },
         },
       ]),
@@ -48,7 +48,7 @@ describe('getIssues controller', () => {
     // Assert that the response was sent with the correct data
     expect(res.json).toHaveBeenCalledWith([
       {
-        url: 'https://api.github.com/repos/bcgov/developer-experience-team/issues/1',
+        url: 'https://github.com/bcgov/developer-experience-team/issues/1',
         number: 1,
         title: 'Example Issue',
         comments: 2,
@@ -58,7 +58,7 @@ describe('getIssues controller', () => {
         user: {
           login: 'exampleuser',
           avatar_url: 'https://example.com/avatar.jpg',
-          url: 'https://api.github.com/users/exampleuser',
+          url: 'https://github.com/exampleuser',
         },
       },
     ]);
