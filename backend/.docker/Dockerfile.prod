@@ -3,7 +3,7 @@ FROM node:${NODE_IMAGE_TAG} AS build
 
 WORKDIR /app
 
-COPY . .
+COPY ./backend .
 
 RUN npm i
 
@@ -16,7 +16,7 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-COPY . .
+COPY ./backend/package.json .
 
 RUN npm i
 
@@ -30,4 +30,4 @@ RUN chgrp -R 0 /.npm && chmod -R g=u /.npm
 EXPOSE 6600
 
 # Start the application
-CMD ["npm", "run", "prod"]
+CMD ["node", "./build/src/index.js"]

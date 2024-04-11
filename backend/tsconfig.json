@@ -19,5 +19,5 @@
     "resolveJsonModule": true
   },
   "include": ["src", "__tests__"],
-  "exclude": ["tsconfig.json", "scripts/", "node_modules/"]
+  "exclude": ["tsconfig.json", "scripts/", "node_modules/", "build/", "coverage/"]
 }
