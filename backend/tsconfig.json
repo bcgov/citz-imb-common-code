@@ -3,13 +3,21 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "target": "ESNext",
-    "module": "CommonJS",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "outDir": "./build",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "exactOptionalPropertyTypes": true,
+    "removeComments": true,
     "strict": true,
     "skipLibCheck": true,
+    "resolveJsonModule": true
   },
-  "include": ["src"],
-  "exclude": ["tsconfig.json", "scripts/", "node_modules/", "**/*.test.ts"]
+  "include": ["src", "__tests__"],
+  "exclude": ["tsconfig.json", "scripts/", "node_modules/"]
 }

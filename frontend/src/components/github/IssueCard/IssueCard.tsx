@@ -53,10 +53,8 @@ const IssueCardComponent = (props: IssueCardProps) => {
     .join('');
 
   // On link click.
-  const openIssueInNewTab = () =>
-    window.open(url.replace('api.', '').replace('repos/', ''), '_blank');
-  const openIssueAuthorInNewTab = () =>
-    window.open(authorURL.replace('api.', '').replace('users/', ''), '_blank');
+  const openIssueInNewTab = () => window.open(url, '_blank');
+  const openIssueAuthorInNewTab = () => window.open(authorURL, '_blank');
 
   return (
     <div style={styles}>
