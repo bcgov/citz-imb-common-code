@@ -15,7 +15,7 @@ const jestConfig: JestConfigWithTsJest = {
   },
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.ts'],
-  coveragePathIgnorePatterns: ['src/index.ts'],
+  coveragePathIgnorePatterns: ['index.ts'],
   coverageReporters: [['lcov', { projectRoot: '..' }]],
   coverageThreshold: {
     global: {
