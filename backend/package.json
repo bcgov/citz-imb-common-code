@@ -3,7 +3,7 @@
   "main": "src/index.ts",
   "scripts": {
     "dev": "nodemon",
-    "prod": "node ./build/index.js",
+    "prod": "node ./build/src/index.js",
     "build": "tsc",
     "test": "jest",
     "coverage": "jest --coverage",
