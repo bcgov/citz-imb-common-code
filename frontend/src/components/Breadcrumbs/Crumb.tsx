@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import { BreadCrumbStyles, CrumbProperty } from './types';
 
 type CrumbProps = {
@@ -12,15 +13,15 @@ export const Crumb = (props: CrumbProps) => {
   if (crumb.path === pathname)
     return (
       <li style={style.li}>
-        <p style={style.a}>{crumb.label}</p>
+        <p style={style.current}>{crumb.label}</p>
       </li>
     );
 
   return (
     <li style={style.li}>
-      <a style={style.a} href={crumb.path}>
+      <NavLink style={style.a} to={crumb.path}>
         {crumb.label}
-      </a>
+      </NavLink>
       <span>/</span>
     </li>
   );

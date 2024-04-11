@@ -43,12 +43,12 @@ export const styleMapper = (props: BreadCrumbProps, isHovered?: boolean) => {
       display: 'inline',
     },
     a: {
-      textDecoration: 'none',
+      textDecoration: 'underline',
       padding: '0 0.5rem',
+      color: 'var(--link-text-color)',
     },
     current: {
-      color: 'red',
-      display: 'inline',
+      padding: '0 0.5rem',
     },
   };
 
