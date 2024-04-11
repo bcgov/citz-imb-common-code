@@ -8,7 +8,7 @@ export const zodProperty = {
   numberQueryParam: (
     param: string, // Must be a number.
   ) =>
-    z.string().refine((value) => !Number.isNaN(value), {
+    z.string().refine((value) => value !== '' && !Number.isNaN(parseFloat(value)), {
       message: `\`${param}\` must be a number.`,
     }),
   optionalNumberQueryParam: (
@@ -17,9 +17,12 @@ export const zodProperty = {
     z
       .string()
       .optional()
-      .refine((value) => value === undefined || !Number.isNaN(value), {
-        message: `\`${param}\` must be a number.`,
-      }),
+      .refine(
+        (value) => value === undefined || (value !== '' && !Number.isNaN(parseFloat(value))),
+        {
+          message: `\`${param}\` must be a number.`,
+        },
+      ),
 };
 
 // Remove undefined or empty string properties of an object. Use in the .transform method of zod
