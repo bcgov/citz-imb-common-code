@@ -12,9 +12,9 @@ describe('Integration Test: GitHub Issues Route', () => {
   // Test case: GET /github/issues/:repo should return 200 and issues
   test('GET /github/issues/:repo returns 200 and issues', async () => {
     // Mock the response from the GitHub API
-    const mockResponse = [
+    const mockFetchResponse = [
       {
-        url: 'https://api.github.com/repos/bcgov/developer-experience-team/issues/1',
+        html_url: 'https://github.com/bcgov/developer-experience-team/issues/1',
         number: 1,
         title: 'Example Issue',
         comments: 2,
@@ -24,7 +24,7 @@ describe('Integration Test: GitHub Issues Route', () => {
         user: {
           login: 'exampleuser',
           avatar_url: 'https://example.com/avatar.jpg',
-          url: 'https://api.github.com/users/exampleuser',
+          html_url: 'https://github.com/exampleuser',
         },
       },
     ];
@@ -32,12 +32,29 @@ describe('Integration Test: GitHub Issues Route', () => {
     // Mock the fetch function
     global.fetch = jest
       .fn()
-      .mockResolvedValue({ ok: true, json: jest.fn().mockResolvedValue(mockResponse) });
+      .mockResolvedValue({ ok: true, json: jest.fn().mockResolvedValue(mockFetchResponse) });
 
     // Make a request to the route
     const response = await request(app)
       .get('/github/issues/developer-experience-team')
       .query({ state: 'open' });
+
+    const mockResponse = [
+      {
+        url: 'https://github.com/bcgov/developer-experience-team/issues/1',
+        number: 1,
+        title: 'Example Issue',
+        comments: 2,
+        created_at: '2024-04-09T12:00:00Z',
+        updated_at: '2024-04-09T13:00:00Z',
+        reactions: { thumbs_up: 5, thumbs_down: 1 },
+        user: {
+          login: 'exampleuser',
+          avatar_url: 'https://example.com/avatar.jpg',
+          url: 'https://github.com/exampleuser',
+        },
+      },
+    ];
 
     // Assert that the response was successful and contains the correct data
     expect(response.status).toBe(200);
