@@ -16,7 +16,7 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-COPY ./backend .
+COPY ./backend/package.json .
 
 RUN npm i
 
@@ -30,4 +30,4 @@ RUN chgrp -R 0 /.npm && chmod -R g=u /.npm
 EXPOSE 6600
 
 # Start the application
-CMD ["node", "./build/index.js"]
+CMD ["node", "./build/src/index.js"]
