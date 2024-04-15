@@ -24,7 +24,7 @@ export const RootLayout = () => {
   const loginHandler = () => login({ idpHint: 'idir' });
 
   return (
-    <div>
+    <>
       <Header title="CITZ IMB Common Code">
         <AuthButtons isAuthenticated={isAuthenticated} login={loginHandler} logout={logout} />
       </Header>
@@ -32,6 +32,6 @@ export const RootLayout = () => {
         <Breadcrumbs pathname={pathname} labels={labels} />
         <Outlet />
       </div>
-    </div>
+    </>
   );
 };
