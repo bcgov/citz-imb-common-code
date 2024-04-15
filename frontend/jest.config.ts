@@ -8,6 +8,16 @@ const config: Config = {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
   },
   modulePaths: ['<rootDir>/src/'],
+  coveragePathIgnorePatterns: ['index.ts'],
+  coverageReporters: [['lcov', { projectRoot: '..' }]],
+  coverageThreshold: {
+    global: {
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: 80,
+    },
+  },
   testEnvironment: 'jest-environment-jsdom',
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/build/'],
   transform: {
