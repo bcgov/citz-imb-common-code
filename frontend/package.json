@@ -19,8 +19,6 @@
     "vite-tsconfig-paths": "4.3.2"
   },
   "devDependencies": {
-    "@babel/preset-env": "7.24.3",
-    "@babel/preset-react": "7.24.1",
     "@jest/globals": "29.7.0",
     "@testing-library/jest-dom": "6.4.2",
     "@testing-library/react": "14.2.2",
@@ -31,7 +29,6 @@
     "@types/react-dom": "18.2.22",
     "@typescript-eslint/eslint-plugin": "7.4.0",
     "@typescript-eslint/parser": "7.4.0",
-    "babel-jest": "29.7.0",
     "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-prettier": "5.1.3",
