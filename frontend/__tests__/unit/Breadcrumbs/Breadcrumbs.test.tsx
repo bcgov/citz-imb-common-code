@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 describe('Breadcrumbs', () => {
   describe('when pathname is "/"', () => {
     it('should render a single link to the home page', () => {
-      const element = render(<Breadcrumbs pathname="/" />);
+      const element = render(<Breadcrumbs pathname="/" labels="" />);
       const crumbItems = element.container.querySelectorAll('li');
 
       expect(crumbItems.length).toBe(1);
@@ -14,7 +14,7 @@ describe('Breadcrumbs', () => {
 
   describe('when pathname is "/page"', () => {
     it('should render a two links to home & page', () => {
-      const element = render(<Breadcrumbs pathname="/page" />);
+      const element = render(<Breadcrumbs pathname="/page" labels="/Page" />);
       const crumbItems = element.container.querySelectorAll('li');
 
       expect(crumbItems.length).toBe(2);
@@ -22,7 +22,7 @@ describe('Breadcrumbs', () => {
 
       const crumbLink = crumbItems[0].querySelector('a');
       expect(crumbLink?.getAttribute('href')).toBe('/');
-      expect(crumbItems[1].childNodes[0].textContent).toBe('page');
+      expect(crumbItems[1].childNodes[0].textContent).toBe('Page');
     });
   });
 });
