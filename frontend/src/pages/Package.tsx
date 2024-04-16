@@ -1,10 +1,8 @@
 import { Button } from '@bcgov/design-system-react-components';
-import { Heading, Stack, Typography } from 'components/common';
-import { GitHubIssues } from 'components/github';
-
-import githubIcon from '../assets/github-icon.png';
-import npmIcon from '../assets/npm-icon.webp';
-import exchangeLabIcon from '../assets/exchange-lab-icon.svg';
+import exchangeLabIcon from 'assets/exchange-lab-icon.svg';
+import githubIcon from 'assets/github-icon.png';
+import npmIcon from 'assets/npm-icon.webp';
+import { GitHubIssues, Heading, Stack, Typography } from 'components';
 
 type PackageProps = {
   repo: string;
