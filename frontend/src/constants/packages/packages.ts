@@ -1,4 +1,4 @@
-import { PackageType } from './package';
+import { PackageType } from './types';
 
 export const packages: PackageType[] = [
   {
