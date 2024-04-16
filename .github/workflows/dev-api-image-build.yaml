@@ -38,7 +38,7 @@ jobs:
       # Build the CoCo API Image 
       - name: Build CoCo API Image
         run: |
-          cd backend && docker build --build-arg NODE_IMAGE_TAG=${NODE_IMAGE_TAG} -t artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-api:${{github.event.pull_request.number}} -f Dockerfile.prod .
+          docker build --build-arg NODE_IMAGE_TAG=${NODE_IMAGE_TAG} -t artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-api:${{github.event.pull_request.number}} -f backend/.docker/Dockerfile.prod .
 
       # Push the Coco API Image to Artifactory
       - name: Push the CoCo API Image to Artifactory

@@ -34,7 +34,18 @@ This application will be used to showcase the code, packages, and services that 
 
 1. Create a `.env` file based on the `example.env` file.
 
-2. Run `npm run up` to start the app locally.
+2. Ensure the following repos are also cloned to the same directory as `citz-imb-common-code`, are up to date, and the `npm run build` command has been run in each package directory:
+
+[@bcgov/citz-imb-sso-react] - SSO React package.  
+[@bcgov/citz-imb-sso-express] - SSO Express package.
+
+> [!NOTE]
+> This is because there is a volume mount to each of these package's `build` directories.  
+> When the `build` directory is updated after making changes to the packages,  
+> and a `rebuild` is done within the `citz-imb-common-code` app,  
+> the changes to the packages will be reflected in the app.
+
+3. Run `npm run up` to start the app locally.
 
 [Return to Top](#citz-imb-common-code)
 

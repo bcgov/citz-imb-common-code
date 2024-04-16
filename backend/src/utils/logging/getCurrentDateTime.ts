@@ -1,4 +1,4 @@
-type GetCurrentDateTime = {
+export type GetCurrentDateTime = {
   formattedDateUTC: string; // year-month-day
   formattedTimeUTC: string; // hours:minutes:seconds
   formattedDatePacific: string; // year-month-day
