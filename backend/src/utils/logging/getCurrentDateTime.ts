@@ -6,55 +6,47 @@ export type GetCurrentDateTime = {
   pacificTimeZone: 'PT' | 'PST';
 };
 
-/**
- * Returns an object containing the current date and time in both UTC and local time zones.
- * @returns {GetCurrentDateTime} An object with four properties: `formattedDateUTC`, `formattedTimeUTC`,
- * `formattedDatePacific`, and `formattedTimePacific`. Each property contains the formatted date
- * and time in the corresponding time zone.
- */
 export const getCurrentDateTime = (): GetCurrentDateTime => {
   const now = new Date();
+  const utcYear = now.getUTCFullYear();
+  const utcMonth = now.getUTCMonth(); // getUTCMonth() is zero-indexed
+  const utcDate = now.getUTCDate();
+  const utcHours = now.getUTCHours();
+  const utcMinutes = now.getUTCMinutes();
+  const utcSeconds = now.getUTCSeconds();
 
-  // UTC date and time
-  const yearUTC = now.getUTCFullYear();
-  const monthUTC = String(now.getUTCMonth() + 1).padStart(2, '0');
-  const dayUTC = String(now.getUTCDate()).padStart(2, '0');
-  const hoursUTC = String(now.getUTCHours()).padStart(2, '0');
-  const minutesUTC = String(now.getUTCMinutes()).padStart(2, '0');
-  const secondsUTC = String(now.getUTCSeconds()).padStart(2, '0');
+  // Formatting UTC date and time
+  const formattedDateUTC = `${utcYear}-${String(utcMonth + 1).padStart(2, '0')}-${String(utcDate).padStart(2, '0')}`;
+  const formattedTimeUTC = `${String(utcHours).padStart(2, '0')}:${String(utcMinutes).padStart(2, '0')}:${String(utcSeconds).padStart(2, '0')}`;
 
-  const formattedDateUTC = `${yearUTC}-${monthUTC}-${dayUTC}`;
-  const formattedTimeUTC = `${hoursUTC}:${minutesUTC}:${secondsUTC}`;
+  // Calculate Pacific time considering the known offset of -8 hours for PST
+  let pacificHours = utcHours - 8; // Standard Time offset for Pacific (PST)
+  const isDST = now.getUTCMonth() > 2 && now.getUTCMonth() < 11; // Simplified DST check, usually from March to November
 
-  // Pacific date and time
-  const pacificFormatter = new Intl.DateTimeFormat('en-US', {
-    timeZone: 'America/Los_Angeles',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-  });
+  // Adjust for Pacific Daylight Time (PDT), which is UTC-7
+  if (isDST) {
+    pacificHours += 1;
+  }
 
-  const pacificParts = pacificFormatter.formatToParts(now);
-
-  const formattedDatePacific = `${
-    pacificParts.find((part) => part.type === 'year')?.value
-  }-${pacificParts.find((part) => part.type === 'month')?.value}-${
-    pacificParts.find((part) => part.type === 'day')?.value
-  }`;
-  const formattedTimePacific = `${
-    pacificParts.find((part) => part.type === 'hour')?.value
-  }:${pacificParts.find((part) => part.type === 'minute')?.value}:${
-    pacificParts.find((part) => part.type === 'second')?.value
-  }`;
-
-  // Determine Pacific Time Zone
-  const nowPacific = new Date(formattedDatePacific + 'T' + formattedTimePacific + 'Z');
-  const utcOffset = nowPacific.getTime() - now.getTime();
-  const isDST = utcOffset > 0 && utcOffset <= 3600000;
   const pacificTimeZone = isDST ? 'PT' : 'PST';
+
+  // Adjust date and month if the hour calculation underflows from midnight
+  let pacificDate = utcDate;
+  let pacificMonth = utcMonth;
+  if (pacificHours < 0) {
+    pacificHours += 24;
+    pacificDate -= 1;
+    if (pacificDate < 1) {
+      pacificMonth -= 1;
+      if (pacificMonth < 0) {
+        pacificMonth = 11; // December of the previous year
+      }
+      pacificDate = new Date(utcYear, pacificMonth + 1, 0).getDate(); // Last day of the previous month
+    }
+  }
+
+  const formattedDatePacific = `${utcYear}-${String(pacificMonth + 1).padStart(2, '0')}-${String(pacificDate).padStart(2, '0')}`;
+  const formattedTimePacific = `${String(pacificHours).padStart(2, '0')}:${String(utcMinutes).padStart(2, '0')}:${String(utcSeconds).padStart(2, '0')}`;
 
   return {
     formattedDateUTC,

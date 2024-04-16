@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { getIssues } from '@/modules/github/controller';
+import { HttpError, httpStatusCode } from '@/utils';
 
 // Mock the Express request and response objects
 const req = {} as Request;
@@ -62,5 +63,52 @@ describe('getIssues controller', () => {
         },
       },
     ]);
+  });
+
+  // Test case: should handle non-ok response from GitHub API
+  it('should handle non-ok response from GitHub API', async () => {
+    req.getZodValidatedParams = jest.fn().mockReturnValue({ repo: 'developer-experience-team' });
+    req.getZodValidatedQuery = jest.fn().mockReturnValue({ state: 'open' });
+
+    // Mock the non-ok response from the GitHub API
+    const mockErrorResponse = {
+      ok: false,
+      status: 400,
+      json: jest.fn().mockResolvedValue({ message: 'Bad Request' }),
+    };
+    global.fetch = jest.fn().mockResolvedValue(mockErrorResponse);
+
+    try {
+      await getIssues(req, res, nextFunction);
+    } catch (error) {
+      expect(error).toBeInstanceOf(HttpError);
+      expect((error as HttpError).statusCode).toBe(httpStatusCode.BAD_REQUEST);
+      expect((error as HttpError).message).toContain(
+        'Failed to fetch GitHub issues from developer-experience-team',
+      );
+    }
+  });
+
+  // Test case: should handle when GitHub issues array is undefined
+  it('should handle when GitHub issues array is undefined', async () => {
+    req.getZodValidatedParams = jest.fn().mockReturnValue({ repo: 'developer-experience-team' });
+    req.getZodValidatedQuery = jest.fn().mockReturnValue({ state: 'open' });
+
+    // Mock the response object from the GitHub API with undefined issues
+    const mockResponse = {
+      ok: true,
+      json: jest.fn().mockResolvedValue(undefined),
+    };
+    global.fetch = jest.fn().mockResolvedValue(mockResponse);
+
+    try {
+      await getIssues(req, res, nextFunction);
+    } catch (error) {
+      expect(error).toBeInstanceOf(HttpError);
+      expect((error as HttpError).statusCode).toBe(httpStatusCode.NOT_FOUND);
+      expect((error as HttpError).message).toContain(
+        'No GitHub issues found for developer-experience-team',
+      );
+    }
   });
 });
