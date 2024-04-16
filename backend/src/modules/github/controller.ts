@@ -31,7 +31,7 @@ export const getIssues = errorWrapper(async (req: Request, res: Response) => {
   // Remove unneeded properties from issues objects.
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const simplifiedIssues = filteredIssues.map((issue: any) => ({
-    url: issue.url,
+    url: issue.html_url,
     number: issue.number,
     title: issue.title,
     comments: issue.comments,
@@ -41,7 +41,7 @@ export const getIssues = errorWrapper(async (req: Request, res: Response) => {
     user: {
       login: issue.user.login,
       avatar_url: issue.user.avatar_url,
-      url: issue.user.url,
+      url: issue.user.html_url,
     },
   }));
 
