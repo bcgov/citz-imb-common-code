@@ -11,12 +11,7 @@ const Landing = () => {
       <Stack gap="20px">
         {packages.map((pkg) => (
           <Link key={pkg.title} to={pkg.pageRoute} style={{ textDecoration: 'none' }}>
-            <PackageCard
-              icon={pkg.iconType}
-              title={pkg.title}
-              pageRoute={pkg.pageRoute}
-              summary={pkg.summary}
-            />
+            <PackageCard icon={pkg.iconType} title={pkg.title} summary={pkg.summary} />
           </Link>
         ))}
       </Stack>
