@@ -1,2 +1,2 @@
 export * from './Exit';
-export * from './types.d';
+export * from './types';

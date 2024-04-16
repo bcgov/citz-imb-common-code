@@ -7,6 +7,12 @@ export type BreadCrumbProps = {
   styles?: Styles;
 };
 
+export type CrumbProps = {
+  pathname: string;
+  crumb: CrumbProperty;
+  style: BreadCrumbStyles;
+};
+
 export type CrumbProperty = {
   label: string;
   path: string;

@@ -1,11 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { BreadCrumbStyles, CrumbProperty } from './types';
-
-type CrumbProps = {
-  pathname: string;
-  crumb: CrumbProperty;
-  style: BreadCrumbStyles;
-};
+import { CrumbProps } from './types';
 
 export const Crumb = (props: CrumbProps) => {
   const { pathname, crumb, style } = props;

@@ -1,2 +1,2 @@
 export * from './Card';
-export * from './types.d';
+export * from './types';

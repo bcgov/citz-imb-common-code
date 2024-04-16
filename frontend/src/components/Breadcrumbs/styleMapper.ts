@@ -1,18 +1,17 @@
 import { BreadCrumbProps, BreadCrumbStyles } from './types';
-import { STYLE_DEFAULTS } from 'types';
 
 // Maps prop values to css styles.
 export const styleMapper = (props: BreadCrumbProps, isHovered?: boolean) => {
   // Set default values.
   const {
-    padding = STYLE_DEFAULTS.padding,
-    margin = STYLE_DEFAULTS.margin,
-    borderRadius = STYLE_DEFAULTS.borderRadius,
-    backgroundColor = STYLE_DEFAULTS.backgroundColor,
-    hoverBackgroundColor = STYLE_DEFAULTS.hoverBackgroundColor,
-    width = STYLE_DEFAULTS.width,
-    height = STYLE_DEFAULTS.height,
-    hoverEffects = STYLE_DEFAULTS.hoverEffects,
+    padding = '16px 24px',
+    margin = '0',
+    borderRadius = '4px',
+    backgroundColor = 'var(--white)',
+    hoverBackgroundColor = 'var(--light-grey2)',
+    width = '1fr',
+    height = 'fit-content',
+    hoverEffects = true,
     additionalStyles,
   } = props.styles || {};
 

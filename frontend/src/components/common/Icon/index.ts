@@ -1,2 +1,2 @@
 export * from './Icon';
-export * from './types.d';
+export * from './types';

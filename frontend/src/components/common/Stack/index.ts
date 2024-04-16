@@ -1,2 +1,2 @@
 export * from './Stack';
-export * from './types.d';
+export * from './types';

@@ -1,2 +1,2 @@
 export * from './Spinner';
-export * from './types.d';
+export * from './types';

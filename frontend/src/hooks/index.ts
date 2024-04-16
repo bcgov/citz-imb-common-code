@@ -1,2 +1,2 @@
 export * from './useDynamicStyles';
-export * from './types.d';
+export * from './types';

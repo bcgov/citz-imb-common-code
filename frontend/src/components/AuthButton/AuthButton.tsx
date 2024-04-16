@@ -1,7 +1,7 @@
 import { Button } from '@bcgov/design-system-react-components';
-import { AuthButtonsProps } from './types';
+import { AuthButtonProps } from './types';
 
-export const AuthButtons = (props: AuthButtonsProps) => {
+export const AuthButton = (props: AuthButtonProps) => {
   const { login, logout, isAuthenticated } = props;
 
   if (isAuthenticated)
