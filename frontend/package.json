@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@bcgov/bc-sans": "2.1.0",
-    "@bcgov/citz-imb-sso-react": "1.0.0-alpha2",
+    "@bcgov/citz-imb-sso-react": "1.0.0-alpha4",
     "@bcgov/design-system-react-components": "0.0.6",
     "@vitejs/plugin-react": "4.2.1",
     "react": "18.2.0",
@@ -19,11 +19,6 @@
     "vite-tsconfig-paths": "4.3.2"
   },
   "devDependencies": {
-    "@jest/globals": "29.7.0",
-    "@testing-library/jest-dom": "6.4.2",
-    "@testing-library/react": "14.2.2",
-    "@testing-library/user-event": "14.5.2",
-    "@types/jest": "29.5.12",
     "@types/node": "20.11.30",
     "@types/react": "18.2.71",
     "@types/react-dom": "18.2.22",
