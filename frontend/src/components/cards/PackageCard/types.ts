@@ -1,4 +1,4 @@
-import { IconProps } from 'components/common/Icon/types';
+import { IconProps } from 'components';
 
 export type PackageCardProps = {
   icon: IconProps['icon'];
