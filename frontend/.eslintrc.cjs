@@ -6,6 +6,14 @@ module.exports = {
     node: true,
     browser: true,
   },
+  overrides: [
+    {
+      files: ['__tests__/**/*'],
+      env: {
+        jest: true,
+      },
+    },
+  ],
   parser: '@typescript-eslint/parser',
   extends: [
     // By extending from a plugin config, we can get recommended rules
