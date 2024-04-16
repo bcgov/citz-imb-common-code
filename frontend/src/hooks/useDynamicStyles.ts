@@ -1,14 +1,13 @@
-import { CSSProperties, useMemo } from 'react';
-
-// eslint-disable-next-line no-unused-vars
-type StyleMapper<Props> = (props: Props) => CSSProperties;
+import { useMemo } from 'react';
+import { StyleMapper } from './types';
 
 export const useDynamicStyles = <Props extends object>(
   props: Props,
   styleMapper: StyleMapper<Props>,
+  isHovered?: boolean,
 ) => {
   // Memoize for better performance.
   return useMemo(() => {
-    return styleMapper(props);
-  }, [props]);
+    return styleMapper(props, isHovered);
+  }, [props, isHovered]);
 };

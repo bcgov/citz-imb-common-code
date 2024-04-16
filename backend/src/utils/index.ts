@@ -5,5 +5,6 @@ export * from './logging/getCurrentDateTime';
 export * from './logging/debugStatements';
 export * from './express-requests/httpStatusCode';
 export * from './express-requests/HttpError';
+export * from './express-requests/validateZodRequestSchema';
 export * from './express-requests/zodValidationMiddleware';
 export * from './zod';

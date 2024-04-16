@@ -1,14 +1,14 @@
-import { KeycloakUser } from '@bcgov/citz-imb-kc-express';
+import { SSOUser } from '@bcgov/citz-imb-sso-express';
 
 import ENV from './env';
 const { DEBUG } = ENV;
 
-// Keycloak auth integration configuration.
-export const KEYCLOAK_OPTIONS = {
-  afterUserLogin: (user: KeycloakUser) => {
+// SSO auth integration configuration.
+export const SSO_OPTIONS = {
+  afterUserLogin: (user: SSOUser) => {
     if (DEBUG) console.log(`DEBUG: ${user.display_name} has logged in.`);
   },
-  afterUserLogout: (user: KeycloakUser) => {
+  afterUserLogout: (user: SSOUser) => {
     if (DEBUG) console.log(`DEBUG: ${user.display_name} has logged out.`);
   },
 };
