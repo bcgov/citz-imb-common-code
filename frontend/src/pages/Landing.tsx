@@ -1,10 +1,10 @@
-import { PageLayout, Stack } from 'components/common';
+import { Stack } from 'components/common';
 import { PackageCard } from 'components/cards';
 import { Greeting } from 'components/text';
 
 const Landing = () => {
   return (
-    <PageLayout>
+    <>
       <Greeting />
       <Stack gap="20px">
         <PackageCard
@@ -22,7 +22,7 @@ const Landing = () => {
                 authentication through the B.C. government's Single Sign-On SSO service."
         />
       </Stack>
-    </PageLayout>
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
 import { Button } from '@bcgov/design-system-react-components';
-import { Heading, PageLayout, Stack, Typography } from 'components/common';
+import { Heading, Stack, Typography } from 'components/common';
 import { GitHubIssues } from 'components/github';
 
 import githubIcon from '../assets/github-icon.png';
@@ -22,7 +22,7 @@ const Package = (props: PackageProps) => {
   const openDocsInNewTab = () => window.open(`https://github.com/bcgov/${repo}/wiki`, '_blank');
 
   return (
-    <PageLayout>
+    <>
       <br />
       <Heading overline size="small" bold>
         {title}
@@ -55,7 +55,7 @@ const Package = (props: PackageProps) => {
       </Stack>
       <br />
       <GitHubIssues repo={repo} />
-    </PageLayout>
+    </>
   );
 };
 
