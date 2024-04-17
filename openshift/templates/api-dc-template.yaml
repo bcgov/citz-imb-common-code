@@ -92,7 +92,7 @@ objects:
               failureThreshold: 3
             env:
               - name: ENVIRONMENT
-                value: dev
+                value: ${ENVIRONMENT}
               - name: DEBUG
                 value: 'false'
               - name: VERBOSE_DEBUG
