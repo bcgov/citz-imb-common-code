@@ -1,8 +1,8 @@
 import { Button } from '@bcgov/design-system-react-components';
-import { AuthButtonProps } from './types';
+import { useSSO } from '@bcgov/citz-imb-sso-react';
 
-export const AuthButton = (props: AuthButtonProps) => {
-  const { login, logout, isAuthenticated } = props;
+export const AuthButton = () => {
+  const { isAuthenticated, login, logout } = useSSO();
 
   if (isAuthenticated)
     return (
@@ -12,7 +12,7 @@ export const AuthButton = (props: AuthButtonProps) => {
     );
 
   return (
-    <Button variant="secondary" onPress={() => login()}>
+    <Button variant="secondary" onPress={() => login({ idpHint: 'idir' })}>
       LOGIN WITH IDIR
     </Button>
   );
