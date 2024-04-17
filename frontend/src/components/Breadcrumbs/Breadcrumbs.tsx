@@ -1,8 +1,7 @@
-import { useDynamicStyles } from 'hooks';
 import { Crumb } from './Crumb';
 import { makeCrumbs } from './makeCrumbs';
-import { styleMapper } from './styleMapper';
-import { BreadCrumbProps, BreadCrumbStyles } from './types';
+import { BreadCrumbProps } from './types';
+import { styles } from './styles';
 
 export const Breadcrumbs = (props: BreadCrumbProps) => {
   const { pathname, labels } = props;
@@ -10,8 +9,6 @@ export const Breadcrumbs = (props: BreadCrumbProps) => {
   if (pathname === '/') return null;
 
   const crumbs = makeCrumbs(pathname, labels);
-
-  const styles = useDynamicStyles(props, styleMapper) as BreadCrumbStyles;
 
   return (
     <div style={styles.div}>

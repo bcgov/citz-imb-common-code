@@ -8,7 +8,7 @@ export const makeCrumbs = (pathname: string, labels: string): CrumbProperty[] =>
 
   let currentPath = '';
 
-  const myObjects = paths.map((path, index) => {
+  const crumbs = paths.map((path, index) => {
     let label;
 
     if (labelsArray[index] === '' || labelsArray[index] === undefined) {
@@ -23,5 +23,6 @@ export const makeCrumbs = (pathname: string, labels: string): CrumbProperty[] =>
       label,
     };
   });
-  return myObjects;
+
+  return crumbs;
 };
