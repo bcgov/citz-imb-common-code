@@ -53,6 +53,13 @@ objects:
           openshift.io/generated-by: OpenShiftWebConsole
       spec:
         containers:
+          - resources:
+            limits:
+              cpu: 250m
+              memory: 1Gi
+            requests:
+              cpu: 50m
+              memory: 100Mi
           - name: ${APPLICATION_NAME}
             image: artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-frontend:${IMAGE_TAG}
             imagePullSecrets:
