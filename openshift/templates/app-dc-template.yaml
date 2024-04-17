@@ -53,13 +53,7 @@ objects:
           openshift.io/generated-by: OpenShiftWebConsole
       spec:
         containers:
-          - resources:
-              limits:
-                cpu: 250m
-                memory: 1Gi
-              requests:
-                cpu: 50m
-                memory: 100Mi
+          - resources: {}
             readinessProbe:
               httpGet:
                 path: /nginx_status
@@ -70,6 +64,8 @@ objects:
               periodSeconds: 10
               successThreshold: 1
               failureThreshold: 3
+            terminationMessagePath: /dev/termination-log
+            name: ${APPLICATION_NAME}
             livenessProbe:
               httpGet:
                 path: /nginx_status
@@ -80,19 +76,14 @@ objects:
               periodSeconds: 10
               successThreshold: 1
               failureThreshold: 3
-            - name: ${APPLICATION_NAME}
-              image: artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-frontend:${IMAGE_TAG}
-              imagePullSecrets:
-              - name: artifactory-creds
-              ports:
-                - containerPort: 6500
-                  protocol: TCP
-                - containerPort: 80
-                  protocol: TCP
-              resources: {}
-              terminationMessagePath: /dev/termination-log
-              terminationMessagePolicy: File
-              imagePullPolicy: IfNotPresent
+            ports:
+              - containerPort: 6500
+                protocol: TCP
+              - containerPort: 80
+                protocol: TCP
+            imagePullPolicy: IfNotPresent
+            terminationMessagePolicy: File
+            image: 'artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-frontend:${IMAGE_TAG}'
         restartPolicy: Always
         terminationGracePeriodSeconds: 30
         dnsPolicy: ClusterFirst
