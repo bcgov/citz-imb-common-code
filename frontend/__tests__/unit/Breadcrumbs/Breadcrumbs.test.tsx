@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { Breadcrumbs } from 'components';
+import { Breadcrumbs } from 'components/Breadcrumbs/Breadcrumbs';
+import { MemoryRouter } from 'react-router-dom';
 
 describe('Breadcrumbs', () => {
   it('renders breadcrumbs correctly', () => {
@@ -8,8 +9,11 @@ describe('Breadcrumbs', () => {
       labels: '/Path/To/Resource',
     };
 
-    render(<Breadcrumbs {...props} />);
-
+    render(
+      <MemoryRouter>
+        <Breadcrumbs {...props} />
+      </MemoryRouter>,
+    );
     expect(screen.getByText('Home')).toBeInTheDocument();
     expect(screen.getByText('Path')).toBeInTheDocument();
     expect(screen.getByText('To')).toBeInTheDocument();
