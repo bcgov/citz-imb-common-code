@@ -20,7 +20,7 @@ objects:
       app.kubernetes.io/part-of: coco-demo
       app.openshift.io/runtime: nodejs
       app.openshift.io/runtime-namespace: ${LICENSE_PLATE}-${ENVIRONMENT}
-  spec:  
+  spec:
     strategy:
       type: Rolling
       rollingParams:
@@ -63,15 +63,8 @@ objects:
             export SSO_INTEGRATION_ID="{{ .Data.data.SSO_INTEGRATION_ID }}"
             {{- end }}
       spec:
-        serviceAccountName: baf95e-vault
         containers:
-          - resources:
-              limits:
-                cpu: 250m
-                memory: 1Gi
-              requests:
-                cpu: 50m
-                memory: 100Mi
+          - resources: {}
             readinessProbe:
               httpGet:
                 path: /health
@@ -82,6 +75,11 @@ objects:
               periodSeconds: 10
               successThreshold: 1
               failureThreshold: 3
+            terminationMessagePath: /dev/termination-log
+            name: ${APPLICATION_NAME}
+            command:
+              - sh
+              - '-c'
             livenessProbe:
               httpGet:
                 path: /health
@@ -92,39 +90,34 @@ objects:
               periodSeconds: 10
               successThreshold: 1
               failureThreshold: 3
-            - name: ${APPLICATION_NAME}
-              image: artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-api:${IMAGE_TAG}
-              imagePullSecrets:
-              - name: artifactory-creds
-              ports:
-                - containerPort: 6600
-                  protocol: TCP
-              env:
-                - name: ENVIRONMENT
-                  value: '${ENVIRONMENT}'
-                - name: DEBUG
-                  value: 'false'
-                - name: VERBOSE_DEBUG
-                  value: 'false'
-                - name: BACKEND_PORT
-                  value: '6600'
-                - name: FRONTEND_PORT
-                  value: '6500'
-                - name: FRONTEND_URL
-                  value: 'https://coco-frontend-${LICENSE_PLATE}-${ENVIRONMENT}.apps.silver.devops.gov.bc.ca'
-                - name: BACKEND_URL
-                  value: 'https://coco-api-${LICENSE_PLATE}-${ENVIRONMENT}.apps.silver.devops.gov.bc.ca'
-              command:
-                ['sh', '-c']
-              args:
-                ['. /vault/secrets/coco-secrets-${ENVIRONMENT} && npm run prod']
-              resources: {}
-              terminationMessagePath: /dev/termination-log
-              terminationMessagePolicy: File
-              imagePullPolicy: IfNotPresent
+            env:
+              - name: ENVIRONMENT
+                value: ${ENVIRONMENT}
+              - name: DEBUG
+                value: 'false'
+              - name: VERBOSE_DEBUG
+                value: 'false'
+              - name: BACKEND_PORT
+                value: '6600'
+              - name: FRONTEND_PORT
+                value: '6500'
+              - name: FRONTEND_URL
+                value: 'https://coco-frontend-${LICENSE_PLATE}-${ENVIRONMENT}.apps.silver.devops.gov.bc.ca'
+              - name: BACKEND_URL
+                value: 'https://coco-api-${LICENSE_PLATE}-${ENVIRONMENT}.apps.silver.devops.gov.bc.ca'
+            ports:
+              - containerPort: 6600
+                protocol: TCP
+            imagePullPolicy: IfNotPresent
+            terminationMessagePolicy: File
+            image: 'artifacts.developer.gov.bc.ca/tec1-citz-imb-coco/coco-api:${IMAGE_TAG}'
+            args:
+              - . /vault/secrets/coco-secrets-${ENVIRONMENT} && npm run prod
         restartPolicy: Always
         terminationGracePeriodSeconds: 30
         dnsPolicy: ClusterFirst
+        serviceAccountName: baf95e-vault
+        serviceAccount: baf95e-vault
         securityContext: {}
         schedulerName: default-scheduler
 
