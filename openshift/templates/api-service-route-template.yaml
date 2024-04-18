@@ -1,0 +1,101 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: ${APPLICATION_NAME}-template
+labels:
+  template: ${APPLICATION_NAME}-template
+objects:
+- kind: Service
+  apiVersion: v1
+  metadata:
+    name: coco-api
+    namespace: baf95e-dev
+  spec:
+    ipFamilies:
+      - IPv4
+    ports:
+      - protocol: TCP
+        port: 6600
+        targetPort: 6600
+    internalTrafficPolicy: Cluster
+    type: ClusterIP
+    ipFamilyPolicy: SingleStack
+    sessionAffinity: None
+    selector:
+      app: coco-api
+      
+- kind: Route
+  apiVersion: route.openshift.io/v1
+  metadata:
+    name: ${APPLICATION_NAME}
+    namespace: ${LICENSE_PLATE}-${ENVIRONMENT}
+    annotations:
+      openshift.io/host.generated: 'true'
+      - manager: openshift-router
+        operation: Update
+        apiVersion: route.openshift.io/v1
+        time: '2024-03-27T20:52:30Z'
+        fieldsType: FieldsV1
+        fieldsV1:
+          'f:status':
+            'f:ingress': {}
+        subresource: status
+  spec:
+    host: ${APPLICATION_NAME}-${LICENSE_PLATE}-${ENVIRONMENT}.apps.silver.devops.gov.bc.ca
+    to:
+      kind: Service
+      name: ${APPLICATION_NAME}
+      weight: 100
+    port:
+      targetPort: 6600
+    tls:
+      termination: edge
+      insecureEdgeTerminationPolicy: None
+    wildcardPolicy: None
+
+- kind: Route
+  apiVersion: route.openshift.io/v1
+  metadata:
+    name: ${APPLICATION_NAME}-health
+    namespace: ${LICENSE_PLATE}-${ENVIRONMENT}
+    annotations:
+      openshift.io/host.generated: 'true'
+      - manager: openshift-router
+        operation: Update
+        apiVersion: route.openshift.io/v1
+        time: '2024-03-21T18:15:37Z'
+        fieldsType: FieldsV1
+        fieldsV1:
+          'f:status':
+            'f:ingress': {}
+        subresource: status
+  spec:
+    host: ${APPLICATION_NAME}-${LICENSE_PLATE}-${ENVIRONMENT}.apps.silver.devops.gov.bc.ca
+    path: /health
+    to:
+      kind: Service
+      name: ${APPLICATION_NAME}
+      weight: 100
+    port:
+      targetPort: 6600
+    tls:
+      termination: edge
+      insecureEdgeTerminationPolicy: None
+    wildcardPolicy: None
+
+parameters:
+  - description: Application Name
+    displayName: AppName
+    name: APPLICATION_NAME
+    required: true
+    value: coco-api
+  - description: Environment
+    displayName: Environment
+    name: ENVIRONMENT
+    required: true
+    value: dev
+  - description: License Plate
+    displayName: License Plate
+    name: LICENSE_PLATE
+    required: true
+    value: baf95e
