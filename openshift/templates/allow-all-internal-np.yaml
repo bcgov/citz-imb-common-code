@@ -1,9 +1,9 @@
 apiVersion: template.openshift.io/v1
 kind: Template
 metadata:
-  name: ${APPLICATION_NAME}-template
+  name: allow-all-internal-template
 labels:
-  template: ${APPLICATION_NAME}-template
+  template: allow-all-internal-template
 objects:
 - kind: NetworkPolicy
   apiVersion: networking.k8s.io/v1
