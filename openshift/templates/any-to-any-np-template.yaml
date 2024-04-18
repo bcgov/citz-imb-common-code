@@ -1,0 +1,34 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: any-to-any-template
+labels:
+  template: any-to-any-template
+objects:
+- kind: NetworkPolicy
+  apiVersion: networking.k8s.io/v1
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: >
+        {"apiVersion":"networking.k8s.io/v1","kind":"NetworkPolicy","metadata":{"annotations":{},"labels":{"template":"dpia-github-actions-rolebinding-template"},"name":"any-to-any","namespace":"b996e6-prod"},"spec":{"podSelector":{},"policyTypes":["Ingress"]}}
+    name: any-to-any
+    namespace: ${LICENSE_PLATE}-${ENVIRONMENT}
+    labels:
+      template: dpia-github-actions-rolebinding-template
+  spec:
+    podSelector: {}
+    policyTypes:
+      - Ingress
+  status: {}
+
+parameters:
+  - description: Environment
+    displayName: Environment
+    name: ENVIRONMENT
+    required: true
+    value: dev
+  - description: License Plate
+    displayName: License Plate
+    name: LICENSE_PLATE
+    required: true
+    value: baf95e

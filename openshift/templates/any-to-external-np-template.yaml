@@ -1,0 +1,33 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: any-to-external-template
+labels:
+  template: any-to-external-template
+objects:
+- kind: NetworkPolicy
+  apiVersion: networking.k8s.io/v1
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: >
+        {"apiVersion":"networking.k8s.io/v1","kind":"NetworkPolicy","metadata":{"annotations":{},"labels":{"template":"dpia-github-actions-rolebinding-template"},"name":"any-to-external","namespace":"b996e6-prod"},"spec":{"podSelector":{},"policyTypes":["Ingress"]}}
+    name: any-to-external
+    namespace: ${LICENSE_PLATE}-${ENVIRONMENT}
+    labels:
+      template: dpia-github-actions-rolebinding-template
+  spec:
+    podSelector: {}
+    policyTypes:
+      - Ingress
+
+parameters:
+  - description: Environment
+    displayName: Environment
+    name: ENVIRONMENT
+    required: true
+    value: dev
+  - description: License Plate
+    displayName: License Plate
+    name: LICENSE_PLATE
+    required: true
+    value: baf95e
