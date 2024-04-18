@@ -18,7 +18,9 @@ const config: Config = {
       statements: 80,
     },
   },
+  setupFilesAfterEnv: ['<rootDir>/__tests__/setupTests.ts'],
   testEnvironment: 'jest-environment-jsdom',
+  testMatch: ['**/__tests__/**/*.test.ts', '**/__tests__/**/*.test.tsx'],
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/build/'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',

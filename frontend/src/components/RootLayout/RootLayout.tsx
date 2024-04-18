@@ -1,13 +1,10 @@
-import { useSSO } from '@bcgov/citz-imb-sso-react';
 import { Header } from '@bcgov/design-system-react-components';
-import { AuthButton } from 'components';
+import { AuthButton, Breadcrumbs } from 'components';
 import { Outlet, useLoaderData, useLocation } from 'react-router-dom';
 import { styles } from './styles';
 import { PackageType } from 'constants/packages';
 
 export const RootLayout = () => {
-  const { isAuthenticated, login, logout } = useSSO();
-
   const { pathname } = useLocation();
 
   const paths = pathname.split('/');
@@ -21,14 +18,13 @@ export const RootLayout = () => {
     })
     .join('/');
 
-  const loginHandler = () => login({ idpHint: 'idir' });
-
   return (
     <>
       <Header title="CITZ IMB Common Code">
-        <AuthButton isAuthenticated={isAuthenticated} login={loginHandler} logout={logout} />
+        <AuthButton />
       </Header>
       <div style={styles}>
+        <Breadcrumbs pathname={pathname} labels={labels} />
         <Outlet />
       </div>
     </>
