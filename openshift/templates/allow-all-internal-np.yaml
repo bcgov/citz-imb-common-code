@@ -1,0 +1,39 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: ${APPLICATION_NAME}-template
+labels:
+  template: ${APPLICATION_NAME}-template
+objects:
+- kind: NetworkPolicy
+  apiVersion: networking.k8s.io/v1
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: >
+        {"apiVersion":"networking.k8s.io/v1","kind":"NetworkPolicy","metadata":{"annotations":{},"labels":{"template":"quickstart-network-security-policy"},"name":"allow-all-internal","namespace":"ddea46-dev"},"spec":{"ingress":[{"from":[{"namespaceSelector":{"matchLabels":{"environment":"dev","name":"ddea46"}}}]}],"podSelector":{},"policyTypes":["Ingress"]}}
+    name: allow-all-internal
+    namespace: ${LICENSE_PLATE}-${ENVIRONMENT}
+    labels:
+      template: quickstart-network-security-policy
+  spec:
+    podSelector: {}
+    ingress:
+      - from:
+          - namespaceSelector:
+              matchLabels:
+                environment: ${ENVIRONMENT}
+                name: ${LICENSE_PLATE}
+    policyTypes:
+      - Ingress
+
+parameters:
+  - description: Environment
+    displayName: Environment
+    name: ENVIRONMENT
+    required: true
+    value: dev
+  - description: License Plate
+    displayName: License Plate
+    name: LICENSE_PLATE
+    required: true
+    value: baf95e
