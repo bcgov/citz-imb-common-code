@@ -1,5 +1,5 @@
-import { Greeting, PackageCard, Stack } from 'components';
-import { PackageType } from 'constants/packages';
+import { Greeting, PackageCard, Stack } from 'src/components';
+import { PackageType } from 'src/constants/packages';
 import { Link, useLoaderData } from 'react-router-dom';
 
 const Landing = () => {

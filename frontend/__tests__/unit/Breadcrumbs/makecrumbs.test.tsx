@@ -1,4 +1,4 @@
-import { makeCrumbs } from 'components/Breadcrumbs/makeCrumbs';
+import { makeCrumbs } from '@/components/Breadcrumbs/makeCrumbs';
 
 describe('makeCrumbs', () => {
   it('should return correct crumbs', () => {

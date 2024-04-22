@@ -1,4 +1,4 @@
-import { Card, Icon, Stack, Typography } from 'components';
+import { Card, Icon, Stack, Typography } from 'src/components';
 import { PackageCardProps } from './types';
 
 export const PackageCard = (props: PackageCardProps) => {

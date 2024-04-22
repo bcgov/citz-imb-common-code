@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { StackProps } from './types';
 import { styleMapper } from './styleMapper';
-import { useDynamicStyles } from 'hooks';
+import { useDynamicStyles } from 'src/hooks';
 
 const StackComponent = (props: StackProps) => {
   const styles = useDynamicStyles(props, styleMapper);

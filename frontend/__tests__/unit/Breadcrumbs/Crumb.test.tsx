@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import { Crumb } from 'components/Breadcrumbs/Crumb';
+import { Crumb } from '@/components/Breadcrumbs/Crumb';
 
 describe('Crumb', () => {
   const style = {
