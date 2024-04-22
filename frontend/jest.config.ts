@@ -1,30 +1,43 @@
-import type { Config } from 'jest';
-import { defaults } from 'jest-config';
+import type { JestConfigWithTsJest } from 'ts-jest';
+import { pathsToModuleNameMapper } from 'ts-jest';
+import { compilerOptions } from './tsconfig.json';
 
-const config: Config = {
-  ...defaults,
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'mjs', 'cjs', 'jsx', 'mts', 'cts', 'json', 'node'],
-  moduleNameMapper: {
-    '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
+const config: JestConfigWithTsJest = {
+  testEnvironment: 'jest-environment-jsdom',
+  preset: 'ts-jest',
+  transform: {
+    '^.+\\.tsx?$': [
+      'ts-jest',
+      {
+        // ts-jest configuration goes here
+      },
+    ],
   },
-  modulePaths: ['<rootDir>/src/'],
-  coveragePathIgnorePatterns: ['index.ts'],
+  testPathIgnorePatterns: ['node_modules/', 'build/', 'setupTests.ts'],
+  collectCoverage: true,
+  collectCoverageFrom: ['src/**/*.ts', 'src/**/*.tsx'],
+  coveragePathIgnorePatterns: ['index.ts', 'config.ts'],
   coverageReporters: [['lcov', { projectRoot: '..' }]],
   coverageThreshold: {
     global: {
-      branches: 80,
+      branches: 80, // Possible paths the logic could follow
       functions: 80,
       lines: 80,
       statements: 80,
     },
   },
-  setupFilesAfterEnv: ['<rootDir>/__tests__/setupTests.ts'],
-  testEnvironment: 'jest-environment-jsdom',
-  testMatch: ['**/__tests__/**/*.test.ts', '**/__tests__/**/*.test.tsx'],
-  testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/build/'],
-  transform: {
-    '^.+\\.tsx?$': 'ts-jest',
+  roots: ['.'],
+  modulePaths: [compilerOptions.baseUrl],
+  moduleNameMapper: {
+    ...(pathsToModuleNameMapper(
+      compilerOptions.paths ?? {
+        '@/*': ['src/*'],
+      },
+    ) ?? {}),
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
   },
+  setupFilesAfterEnv: ['<rootDir>/__tests__/setupTests.ts'],
+  testMatch: ['**/*.test.*'],
   verbose: true,
 };
 
