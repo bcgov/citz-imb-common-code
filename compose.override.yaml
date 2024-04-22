@@ -1,0 +1,10 @@
+# This override file links your local package build directories to node_modules in the Showcase app.
+# To use this configuration use the scripts `npm run up:override` or `npm run rebuild:override`.
+services:
+  coco-frontend:
+    volumes:
+      - ../citz-imb-sso-react/build:/app/node_modules/@bcgov/citz-imb-sso-react/build
+
+  coco-api:
+    volumes:
+      - ../citz-imb-sso-express/build:/app/node_modules/@bcgov/citz-imb-sso-express/build
