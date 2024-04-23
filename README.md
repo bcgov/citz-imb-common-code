@@ -51,6 +51,7 @@ Packages such as `@bcgov/citz-imb-sso-react` and `@bcgov/citz-imb-sso-express` c
 
 [@bcgov/citz-imb-sso-react] - SSO React package.  
 [@bcgov/citz-imb-sso-express] - SSO Express package.
+[@bcgov/citz-imb-sso-css-api] - SSO CSS API package.
 
 - You must run the `npm run build` command from each of these package repo directories.
 - To see changes in the Showcase app, you must rebuild using the `npm run up:override` or `npm run rebuild:override` scripts.
@@ -226,3 +227,4 @@ $ npm run setup-git-aliases
 
 [@bcgov/citz-imb-sso-react]: https://github.com/bcgov/citz-imb-sso-react
 [@bcgov/citz-imb-sso-express]: https://github.com/bcgov/citz-imb-sso-express
+[@bcgov/citz-imb-sso-css-api]: https://github.com/bcgov/citz-imb-sso-css-api
