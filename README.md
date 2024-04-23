@@ -12,15 +12,16 @@
 
 ---
 
-## Table of Contents
+## `Table of Contents`
 
 - [General Information](#general-information)
 - [Quick Start Guide](#quick-start-guide) - **Start Here!**
+- [Testing Packages Locally](#testing-packages-locally) - Test packages before they are released or merged.
 - [Directory Structure](#directory-structure) - How the repo is designed.
 - [Git Aliases](#git-aliases) - Available git aliases.
 - [Scripts](#scripts) - Scripts for running and working on the web app.
 
-## General Information
+## `General Information`
 
 This application will be used to showcase the code, packages, and services that the Common Code team offers. It will also serve as a testing grounds for packages before new versions are published.
 
@@ -30,28 +31,42 @@ This application will be used to showcase the code, packages, and services that 
 
 <br />
 
-## Quick Start Guide
+## `Quick Start Guide`
 
 1. Create a `.env` file based on the `example.env` file.
 
-2. Ensure the following repos are also cloned to the same directory as `citz-imb-common-code`, are up to date, and the `npm run build` command has been run in each package directory:
-
-[@bcgov/citz-imb-sso-react] - SSO React package.  
-[@bcgov/citz-imb-sso-express] - SSO Express package.
-
-> [!NOTE]
-> This is because there is a volume mount to each of these package's `build` directories.  
-> When the `build` directory is updated after making changes to the packages,  
-> and a `rebuild` is done within the `citz-imb-common-code` app,  
-> the changes to the packages will be reflected in the app.
-
-3. Run `npm run up` to start the app locally.
+2. Run `npm run up` to start the app locally.
 
 [Return to Top](#citz-imb-common-code)
 
 <br />
 
-## Directory Structure
+## `Testing Packages Locally`
+
+Packages such as `@bcgov/citz-imb-sso-react` and `@bcgov/citz-imb-sso-express` can be tested within the Showcase app before they are merged and released. This means you can make changes to these package repos on your local machine, and then see these changes reflected within the Showcase app.
+
+### `Requirements`
+
+- The following package repos must be cloned to your machine in the same directory as this repo:
+
+[@bcgov/citz-imb-sso-react] - SSO React package.  
+[@bcgov/citz-imb-sso-express] - SSO Express package.
+[@bcgov/citz-imb-sso-css-api] - SSO CSS API package.
+
+- You must run the `npm run build` command from each of these package repo directories.
+- To see changes in the Showcase app, you must rebuild using the `npm run up:override` or `npm run rebuild:override` scripts.
+
+### `How This Works`
+
+This works because the `compose.override.yaml` file sets volume mounts that map the `build` directory in each package repo to the corresponding `node_modules` folder.
+
+Any time changes are made that you want reflected in the Showcase app, you will need to build the package and run `npm run rebuild` in this directory.
+
+Since this mapping is done through docker, you may get type errors in your IDE because the IDE sees the version of the package in the package.json, but docker is building with the contents of the `build` directory from the package repo directory.
+
+<br />
+
+## `Directory Structure`
 
 ```
 .
@@ -95,7 +110,7 @@ This application will be used to showcase the code, packages, and services that 
 
 <br />
 
-## Git Aliases
+## `Git Aliases`
 
 These aliases are available within the repository after using the following setup command:
 
@@ -103,6 +118,8 @@ These aliases are available within the repository after using the following setu
 # Sets git aliases.
 $ npm run setup-git-aliases
 ```
+
+---
 
 ```bash
 # List all available aliases.
@@ -133,11 +150,20 @@ $ git changes
 
 <br />
 
-## Scripts
+## `Scripts`
 
 ```bash
 # Start the web app (ensure env vars set).
 $ npm run up
+```
+
+```bash
+# Start the web app (ensure env vars set).
+# Volume mounts the build directories of external packages to node_modules within docker,
+# so that local package repos can be tested within the app.
+#
+# See 'Testing Packages Locally' before using.
+$ npm run up:override
 ```
 
 ```bash
@@ -148,22 +174,6 @@ $ npm run down
 ```bash
 # Prune all containers, images and volumes.
 $ npm run prune
-```
-
-```bash
-# Start the web app (ensure env vars set).
-# Runs in production mode with compiled typescript code and nginx frontend server.
-$ npm run up:prod
-```
-
-```bash
-# Stop the web app (when running in production mode).
-$ npm run down:prod
-```
-
-```bash
-# Prune all containers, images and volumes (when running in production mode).
-$ npm run prune:prod
 ```
 
 ```bash
@@ -184,6 +194,14 @@ $ npm run install:backend
 ```bash
 # Prunes, clean installs packages, and rebuilds containers.
 $ npm run rebuild
+```
+
+```bash
+# Prunes, clean installs packages, and rebuilds containers.
+# Uses `npm run up:override` instead of `npm run up`.
+#
+# See 'Testing Packages Locally' before using.
+$ npm run rebuild:override
 ```
 
 ```bash
@@ -209,3 +227,4 @@ $ npm run setup-git-aliases
 
 [@bcgov/citz-imb-sso-react]: https://github.com/bcgov/citz-imb-sso-react
 [@bcgov/citz-imb-sso-express]: https://github.com/bcgov/citz-imb-sso-express
+[@bcgov/citz-imb-sso-css-api]: https://github.com/bcgov/citz-imb-sso-css-api
