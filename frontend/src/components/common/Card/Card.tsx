@@ -1,7 +1,7 @@
 import { memo, useState } from 'react';
 import { CardProps } from './types';
 import { styleMapper } from './styleMapper';
-import { useDynamicStyles } from 'hooks';
+import { useDynamicStyles } from 'src/hooks';
 
 const CardComponent = (props: CardProps) => {
   const { onClick } = props;

@@ -1,8 +1,8 @@
 import { memo } from 'react';
-import { useDynamicStyles } from 'hooks';
+import { useDynamicStyles } from 'src/hooks';
 import { IconProps } from './types';
 import { styleMapper } from './styleMapper';
-import { Icons } from 'components';
+import { Icons } from 'src/components';
 import { COLORS, PROP_DEFAULTS, SIZES } from './constants';
 
 const IconComponent = (props: IconProps) => {

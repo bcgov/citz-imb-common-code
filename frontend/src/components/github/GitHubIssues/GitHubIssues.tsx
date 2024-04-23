@@ -1,6 +1,6 @@
-import { IssueCard, IssueCardProps, SectionCard, Spinner, Typography } from 'components';
+import { IssueCard, IssueCardProps, SectionCard, Spinner, Typography } from 'src/components';
 import { memo, useEffect, useState } from 'react';
-import { ENDPOINTS } from 'utils';
+import { ENDPOINTS } from 'src/utils';
 import { GitHubIssue, GitHubIssuesProps } from './types';
 
 const GitHubIssuesComponent = (props: GitHubIssuesProps) => {

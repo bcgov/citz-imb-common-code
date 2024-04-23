@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Breadcrumbs } from 'components/Breadcrumbs/Breadcrumbs';
+import { Breadcrumbs } from '@/components/Breadcrumbs/Breadcrumbs';
 import { MemoryRouter } from 'react-router-dom';
 
 describe('Breadcrumbs', () => {
