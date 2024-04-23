@@ -8,12 +8,15 @@
       "dom.iterable",
       "esnext"
     ],
-    "moduleResolution": "Node",
-    "baseUrl": "src",
+    "moduleResolution": "Bundler",
+    "baseUrl": ".",
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "exactOptionalPropertyTypes": true,
+    "removeComments": true,
     "sourceMap": true,
     "jsx": "react-jsx",
     "types": [
@@ -23,10 +26,8 @@
     ],
     "strict": true,
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    },
+      "@/*": ["src/*"]
+    }
   },
   "include": [
     "src",
@@ -35,6 +36,8 @@
   ],
   "exclude": [
     "tsconfig.json",
-    "node_modules"
+    "node_modules",
+    "build",
+    "coverage"
   ]
 }

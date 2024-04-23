@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { SectionCardProps } from './types';
 import { styleMapper, styleMapperBody, styleMapperHeader } from './styleMapper';
-import { useDynamicStyles } from 'hooks';
+import { useDynamicStyles } from 'src/hooks';
 
 const SectionCardComponent = (props: SectionCardProps) => {
   const styles = useDynamicStyles(props, styleMapper);

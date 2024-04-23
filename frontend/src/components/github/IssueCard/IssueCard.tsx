@@ -1,8 +1,8 @@
 import { Button } from '@bcgov/design-system-react-components';
-import { Stack, Typography } from 'components';
-import { useDynamicStyles } from 'hooks';
+import { Stack, Typography } from 'src/components';
+import { useDynamicStyles } from 'src/hooks';
 import { memo } from 'react';
-import { formatTimeDifferenceString } from 'utils';
+import { formatTimeDifferenceString } from 'src/utils';
 import { REACTIONS } from './constants';
 import { styleMapper } from './styleMapper';
 import { IssueCardProps } from './types';

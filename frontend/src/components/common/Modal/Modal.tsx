@@ -1,5 +1,5 @@
-import { Heading, Icon, Stack } from 'components';
-import { useDynamicStyles } from 'hooks';
+import { Heading, Icon, Stack } from 'src/components';
+import { useDynamicStyles } from 'src/hooks';
 import { memo } from 'react';
 import { styleMapper, styleMapperOverlay } from './styleMapper';
 import { ModalProps } from './types';

@@ -5,7 +5,9 @@
     "dev": "vite",
     "build": "npx vite build --mode production",
     "test": "jest",
-    "test:watch": "jest --watchAll --verbose"
+    "test:watch": "jest --watchAll --verbose",
+    "coverage": "jest --coverage",
+    "coverage:open": "node scripts/run-coverage-and-open-report.mjs"
   },
   "dependencies": {
     "@bcgov/bc-sans": "2.1.0",

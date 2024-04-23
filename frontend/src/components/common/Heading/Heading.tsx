@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { useDynamicStyles } from 'hooks';
+import { useDynamicStyles } from 'src/hooks';
 import { HeadingProps } from './types';
 import { styleMapper } from './styleMapper';
 import { OVERLINE_STYLES } from './constants';
