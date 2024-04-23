@@ -12,7 +12,7 @@ export const RootLayout = () => {
   const packages = useLoaderData() as PackageType[];
 
   const labels = paths
-    .map((path) => {
+    .map((path: string) => {
       const pkg = packages.find((pkg) => pkg.pageRoute === path);
       return pkg ? pkg.title : path;
     })
