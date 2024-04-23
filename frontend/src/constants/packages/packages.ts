@@ -7,9 +7,9 @@ export const packages: PackageType[] = [
     iconType: 'Authenticate',
     pageRoute: 'sso-react',
     summary:
-      "An npm package that offers an integration solution for connecting React applications requiring authentication to the B.C. government's Single Sign-On SSO service.",
+      "An npm package that offers an integration solution for connecting React applications requiring authentication to the B.C. government's Single Sign-On (CSS) service.",
     details:
-      "This npm package offers an integration solution for connecting React applications requiring authentication to the B.C. government's Single Sign-On SSO (CSS) service. It abstracts the complexity of handling SSO protocols manually. By using this package, developers can quickly implement authentication and authorization in their React applications to meet B.C. government security standards.",
+      "This npm package offers an integration solution for connecting React applications requiring authentication to the B.C. government's Single Sign-On (CSS) service. It abstracts the complexity of handling SSO protocols manually. By using this package, developers can quickly implement authentication and authorization in their React applications to meet B.C. government security standards.",
   },
   {
     repo: 'citz-imb-sso-express',
@@ -17,9 +17,9 @@ export const packages: PackageType[] = [
     iconType: 'Authenticate',
     pageRoute: 'sso-express',
     summary:
-      "An npm package that offers an integration solution for connecting Express applications requiring authentication to the B.C. government's Single Sign-On SSO service.",
+      "An npm package that offers an integration solution for connecting Express applications requiring authentication to the B.C. government's Single Sign-On (CSS) service.",
     details:
-      "This npm package offers an integration solution for connecting Express applications requiring authentication to the B.C. government's Single Sign-On SSO (CSS) service. It abstracts the complexity of handling SSO protocols manually. By using this package, developers can quickly implement authentication and authorization in their Express applications to meet B.C. government security standards.",
+      "This npm package offers an integration solution for connecting Express applications requiring authentication to the B.C. government's Single Sign-On (CSS) service. It abstracts the complexity of handling SSO protocols manually. By using this package, developers can quickly implement authentication and authorization in their Express applications to meet B.C. government security standards.",
   },
   {
     repo: 'citz-imb-sso-css-api',
