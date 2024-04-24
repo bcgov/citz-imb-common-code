@@ -27,7 +27,7 @@ export const packages: PackageType[] = [
     iconType: 'JSON',
     pageRoute: 'sso-css-api',
     summary:
-      'An npm package that offers the CSS (Common Hosted Single Sign-on) API Account functionality through easy to use functions in your NodeJS application. The CSS API Account is used to manage your SSO integrations through code instead of through the dashboard.',
+      'An npm package that offers the Common Hosted Single Sign-on API Account as functions, allowing SSO management through code instead of through the dashboard.',
     details:
       "This npm package offers the CSS (Common Hosted Single Sign-on) API Account functionality through easy to use functions in your NodeJS application. The CSS API Account is part of the B.C. government's Single Sign-On SSO (CSS) service and is used to manage your SSO integrations through code instead of through the dashboard. This can be used to add or remove user roles and much more. Endpoints in the CSS API are offered as JavaScript functions in this package.",
   },
