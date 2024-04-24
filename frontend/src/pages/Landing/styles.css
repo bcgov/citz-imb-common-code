@@ -1,0 +1,11 @@
+.responsiveGridContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 800px) {
+  .responsiveGridContainer {
+    grid-template-columns: 1fr; /* Switch to a single column on smaller screens */
+  }
+}
