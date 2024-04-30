@@ -67,7 +67,7 @@ objects:
           - resources:
               limits:
                 cpu: 250m
-                memory: 1Gi
+                memory: 400Mi
               requests:
                 cpu: 50m
                 memory: 100Mi
