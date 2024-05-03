@@ -4,15 +4,22 @@ import { compilerOptions } from './tsconfig.json';
 
 const config: JestConfigWithTsJest = {
   testEnvironment: 'jest-environment-jsdom',
-  preset: 'ts-jest',
+  preset: 'ts-jest/presets/js-with-ts',
   transform: {
     '^.+\\.tsx?$': [
       'ts-jest',
       {
-        // ts-jest configuration goes here
+        useESM: true,
+      },
+    ],
+    '^.+\\.ts?$': [
+      'ts-jest',
+      {
+        useESM: true,
       },
     ],
   },
+  transformIgnorePatterns: ['node_modules/(?!@bcgov/citz-imb-sso-react)'],
   testPathIgnorePatterns: ['node_modules/', 'build/', 'setupTests.ts'],
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.ts', 'src/**/*.tsx'],
