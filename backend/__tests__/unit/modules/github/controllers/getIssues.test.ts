@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getPullRequests } from '@/modules/github/controller';
+import { getIssues } from '@/modules/github/controllers';
 import { HttpError, httpStatusCode } from '@/utils';
 
 // Mock the Express request and response objects
@@ -13,10 +13,10 @@ const nextFunction = jest.fn();
 // Mock the console.error function
 console.error = jest.fn();
 
-// Test suite for getPullRequests controller
-describe('getPullRequests controller', () => {
-  // Test case: should fetch pull requests from GitHub API successfully
-  it('fetch pull requests from GitHub API successfully', async () => {
+// Test suite for getIssues controller
+describe('getIssues controller', () => {
+  // Test case: should fetch issues from GitHub API successfully
+  it('fetch issues from GitHub API successfully', async () => {
     // Mock the getZodValidatedParams and getZodValidatedQuery methods
     req.getZodValidatedParams = jest.fn().mockReturnValue({ repo: 'developer-experience-team' });
     req.getZodValidatedQuery = jest.fn().mockReturnValue({ state: 'open' });
@@ -26,10 +26,9 @@ describe('getPullRequests controller', () => {
       ok: true,
       json: jest.fn().mockResolvedValue([
         {
-          html_url: 'https://github.com/bcgov/developer-experience-team/pull/1',
+          html_url: 'https://github.com/bcgov/developer-experience-team/issues/1',
           number: 1,
-          pull_request: true,
-          title: 'Example Pull Request',
+          title: 'Example Issue',
           comments: 2,
           created_at: '2024-04-09T12:00:00Z',
           updated_at: '2024-04-09T13:00:00Z',
@@ -45,14 +44,14 @@ describe('getPullRequests controller', () => {
     global.fetch = jest.fn().mockResolvedValue(mockResponse);
 
     // Call the controller function
-    await getPullRequests(req, res, nextFunction);
+    await getIssues(req, res, nextFunction);
 
     // Assert that the response was sent with the correct data
     expect(res.json).toHaveBeenCalledWith([
       {
-        url: 'https://github.com/bcgov/developer-experience-team/pull/1',
+        url: 'https://github.com/bcgov/developer-experience-team/issues/1',
         number: 1,
-        title: 'Example Pull Request',
+        title: 'Example Issue',
         comments: 2,
         created_at: '2024-04-09T12:00:00Z',
         updated_at: '2024-04-09T13:00:00Z',
@@ -80,7 +79,7 @@ describe('getPullRequests controller', () => {
     global.fetch = jest.fn().mockResolvedValue(mockErrorResponse);
 
     try {
-      await getPullRequests(req, res, nextFunction);
+      await getIssues(req, res, nextFunction);
     } catch (error) {
       expect(error).toBeInstanceOf(HttpError);
       expect((error as HttpError).statusCode).toBe(httpStatusCode.BAD_REQUEST);
@@ -103,7 +102,7 @@ describe('getPullRequests controller', () => {
     global.fetch = jest.fn().mockResolvedValue(mockResponse);
 
     try {
-      await getPullRequests(req, res, nextFunction);
+      await getIssues(req, res, nextFunction);
     } catch (error) {
       expect(error).toBeInstanceOf(HttpError);
       expect((error as HttpError).statusCode).toBe(httpStatusCode.NOT_FOUND);

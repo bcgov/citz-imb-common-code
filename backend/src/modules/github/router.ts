@@ -1,7 +1,7 @@
 import express from 'express';
 const router = express.Router();
 
-import { getIssues, getPullRequests } from './controller';
+import { getIssues, getPullRequests } from './controllers';
 
 /**
  * Use github api to lookup issues for a repo.
