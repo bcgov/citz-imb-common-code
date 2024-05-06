@@ -1,8 +1,14 @@
 import { CSSProperties, ReactNode } from 'react';
 
-export type SectionCardProps = {
+export type Tab = {
+  id: string;
+  title: string;
+};
+
+export type TabsProps = {
   children: ReactNode;
-  title: ReactNode;
+  currentTabId: string;
+  tabs: Tab[];
   id?: string;
   className?: string;
   ariaLabel?: string;
@@ -14,4 +20,5 @@ export type SectionCardProps = {
   additionalStyles?: CSSProperties;
   additionalBodyStyles?: CSSProperties;
   additionalHeaderStyles?: CSSProperties;
+  additionalHeaderButtonStyles?: CSSProperties;
 };
