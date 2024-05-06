@@ -15,6 +15,10 @@ describe('AuthButton component', () => {
     (Button as jest.Mock).mockClear(); // Reset mock function for Button component
   });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   // Test case: Call login function when login button is clicked
   it('should call login function when login button is clicked', () => {
     const loginMock = jest.fn();

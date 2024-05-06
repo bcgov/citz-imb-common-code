@@ -11,7 +11,7 @@ const IconComponent = (props: IconProps) => {
   const Icon = Icons[props.icon];
 
   return (
-    <div id={props.id} className={props.className} style={styles}>
+    <div data-testid="icon-component" id={props.id} className={props.className} style={styles}>
       <Icon
         color={props?.color ? COLORS[props.color] : COLORS[PROP_DEFAULTS.color!]} // ! asserts that the value is not going to be undefined.
         size={props?.size ? SIZES[props.size] : SIZES[PROP_DEFAULTS.size!]} // ! asserts that the value is not going to be undefined.
