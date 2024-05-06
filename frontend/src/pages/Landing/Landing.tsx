@@ -3,7 +3,7 @@ import { Greeting, PackageCard } from 'src/components';
 import { PackageType } from 'src/constants/packages';
 import { Link, useLoaderData } from 'react-router-dom';
 
-const Landing = () => {
+export const Landing = () => {
   const packages = useLoaderData() as PackageType[];
 
   return (
@@ -19,5 +19,3 @@ const Landing = () => {
     </>
   );
 };
-
-export default Landing;

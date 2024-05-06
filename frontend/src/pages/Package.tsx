@@ -10,7 +10,7 @@ type PackageProps = {
   summary: string;
 };
 
-const Package = (props: PackageProps) => {
+export const Package = (props: PackageProps) => {
   const { repo, title, summary } = props;
 
   // On press events.
@@ -56,5 +56,3 @@ const Package = (props: PackageProps) => {
     </>
   );
 };
-
-export default Package;

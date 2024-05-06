@@ -1,8 +1,6 @@
 import { RootLayout } from 'src/components';
 import { PackageType, packages } from 'src/constants/packages';
-import Landing from '@/pages/Landing';
-import { NotFound } from 'src/pages/NotFound';
-import PackagePage from 'src/pages/Package';
+import { Landing, NotFound, Package as PackagePage } from '@/pages';
 import { createBrowserRouter } from 'react-router-dom';
 
 const packageLoader = (): PackageType[] => packages;
