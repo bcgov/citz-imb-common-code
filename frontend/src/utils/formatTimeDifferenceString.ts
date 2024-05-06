@@ -7,8 +7,8 @@
  * console.log(timeDifferenceString); // Output example: "10 minutes"
  */
 export const formatTimeDifferenceString = (dateString: string): string => {
-  const date = new Date(dateString);
   const now = new Date();
+  const date = new Date(dateString);
   const diffInMilliseconds = now.getTime() - date.getTime();
   const diffInSeconds = Math.floor(diffInMilliseconds / 1000);
 
