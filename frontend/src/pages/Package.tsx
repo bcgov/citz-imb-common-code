@@ -2,7 +2,7 @@ import { Button } from '@bcgov/design-system-react-components';
 import exchangeLabIcon from 'src/assets/exchange-lab-icon.svg';
 import githubIcon from 'src/assets/github-icon.png';
 import npmIcon from 'src/assets/npm-icon.webp';
-import { GitHubIssues, Heading, Stack, Typography } from 'src/components';
+import { GitHubTabs, Heading, Stack, Typography } from 'src/components';
 
 type PackageProps = {
   repo: string;
@@ -52,7 +52,7 @@ const Package = (props: PackageProps) => {
         </Stack>
       </Stack>
       <br />
-      <GitHubIssues repo={repo} />
+      <GitHubTabs repo={repo} />
     </>
   );
 };
