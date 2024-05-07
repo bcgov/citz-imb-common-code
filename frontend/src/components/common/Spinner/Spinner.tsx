@@ -23,6 +23,7 @@ export const Spinner = (props: SpinnerProps) => {
         width: '100%',
         height: height ?? '100vh',
       }}
+      data-testid="spinner"
     >
       <div style={styles}></div>
     </div>

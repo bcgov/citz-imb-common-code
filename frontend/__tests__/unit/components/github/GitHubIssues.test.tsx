@@ -63,6 +63,10 @@ jest.mock('@/components', () => ({
 
 // Test suite for GitHubIssues component
 describe('GitHubIssues component', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   // Test case: renders spinner
   it('renders loading spinner while fetching issues', async () => {
     global.fetch = jest.fn().mockResolvedValue(mockResponse);

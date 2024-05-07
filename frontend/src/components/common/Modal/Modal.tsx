@@ -18,7 +18,7 @@ const ModalComponent = (props: ModalProps) => {
           <Heading size="x-small" margin="0" bold>
             {title}
           </Heading>
-          <button onClick={onClose}>
+          <button onClick={onClose} data-testid="exit-modal-button">
             <Icon icon="Exit" size="small" additionalStyles={{ cursor: 'pointer' }} />
           </button>
         </Stack>

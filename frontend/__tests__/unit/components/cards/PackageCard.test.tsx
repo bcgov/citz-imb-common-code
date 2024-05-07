@@ -15,6 +15,10 @@ jest.mock('@/components', () => ({
 
 // Test suite for PackageCard component
 describe('PackageCard component', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   const props = {
     icon: 'Exit' as IconType,
     title: 'Mock Title',

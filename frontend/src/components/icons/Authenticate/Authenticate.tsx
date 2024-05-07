@@ -10,6 +10,7 @@ export const Authenticate = (props: AuthenticateProps) => {
       height={size}
       viewBox="0 0 192 192"
       fill="none"
+      data-testid="icon-authenticate"
     >
       <path
         d="M96 62H68c-17.673 0-32.389 14.46-29.302 31.862C47.497 143.453 75.94 170 96 170m0-108h28c17.673 0 32.389 14.46 29.302 31.862C144.503 143.453 116.06 170 96 170"

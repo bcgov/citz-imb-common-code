@@ -10,6 +10,7 @@ export const JSON = (props: JSONProps) => {
       height={size}
       viewBox="0 0 16 16"
       fill={color}
+      data-testid="json-authenticate"
     >
       <path
         fillRule="evenodd"
