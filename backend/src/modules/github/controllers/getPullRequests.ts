@@ -1,14 +1,14 @@
 import { Request, Response } from 'express';
-import { HttpError, errorWrapper, httpStatusCode } from '../../utils';
-import { paramSchemas, querySchemas } from './schemas';
+import { HttpError, errorWrapper, httpStatusCode } from '../../../utils';
+import { paramSchemas, querySchemas } from '../schemas';
 
 /**
- * Use github api to lookup issues for a repo.
+ * Use github api to lookup pull requests for a repo.
  * @method GET
- * @route /github/issues/:repo
+ * @route /github/pulls/:repo
  * @param {'open' | 'closed' | 'all'} state - Query param.
  */
-export const getIssues = errorWrapper(async (req: Request, res: Response) => {
+export const getPullRequests = errorWrapper(async (req: Request, res: Response) => {
   const { getZodValidatedParams, getZodValidatedQuery } = req;
   const { repo } = getZodValidatedParams(paramSchemas.getIssues);
   const { state } = getZodValidatedQuery(querySchemas.getIssues);
@@ -24,9 +24,9 @@ export const getIssues = errorWrapper(async (req: Request, res: Response) => {
   const issues = await response.json();
   if (!issues) throw new HttpError(`No GitHub issues found for ${repo}.`, httpStatusCode.NOT_FOUND);
 
-  // Filter out pull requests.
+  // Filter out issues.
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const filteredIssues = issues.filter((issue: any) => !issue.pull_request);
+  const filteredIssues = issues.filter((issue: any) => issue.pull_request);
 
   // Remove unneeded properties from issues objects.
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

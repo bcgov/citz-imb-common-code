@@ -26,4 +26,5 @@ export type GitHubIssue = {
 
 export type GitHubIssuesProps = {
   repo: string;
+  id?: string;
 };

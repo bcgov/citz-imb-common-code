@@ -1,9 +1,9 @@
 import { CSSProperties } from 'react';
-import { SectionCardProps } from './types';
+import { TabsProps } from './types';
 import { PROP_DEFAULTS } from './constants';
 
 // Maps prop values to css styles.
-export const styleMapper = (props: SectionCardProps) => {
+export const styleMapper = (props: TabsProps) => {
   // Set default values.
   const { margin = PROP_DEFAULTS.margin, width = PROP_DEFAULTS.width, additionalStyles } = props;
 
@@ -18,7 +18,7 @@ export const styleMapper = (props: SectionCardProps) => {
   return { ...styles, ...additionalStyles };
 };
 
-export const styleMapperHeader = (props: SectionCardProps) => {
+export const styleMapperHeader = (props: TabsProps) => {
   // Set default values.
   const { headerPadding = PROP_DEFAULTS.headerPadding, additionalHeaderStyles } = props;
 
@@ -36,7 +36,21 @@ export const styleMapperHeader = (props: SectionCardProps) => {
   return { ...styles, ...additionalHeaderStyles };
 };
 
-export const styleMapperBody = (props: SectionCardProps) => {
+export const styleMapperHeaderButton = (props: TabsProps) => {
+  // Set default values.
+  const { additionalHeaderButtonStyles } = props;
+
+  const styles: CSSProperties = {
+    marginRight: '8px',
+    padding: '8px',
+    fontSize: '0.75em',
+  };
+
+  // Adds additionalHeaderButtonStyles after styles, so they will override any style properties of styles object.
+  return { ...styles, ...additionalHeaderButtonStyles };
+};
+
+export const styleMapperBody = (props: TabsProps) => {
   // Set default values.
   const {
     bodyPadding = PROP_DEFAULTS.bodyPadding,
