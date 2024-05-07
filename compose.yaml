@@ -2,6 +2,8 @@ services:
   coco-frontend:
     container_name: coco-frontend
     tty: true
+    environment:
+      - FRONTEND_PORT=${FRONTEND_PORT:-6500}
     build:
       context: ./frontend
       dockerfile: .docker/Dockerfile.dev
@@ -11,7 +13,10 @@ services:
       - ${FRONTEND_PORT:-6500}:6500
     volumes:
       - ./frontend/src:/app/src
-      - /app/node_modules
+      - ./frontend/index.html:/app/index.html
+      - ./frontend/nginx.conf:/app/nginx.conf
+      - ./frontend/tsconfig.json:/app/tsconfig.json
+      - ./frontend/vite.config.ts:/app/vite.config.ts
     depends_on:
       coco-api:
         condition: service_healthy
@@ -21,6 +26,8 @@ services:
   coco-api:
     container_name: coco-api
     tty: true
+    environment:
+      - BACKEND_PORT=${BACKEND_PORT:-6600}
     init: true # Properly handles running as PID 1 inside a container. Source: https://github.com/nodejs/docker-node/blob/main/docs/BestPractices.md#handling-kernel-signals
     restart: on-failure
     healthcheck:
@@ -37,7 +44,11 @@ services:
     ports:
       - ${BACKEND_PORT:-6600}:6600
     volumes:
-      - ./backend:/app
+      - ./backend/src:/app/src
+      - ./backend/node_modules:/app/node_modules
+      - ./backend/tsconfig.json:/app/tsconfig.json
+      - ./backend/package.json:/app/package.json
+      - ./backend/package-lock.json:/app/package-lock.json
     networks:
       - app-network
 
