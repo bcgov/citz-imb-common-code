@@ -2,6 +2,7 @@ import { HeadingProps } from './types';
 
 // Keys in FONT_SIZES are of type HeadingProps['size'], excluding undefined.
 export const FONT_SIZES: Record<Exclude<HeadingProps['size'], undefined>, string | number> = {
+  'xx-small': '1em',
   'x-small': '1.2em',
   small: '1.45em',
   medium: '1.75em', // 1.75x the size of the default text sizing
