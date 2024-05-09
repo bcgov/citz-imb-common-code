@@ -1,4 +1,4 @@
-import { PACKAGE_BADGE_COLORS, PACKAGE_BADGE_TOOLTIPS } from '@/constants';
+import { PACKAGE_BADGE_COLORS, PACKAGE_BADGE_TOOLTIPS, PackageBadge } from '@/constants';
 import { Button } from '@bcgov/design-system-react-components';
 import exchangeLabIcon from 'src/assets/exchange-lab-icon.svg';
 import githubIcon from 'src/assets/github-icon.png';
@@ -9,7 +9,7 @@ type PackageProps = {
   repo: string;
   title: string;
   summary: string;
-  badge: string;
+  badge: PackageBadge;
 };
 
 export const Package = (props: PackageProps) => {
