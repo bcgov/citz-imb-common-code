@@ -1,12 +1,12 @@
-import { SectionCardProps } from './types';
+import { TabsProps } from './types';
 
-// Default values for props of SectionCardProps.
+// Default values for props of TabsProps.
 export const PROP_DEFAULTS: Pick<
-  SectionCardProps,
+  TabsProps,
   'bodyPadding' | 'headerPadding' | 'margin' | 'width' | 'bodyHeight'
 > = {
-  bodyPadding: '16px 24px',
-  headerPadding: '16px 24px',
+  bodyPadding: '0',
+  headerPadding: '8px 12px 0 12px',
   margin: '0',
   width: '1fr',
   bodyHeight: 'fit-content',

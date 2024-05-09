@@ -1,10 +1,10 @@
-import { IssueCard, IssueCardProps, SectionCard, Spinner, Typography } from 'src/components';
+import { IssueCard, IssueCardProps, Spinner, Typography } from 'src/components';
 import { memo, useEffect, useState } from 'react';
 import { ENDPOINTS } from 'src/utils';
 import { GitHubIssue, GitHubIssuesProps } from './types';
 
 const GitHubIssuesComponent = (props: GitHubIssuesProps) => {
-  const { repo } = props;
+  const { repo, id } = props;
 
   const [issues, setIssues] = useState<GitHubIssue[] | undefined>();
 
@@ -56,14 +56,7 @@ const GitHubIssuesComponent = (props: GitHubIssuesProps) => {
   };
 
   return (
-    <SectionCard
-      bodyPadding="0"
-      title={
-        <Typography bold size="small">
-          GitHub Open Issues
-        </Typography>
-      }
-    >
+    <div id={id}>
       {issues ? (
         issues.length > 0 ? (
           <IssuesList />
@@ -75,13 +68,14 @@ const GitHubIssuesComponent = (props: GitHubIssuesProps) => {
       ) : (
         <Spinner height="100px" />
       )}
-    </SectionCard>
+    </div>
   );
 };
 
 /**
  * Displays github issue details.
  * @param {GitHubIssuesProps} props - Properties are shown below.
- * @property {GitHubIssue[]} [issues] - The github issues to display.
+ * @property {string} repo - The name of the GitHub repo to query.
+ * @property {string} [id] - An optional identifier for the component.
  */
 export const GitHubIssues = memo(GitHubIssuesComponent);
