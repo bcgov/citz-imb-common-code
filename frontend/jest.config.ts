@@ -23,7 +23,7 @@ const config: JestConfigWithTsJest = {
   testPathIgnorePatterns: ['node_modules/', 'build/', 'setupTests.ts'],
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.ts', 'src/**/*.tsx'],
-  coveragePathIgnorePatterns: ['index.ts', 'config.ts', 'main.tsx'],
+  coveragePathIgnorePatterns: ['index.ts', 'config.ts', 'main.tsx', 'Router.tsx'],
   coverageReporters: [['lcov', { projectRoot: '..' }]],
   coverageThreshold: {
     global: {
@@ -42,6 +42,8 @@ const config: JestConfigWithTsJest = {
       },
     ) ?? {}),
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
+    '\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+      '<rootDir>/__tests__/__mocks__/imageMock.ts',
   },
   setupFilesAfterEnv: ['<rootDir>/__tests__/setupTests.ts'],
   testMatch: ['**/*.test.*'],
