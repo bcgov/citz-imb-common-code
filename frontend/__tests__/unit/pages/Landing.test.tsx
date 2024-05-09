@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter, useLoaderData } from 'react-router-dom';
 import { packages } from '@/constants';
 import { Landing } from '@/pages/Landing';
+import { ReactNode } from 'react';
 
 // Mock the useLoaderData hook
 jest.mock('react-router-dom', () => ({
@@ -14,6 +15,7 @@ jest.mock('react-router-dom', () => ({
 jest.mock('@/components', () => ({
   Greeting: () => <div data-testid="greeting-message" />,
   PackageCard: ({ title }: { title: string }) => <div>{title}</div>,
+  Section: ({ children }: { children: ReactNode }) => <div>{children}</div>,
 }));
 
 // Test suite for Landing page
