@@ -57,7 +57,7 @@ const IssueCardComponent = (props: IssueCardProps) => {
   const openIssueAuthorInNewTab = () => window.open(authorURL, '_blank');
 
   return (
-    <div style={styles}>
+    <div data-testid="issue-card" style={styles}>
       <Stack spaceBetween>
         <Stack direction="column" gap="0">
           <Stack>
