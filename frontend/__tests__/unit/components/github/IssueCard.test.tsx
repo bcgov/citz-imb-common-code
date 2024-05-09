@@ -95,4 +95,65 @@ describe('IssueCard component', () => {
     expect(mockOpen).toHaveBeenCalledWith('http://example.com', '_blank');
     expect(mockOpen).toHaveBeenCalledWith('http://example.com/author', '_blank');
   });
+
+  // Test case: styles firstIssue
+  it('styles firstIssue', () => {
+    render(
+      <IssueCard
+        title="Test Issue"
+        issueNumber={1}
+        url="http://example.com"
+        createdAt="2022-01-01T00:00:00Z"
+        updatedAt="2022-01-01T00:00:00Z"
+        avatarURL="http://example.com/avatar.png"
+        author="Test Author"
+        authorURL="http://example.com/author"
+        commentCount={5}
+        likeCount={3}
+        dislikeCount={1}
+        laughCount={2}
+        hoorayCount={0}
+        confusedCount={0}
+        heartCount={1}
+        rocketCount={0}
+        eyesCount={0}
+        shaded
+        firstIssue
+      />,
+    );
+
+    expect(screen.getByTestId('issue-card')).toHaveStyle({ borderTop: 'none' });
+  });
+
+  // Test case: styles lastIssue
+  it('styles lastIssue', () => {
+    render(
+      <IssueCard
+        title="Test Issue"
+        issueNumber={1}
+        url="http://example.com"
+        createdAt="2022-01-01T00:00:00Z"
+        updatedAt="2022-01-01T00:00:00Z"
+        avatarURL="http://example.com/avatar.png"
+        author="Test Author"
+        authorURL="http://example.com/author"
+        commentCount={5}
+        likeCount={3}
+        dislikeCount={1}
+        laughCount={2}
+        hoorayCount={0}
+        confusedCount={0}
+        heartCount={1}
+        rocketCount={0}
+        eyesCount={0}
+        shaded
+        lastIssue
+      />,
+    );
+
+    expect(screen.getByTestId('issue-card')).toHaveStyle({
+      borderBottomRightRadius: '10px',
+      borderBottomLeftRadius: '10px',
+    });
+  });
 });
