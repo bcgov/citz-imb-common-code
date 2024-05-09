@@ -1,5 +1,5 @@
 import { render, screen, waitFor } from '@testing-library/react';
-import { GitHubIssues } from '@/components/github/GitHubIssues';
+import { GitHubIssues } from '@/components/github';
 
 // Mock fetch response
 const mockResponse = {

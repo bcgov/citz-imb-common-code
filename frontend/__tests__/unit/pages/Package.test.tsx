@@ -1,5 +1,6 @@
 import { render, fireEvent } from '@testing-library/react';
 import { Package } from '@/pages/Package';
+import { ReactNode } from 'react';
 
 // Mock window.open to prevent opening new tabs in tests
 window.open = jest.fn();
@@ -8,6 +9,7 @@ window.open = jest.fn();
 jest.mock('@/components', () => ({
   ...jest.requireActual('@/components'),
   GitHubIssues: () => <div />,
+  GitHubTabs: ({ children }: { children: ReactNode }) => <div>{children}</div>,
 }));
 
 // Test suite for Package page
