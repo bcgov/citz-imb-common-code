@@ -21,4 +21,8 @@
   --bcgov-blue: #234075;
   --bcgov-light-blue: #1a5a96;
   --bcgov-dark-blue: #036;
+  --badge: #13a49a;
+  --experimental-package-badge: #13a49a;
+  --stable-package-badge: #88cf14;
+  --retired-package-badge: #d95219;
 }
