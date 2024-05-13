@@ -51,7 +51,7 @@ jobs:
       # Make changes to image tag in values.yaml within GitOps repo
     - name: Clone, Update, and Commit Changes
       run: |
-        git clone git@github.com:bcgov-c/tenant-gitops-baf953.git
+        git clone git@github.com:bcgov-c/tenant-gitops-baf95e.git
         cd tenant-gitops-baf95e
 
         FILE_PATH="common-code/values-dev.yaml"
