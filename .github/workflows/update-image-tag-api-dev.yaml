@@ -44,7 +44,7 @@ jobs:
     - name: Setup SSH
       run: |
         mkdir -p ~/.ssh
-        echo "${{ secrets.MANIFEST_REPO_DEPLOY_KEY }}" > ~/.ssh/id_rsa
+        echo "${{ secrets.GITOPS_REPO_PUBLIC_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 
