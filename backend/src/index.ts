@@ -16,6 +16,8 @@ app.listen(PORT, () => {
     console.info(UTC_DATE_TIME);
     console.info(PACIFIC_DATE_TIME);
     console.log("Hello, I'm serving traffic.");
+    // Adam's default generate new image line
+    console.log("Adam is messing around with me again.");
     if (DEBUG) console.info(DEBUG_ENABLED);
   } catch (error) {
     // Log any error that occurs during the server start.
