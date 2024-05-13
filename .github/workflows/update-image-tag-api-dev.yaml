@@ -1,6 +1,6 @@
 # Credit @bottle7 Brandon Bouchard for creating this script to update image tags in gitops repos for Argo CD Deployments
 
-name: Update API Image Tag in Dev in GitOps Repo
+name: GitOps - Update DEV Frontend imageTag
 
 on:
   push:
