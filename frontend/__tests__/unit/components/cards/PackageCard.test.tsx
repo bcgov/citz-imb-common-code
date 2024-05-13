@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { render, screen } from '@testing-library/react';
 import { IconType, PackageCard } from '@/components';
+import { PackageBadge } from '@/constants';
 
 // Mock the components used within PackageCard
 jest.mock('@/components', () => ({
@@ -11,6 +12,7 @@ jest.mock('@/components', () => ({
   Typography: ({ children }: { children: ReactNode }) => (
     <div data-testid="mock-typography">{children}</div>
   ),
+  Badge: () => <div />,
 }));
 
 // Test suite for PackageCard component
@@ -23,6 +25,7 @@ describe('PackageCard component', () => {
     icon: 'Exit' as IconType,
     title: 'Mock Title',
     summary: 'Mock Summary',
+    badge: 'experimental' as PackageBadge,
   };
 
   // Test case: Renders component children
