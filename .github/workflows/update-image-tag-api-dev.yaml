@@ -57,7 +57,7 @@ jobs:
         FILE_PATH="common-code/values-dev.yaml"
         NEW_TAG="${{ steps.get-pr-number.outputs.result }}"
 
-        yq e ".client.image.tag = \"$NEW_TAG\"" -i "$FILE_PATH"
+        yq e ".api.imageTag = \"$NEW_TAG\"" -i "$FILE_PATH"
 
         git config user.email "adam.kroon@gov.bc.ca"
         git config user.name "akroon3r"
