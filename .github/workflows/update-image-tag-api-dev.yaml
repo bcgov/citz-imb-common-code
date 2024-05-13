@@ -91,8 +91,8 @@ jobs:
     - name: Commit and push changes to wiki
       run: |
         cd ./wiki
-        git config user.name "$GITHUB_ACTOR"
-        git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+        git config user.name "akroon3r"
+        git config user.email "adam.kroon@gov.bc.ca"
         git add .
         if git diff-index --quiet HEAD; then
           echo "Nothing changed"
