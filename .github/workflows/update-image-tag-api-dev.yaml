@@ -1,6 +1,6 @@
 # Credit @bottle7 Brandon Bouchard for creating this script to update image tags in gitops repos for Argo CD Deployments
 
-name: Update Client Image Tag in GitOps Repo
+name: Update API Image Tag in Dev in GitOps Repo
 
 on:
   push:
@@ -51,19 +51,19 @@ jobs:
       # Make changes to image tag in values.yaml within GitOps repo
     - name: Clone, Update, and Commit Changes
       run: |
-        git clone git@github.com:bcgov-c/tenant-gitops-e1c611.git
-        cd tenant-gitops-e1c611
+        git clone git@github.com:bcgov-c/tenant-gitops-baf953.git
+        cd tenant-gitops-baf95e
 
-        FILE_PATH="citz-imb-vrm/values.yaml"
+        FILE_PATH="common-code/values-dev.yaml"
         NEW_TAG="${{ steps.get-pr-number.outputs.result }}"
 
         yq e ".client.image.tag = \"$NEW_TAG\"" -i "$FILE_PATH"
 
-        git config user.email "brandon.bouchard@gov.bc.ca"
-        git config user.name "Bottle7"
+        git config user.email "adam.kroon@gov.bc.ca"
+        git config user.name "akroon3r"
 
         git add "$FILE_PATH"
 
-        git commit -m "Update client image tag to $NEW_TAG"
+        git commit -m "Update API image tag to $NEW_TAG"
 
         git push
