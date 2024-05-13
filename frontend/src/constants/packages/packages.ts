@@ -6,6 +6,7 @@ export const packages: PackageType[] = [
     title: 'SSO React',
     iconType: 'Authenticate',
     pageRoute: 'sso-react',
+    section: 'Single Sign-On',
     summary:
       "An npm package that offers an integration solution for connecting React applications requiring authentication to the B.C. government's Single Sign-On (CSS) service.",
     details:
@@ -16,6 +17,7 @@ export const packages: PackageType[] = [
     title: 'SSO Express',
     iconType: 'Authenticate',
     pageRoute: 'sso-express',
+    section: 'Single Sign-On',
     summary:
       "An npm package that offers an integration solution for connecting Express applications requiring authentication to the B.C. government's Single Sign-On (CSS) service.",
     details:
@@ -26,6 +28,7 @@ export const packages: PackageType[] = [
     title: 'SSO CSS API',
     iconType: 'JSON',
     pageRoute: 'sso-css-api',
+    section: 'Single Sign-On',
     summary:
       'An npm package that offers the Common Hosted Single Sign-on API Account as functions, allowing SSO management through code instead of through the dashboard.',
     details:

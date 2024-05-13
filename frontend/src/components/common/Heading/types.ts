@@ -4,7 +4,7 @@ export type HeadingProps = {
   children: ReactNode;
   id?: string;
   className?: string;
-  size?: 'x-small' | 'small' | 'medium' | 'large' | 'x-large';
+  size?: 'xx-small' | 'x-small' | 'small' | 'medium' | 'large' | 'x-large';
   align?: 'left' | 'right' | 'center';
   color?: 'dark' | 'white' | 'blue';
   divider?: boolean;
