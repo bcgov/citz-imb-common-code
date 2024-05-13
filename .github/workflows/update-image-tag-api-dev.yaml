@@ -75,7 +75,7 @@ jobs:
     - name: Clone Repository with Wiki Artifact
       run: |
         echo "Cloning wiki repo https://github.com/$GITHUB_REPOSITORY.wiki.git"
-        git clone "https://$GITHUB_ACTOR:$GH_TOKEN@github.com/$GITHUB_REPOSITORY.wiki.git" ./wiki
+        git clone "https://akroon3r:${{ github.token }}@github.com/$GITHUB_REPOSITORY.wiki.git" ./wiki
     
     # Setup Python
     - name: Setup Python
