@@ -41,7 +41,7 @@ const TabsComponent = (props: TabsProps) => {
       <div style={bodyStyles}>
         {Children.map(props.children, (child: any) => {
           if (child.props.id === activeTab) {
-            return cloneElement(child, { isactive: true });
+            return cloneElement(child, { isactive: true, key: child.props.id });
           }
           return null;
         })}
