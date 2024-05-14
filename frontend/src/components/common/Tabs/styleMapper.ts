@@ -27,8 +27,8 @@ export const styleMapperHeader = (props: TabsProps) => {
     borderTopLeftRadius: '10px',
     borderTopRightRadius: '10px',
     borderBottom: '2px solid var(--light-grey2)',
-    backgroundColor: 'var(--blue-grey)',
-    color: 'var(--text-color)',
+    backgroundColor: 'var(--bcgov-blue-navy)',
+    color: 'var(--white)',
     fontSize: '1.5em',
   };
 

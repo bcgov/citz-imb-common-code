@@ -31,7 +31,7 @@ const TabsComponent = (props: TabsProps) => {
             style={{
               ...headerButtonStyles,
               fontWeight: id === activeTab ? 'bold' : 'normal',
-              borderBottom: id === activeTab ? '2px solid black' : 'none',
+              borderBottom: id === activeTab ? '2px solid var(--blue-grey)' : 'none',
             }}
           >
             {title}
