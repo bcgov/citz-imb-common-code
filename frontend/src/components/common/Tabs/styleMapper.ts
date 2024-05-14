@@ -44,6 +44,7 @@ export const styleMapperHeaderButton = (props: TabsProps) => {
     marginRight: '8px',
     padding: '8px',
     fontSize: '0.75em',
+    cursor: 'pointer',
   };
 
   // Adds additionalHeaderButtonStyles after styles, so they will override any style properties of styles object.
