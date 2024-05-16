@@ -1,17 +1,19 @@
+import { PACKAGE_BADGE_COLORS, PACKAGE_BADGE_TOOLTIPS, PackageBadge } from '@/constants';
 import { Button } from '@bcgov/design-system-react-components';
 import exchangeLabIcon from 'src/assets/exchange-lab-icon.svg';
 import githubIcon from 'src/assets/github-icon.png';
 import npmIcon from 'src/assets/npm-icon.webp';
-import { GitHubTabs, Heading, Stack, Typography } from 'src/components';
+import { Badge, GitHubTabs, Heading, Stack, Typography } from 'src/components';
 
 type PackageProps = {
   repo: string;
   title: string;
   summary: string;
+  badge: PackageBadge;
 };
 
 export const Package = (props: PackageProps) => {
-  const { repo, title, summary } = props;
+  const { repo, title, summary, badge } = props;
 
   // On press events.
   const openGitHubRepoInNewTab = () => window.open(`https://github.com/bcgov/${repo}`, '_blank');
@@ -22,9 +24,16 @@ export const Package = (props: PackageProps) => {
   return (
     <>
       <br />
-      <Heading overline size="small" bold>
-        {title}
-      </Heading>
+      <Stack spaceBetween>
+        <Heading overline size="small" bold>
+          {title}
+        </Heading>
+        <Badge
+          text={badge}
+          tooltip={PACKAGE_BADGE_TOOLTIPS[badge]}
+          color={PACKAGE_BADGE_COLORS[badge]}
+        />
+      </Stack>
       <Typography>{summary}</Typography>
       <br />
       <hr />

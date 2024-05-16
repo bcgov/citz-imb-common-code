@@ -9,9 +9,9 @@ const HeadingComponent = (props: HeadingProps) => {
 
   return (
     <div id={props.id} className={props.className} style={styles}>
-      {props.overline && <div style={OVERLINE_STYLES} />}
+      {props.overline && <div data-testid="heading-overline" style={OVERLINE_STYLES} />}
       {props.children}
-      {props?.divider && <hr />}
+      {props?.divider && <hr data-testid="heading-divider" />}
     </div>
   );
 };

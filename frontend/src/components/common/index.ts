@@ -6,3 +6,5 @@ export * from './Spinner';
 export * from './Stack';
 export * from './Typography';
 export * from './Tabs';
+export * from './Section';
+export * from './Badge';

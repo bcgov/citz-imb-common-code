@@ -19,7 +19,12 @@ jest.mock('@/components', () => ({
 
 // Test suite for RootLayout component
 describe('RootLayout component', () => {
-  test('renders header with title and AuthButton', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  // Test case: Renders header and auth button
+  it('renders header with title and AuthButton', () => {
     render(
       <MemoryRouter>
         <RootLayout />
@@ -32,7 +37,8 @@ describe('RootLayout component', () => {
     expect(screen.getByTestId('mock-authbutton')).toBeInTheDocument();
   });
 
-  test('renders Breadcrumbs and Outlet', () => {
+  // Test case: Renders breadcrumbs and outlet
+  it('renders Breadcrumbs and Outlet', () => {
     render(
       <MemoryRouter initialEntries={['/test']}>
         <RootLayout />
