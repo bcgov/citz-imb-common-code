@@ -26,8 +26,6 @@ services:
   coco-api:
     container_name: coco-api
     tty: true
-    environment:
-      - BACKEND_PORT=${BACKEND_PORT:-6600}
     init: true # Properly handles running as PID 1 inside a container. Source: https://github.com/nodejs/docker-node/blob/main/docs/BestPractices.md#handling-kernel-signals
     restart: on-failure
     healthcheck:
