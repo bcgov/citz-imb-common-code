@@ -1,5 +1,5 @@
 # GitHub Actions workflow for deploying API image to TEST env
-name: Commmon Code API - Deploy to TEST
+name: API - GitOps Update TEST Image
 
 on:
   workflow_dispatch:
