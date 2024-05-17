@@ -62,7 +62,7 @@ jobs:
       run: |
         echo "Cloning wiki repo https://github.com/$GITHUB_REPOSITORY.wiki.git"
         git clone "https://$GITHUB_ACTOR:$GH_TOKEN@github.com/$GITHUB_REPOSITORY.wiki.git" ./wiki
-        
+
     # Setup Python
     - name: Setup Python
       uses: actions/setup-python@v4
@@ -71,7 +71,7 @@ jobs:
 
     # Run the update wiki Python script
     - name: Run update wiki Python script
-      run: python ./.github/helpers/update-wiki-table.py ./wiki/Image-tags.md "CoCo APP" "Deployed Image Tag in TEST" "${{ env.IMAGE_TAG }}"
+      run: python ./.github/helpers/update-wiki-table.py ./wiki/Image-tags.md "CoCo API" "Deployed Image Tag in TEST" "${{ env.IMAGE_TAG }}"
 
     # Commit and push changes to the wiki
     - name: Commit and push changes to wiki
@@ -85,8 +85,9 @@ jobs:
           exit 0
         fi
         echo "Pushing changes to wiki"
-        git commit -m "Value populated at APP deployed in TEST" && git push "https://$GITHUB_ACTOR:$GH_TOKEN@github.com/$GITHUB_REPOSITORY.wiki.git"
         
+        git commit -m "Value populated at API deployed in DEV" && git push "https://$GITHUB_ACTOR:$GH_TOKEN@github.com/$GITHUB_REPOSITORY.wiki.git"
+
     # Add comment to the PR
     - name: Add Comment To the PR
       if: github.event.action == 'opened'
@@ -97,5 +98,5 @@ jobs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: "🚀 **Deployment Information**\n\nThe CoCo Demo App Image has been deployed into TEST with the tag: **`${{ env.IMAGE_TAG }}`**. Please make sure to utilize this specific tag when promoting these changes to the TEST and PROD environments during the API deployment. For more updates please monitor [Image Tags](https://github.com/bcgov/PIMS/wiki/Image-tags) Page on Wiki."
-          })
+            body: "🚀 **Deployment Information**\n\nThe CoCo Demo App API Image has been deployed into TEST with the tag: **`${{ env.IMAGE_TAG }}`**. Please make sure to utilize this specific tag when promoting these changes to the TEST and PROD environments during the API deployment. For more updates please monitor [Image Tags](https://github.com/bcgov/PIMS/wiki/Image-tags) Page on Wiki."
+
