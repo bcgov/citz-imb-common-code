@@ -86,7 +86,7 @@ jobs:
 
     # Run the update wiki Python script
     - name: Run update wiki Python script
-      run: python ./.github/helpers/update-wiki-table.py ./wiki/Image-tags.md "CoCo APP" "Latest Build Image Tag" "${{ steps.get-pr-number.outputs.result }}"
+      run: python ./.github/helpers/update-wiki-table.py ./wiki/Image-tags.md "CoCo APP" "Deployed Image Tag in DEV" "${{ steps.get-pr-number.outputs.result }}"
 
     # Commit and push changes to the wiki
     - name: Commit and push changes to wiki
