@@ -56,7 +56,7 @@ jobs:
       - name: Run Coverage Report
         working-directory: ./backend
         run: |
-          npm test
+          npm run coverage
 
       # Use lcov to format coverage for Code Climate
       # -t is for coverage type
