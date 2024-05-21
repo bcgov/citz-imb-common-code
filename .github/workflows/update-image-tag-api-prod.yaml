@@ -1,37 +1,22 @@
-# Credit @bottle7 Brandon Bouchard for creating this script to update image tags in gitops repos for Argo CD Deployments
-
-name: Frontend - GitOps Update DEV Image
+# GitHub Actions workflow for deploying API image to PROD env
+name: API - GitOps Update PROD Image
 
 on:
-  push:
-    branches:
-    - main
-    paths:
-    - frontend/**
+  workflow_dispatch:
+      inputs:
+        image_tag:
+          description: 'Image Tag to deploy'
+          required: true
+
+env:
+  IMAGE_TAG: ${{ github.event.inputs.image_tag }}
+  ENVIRONMENT: 'prod'
+  GH_TOKEN: ${{ github.token }}
 
 jobs:
   update-gitops-image-tag:
     runs-on: ubuntu-latest
     steps:
-    - name: Get PR Number
-      id: get-pr-number
-      uses: actions/github-script@v5
-      with:
-        script: |
-          const { data: pulls } = await github.rest.pulls.list({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            state: 'all',
-          });
-          const pr = pulls.find(pr => pr.merge_commit_sha === process.env.GITHUB_SHA);
-
-          if (pr) {
-            return pr.number
-          } else {
-            return ''
-          }
-
-        result-encoding: string
 
       # Install yaml parser
     - name: Install yq
@@ -54,17 +39,17 @@ jobs:
         git clone git@github.com:bcgov-c/tenant-gitops-baf95e.git
         cd tenant-gitops-baf95e
 
-        FILE_PATH="common-code/values-dev.yaml"
+        FILE_PATH="common-code/values-prod.yaml"
         NEW_TAG="${{ steps.get-pr-number.outputs.result }}"
 
-        yq e ".frontend.imageTag = \"$NEW_TAG\"" -i "$FILE_PATH"
+        yq e ".api.imageTag = \"${{ env.IMAGE_TAG }}\"" -i "$FILE_PATH"
 
         git config user.email "adam.kroon@gov.bc.ca"
         git config user.name "akroon3r"
 
         git add "$FILE_PATH"
 
-        git commit -m "Update Frontend image tag to $NEW_TAG"
+        git commit -m "Update API image tag to ${{ env.IMAGE_TAG }}"
 
         git push
 
@@ -77,7 +62,7 @@ jobs:
       run: |
         echo "Cloning wiki repo https://github.com/$GITHUB_REPOSITORY.wiki.git"
         git clone "https://$GITHUB_ACTOR:$GH_TOKEN@github.com/$GITHUB_REPOSITORY.wiki.git" ./wiki
-
+        
     # Setup Python
     - name: Setup Python
       uses: actions/setup-python@v4
@@ -86,7 +71,7 @@ jobs:
 
     # Run the update wiki Python script
     - name: Run update wiki Python script
-      run: python ./.github/helpers/update-wiki-table.py ./wiki/Image-tags.md "CoCo APP" "Deployed Image Tag in DEV" "${{ steps.get-pr-number.outputs.result }}"
+      run: python ./.github/helpers/update-wiki-table.py ./wiki/Image-tags.md "CoCo API" "Deployed Image Tag in PROD" "${{ env.IMAGE_TAG }}"
 
     # Commit and push changes to the wiki
     - name: Commit and push changes to wiki
@@ -100,8 +85,8 @@ jobs:
           exit 0
         fi
         echo "Pushing changes to wiki"
-        git commit -m "Value populated at image build API" && git push "https://$GITHUB_ACTOR:$GH_TOKEN@github.com/$GITHUB_REPOSITORY.wiki.git"
-
+        git commit -m "Value populated at API deployed in DEV" && git push "https://$GITHUB_ACTOR:$GH_TOKEN@github.com/$GITHUB_REPOSITORY.wiki.git"
+        
     # Add comment to the PR
     - name: Add Comment To the PR
       if: github.event.action == 'opened'
@@ -112,5 +97,6 @@ jobs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: "🚀 **Deployment Information**\n\nThe CoCo Demo App Image has been built with the tag: **`${{ steps.get-pr-number.outputs.result }}`**. Please make sure to utilize this specific tag when promoting these changes to the TEST and PROD environments during the API deployment. For more updates please monitor [Image Tags](https://github.com/bcgov/PIMS/wiki/Image-tags) Page on Wiki."
+            body: "🚀 **Deployment Information**\n\nThe CoCo Demo App API Image has been deployed into TEST with the tag: **`${{ env.IMAGE_TAG }}`**. Please make sure to utilize this specific tag when promoting these changes to the TEST and PROD environments during the API deployment. For more updates please monitor [Image Tags](https://github.com/bcgov/PIMS/wiki/Image-tags) Page on Wiki."
           })
+  
