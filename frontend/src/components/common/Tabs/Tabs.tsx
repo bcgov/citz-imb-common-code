@@ -31,7 +31,7 @@ const TabsComponent = (props: TabsProps) => {
             style={{
               ...headerButtonStyles,
               fontWeight: id === activeTab ? 'bold' : 'normal',
-              borderBottom: id === activeTab ? '2px solid black' : 'none',
+              borderBottom: id === activeTab ? '2px solid var(--blue-grey)' : 'none',
             }}
           >
             {title}
@@ -41,7 +41,7 @@ const TabsComponent = (props: TabsProps) => {
       <div style={bodyStyles}>
         {Children.map(props.children, (child: any) => {
           if (child.props.id === activeTab) {
-            return cloneElement(child, { isActive: true });
+            return cloneElement(child, { isactive: true, key: child.props.id });
           }
           return null;
         })}

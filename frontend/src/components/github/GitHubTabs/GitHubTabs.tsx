@@ -1,4 +1,4 @@
-import { Tabs, GitHubIssues } from 'src/components';
+import { Tabs, GitHubIssues, GitHubPulls } from 'src/components';
 import { memo } from 'react';
 import { GitHubTabsProps } from './types';
 
@@ -8,9 +8,13 @@ const GitHubTabsComponent = (props: GitHubTabsProps) => {
   return (
     <Tabs
       currentTabId="github-issues-tab"
-      tabs={[{ id: 'github-issues-tab', title: 'Open Issues' }]}
+      tabs={[
+        { id: 'github-issues-tab', title: 'Open Issues' },
+        { id: 'github-pulls-tab', title: 'Open Pull Requests' },
+      ]}
     >
       <GitHubIssues repo={repo} id="github-issues-tab" />
+      <GitHubPulls repo={repo} id="github-pulls-tab" />
     </Tabs>
   );
 };

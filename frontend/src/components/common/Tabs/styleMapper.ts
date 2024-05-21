@@ -27,8 +27,8 @@ export const styleMapperHeader = (props: TabsProps) => {
     borderTopLeftRadius: '10px',
     borderTopRightRadius: '10px',
     borderBottom: '2px solid var(--light-grey2)',
-    backgroundColor: 'var(--blue-grey)',
-    color: 'var(--text-color)',
+    backgroundColor: 'var(--bcgov-blue-navy)',
+    color: 'var(--white)',
     fontSize: '1.5em',
   };
 
@@ -44,6 +44,7 @@ export const styleMapperHeaderButton = (props: TabsProps) => {
     marginRight: '8px',
     padding: '8px',
     fontSize: '0.75em',
+    cursor: 'pointer',
   };
 
   // Adds additionalHeaderButtonStyles after styles, so they will override any style properties of styles object.
