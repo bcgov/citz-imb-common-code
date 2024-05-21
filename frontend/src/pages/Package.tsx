@@ -10,16 +10,17 @@ type PackageProps = {
   title: string;
   summary: string;
   badge: PackageBadge;
+  documentationLink: string;
 };
 
 export const Package = (props: PackageProps) => {
-  const { repo, title, summary, badge } = props;
+  const { repo, title, summary, badge, documentationLink } = props;
 
   // On press events.
   const openGitHubRepoInNewTab = () => window.open(`https://github.com/bcgov/${repo}`, '_blank');
   const openNPMInNewTab = () =>
     window.open(`https://www.npmjs.com/package/@bcgov/${repo}`, '_blank');
-  const openDocsInNewTab = () => window.open(`https://github.com/bcgov/${repo}/wiki`, '_blank');
+  const openDocsInNewTab = () => window.open(documentationLink, '_blank');
 
   return (
     <>

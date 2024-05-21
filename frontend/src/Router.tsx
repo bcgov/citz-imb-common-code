@@ -8,7 +8,13 @@ const packageLoader = (): PackageType[] => packages;
 const packageRoutes = packages.map((pkg) => ({
   path: pkg.pageRoute,
   element: (
-    <PackagePage repo={pkg.repo} title={pkg.title} summary={pkg.details} badge={pkg.badge} />
+    <PackagePage
+      repo={pkg.repo}
+      title={pkg.title}
+      summary={pkg.details}
+      badge={pkg.badge}
+      documentationLink={pkg.documentationLink}
+    />
   ),
 }));
 

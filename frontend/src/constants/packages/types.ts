@@ -9,5 +9,6 @@ export type PackageType = {
   badge: PackageBadge;
   iconType: IconProps['icon'];
   pageRoute: string;
+  documentationLink: string;
   details: string;
 };
