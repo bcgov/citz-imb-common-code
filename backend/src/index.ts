@@ -17,7 +17,7 @@ app.listen(PORT, () => {
     console.info(PACIFIC_DATE_TIME);
     console.log("Hello, I'm serving traffic.");
     // Adam's default generate new image line
-    //console.log("Uh-oh, Adam's doing stuff again.");
+    console.log("Uh-oh, Adam's doing stuff again.");
     if (DEBUG) console.info(DEBUG_ENABLED);
   } catch (error) {
     // Log any error that occurs during the server start.
