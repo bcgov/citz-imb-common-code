@@ -1,0 +1,71 @@
+name:  API - Code Climate Test Coverage Report Generation
+
+on:
+  pull_request:
+    types: [opened, synchronize] # Triggered by opened or changed pull requests.
+    branches: [main]
+    paths:
+      - '.github/workflows/api-test-coverage-report.yaml'
+      - 'backend/**' # Triggers on changes to files in the backend/ directory.
+      - '!backend/.eslintrc.js' # Will not trigger on changes to the following.
+      - '!backend/__tests__'
+      - '!backend/prettierrc.js'
+      - '!backend/.docker'
+      - '!backend/package*'
+      - '!backend/nodemon.json'
+      - '!backend/tsconfig.json'
+
+jobs:
+  codeclimate-jest-coverage:
+    runs-on: ubuntu-latest
+    env:
+      GIT_BRANCH: ${{ github.event.pull_request.head.ref }}
+      GIT_COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
+      CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+
+    steps:
+      # Checkout code from Repo.
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        #with:
+          # fetch-depth: 0
+
+      # Import Code Climate test reporter.
+      - name: Import Code Climate
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+
+      # Allow test reporter to be executed.
+      - name: Execute Permissions for Code Climate Binary
+        run: |
+          chmod +x ./cc-test-reporter
+
+      # Notifies Code Climate of impending report.
+      - name: Test Reporter Before Build
+        run: |
+          ./cc-test-reporter before-build
+
+      # Install dependencies.
+      - name: Install Dependencies
+        working-directory: ./backend
+        run: |
+          cd ${{ github.workspace }}/backend
+          npm i
+
+      # Generate coverage report.
+      - name: Run Coverage Report
+        working-directory: ./backend
+        run: |
+          npm test
+
+      # Use lcov to format coverage for Code Climate
+      # -t is for coverage type
+      - name: Format Test Coverage
+        run: |
+          ./cc-test-reporter format-coverage ${{ github.workspace }}/backed/coverage/lcov.info -t lcov --output ${{ github.workspace }}/backend/coverage/coverage.json
+
+      # Upload coverage to Code Climate.
+      # -i is for input, -d for detached
+      - name: Upload Coverage
+        run: |
+          ./cc-test-reporter upload-coverage -d -i ${{ github.workspace }}/backend/coverage/coverage.json
