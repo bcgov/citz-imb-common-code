@@ -10,8 +10,13 @@ on:
     - frontend/**
 
 jobs:
+
   update-gitops-image-tag:
     runs-on: ubuntu-latest
+    
+    env:
+      GH_TOKEN: ${{ github.token }}
+      
     steps:
     - name: Get PR Number
       id: get-pr-number
