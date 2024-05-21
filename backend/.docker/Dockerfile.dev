@@ -5,10 +5,6 @@ WORKDIR /app
 
 ENV NODE_ENV=development
 
-COPY ./backend .
-
-RUN npm install
-
-EXPOSE 6600
+EXPOSE ${BACKEND_PORT}
 
 CMD ["npm", "run", "dev"]

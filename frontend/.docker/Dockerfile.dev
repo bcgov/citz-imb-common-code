@@ -3,10 +3,12 @@ FROM node:${NODE_IMAGE_TAG}
 
 WORKDIR /app
 
-COPY . .
+# Vite requires a different package dependency in linux than in windows
+# Therefore, we need to copy the package.json file and run npm install
+COPY package.json .
 
 RUN npm install
 
-EXPOSE 6500
+EXPOSE ${FRONTEND_PORT}
 
 CMD [ "npm", "run", "dev" ]
