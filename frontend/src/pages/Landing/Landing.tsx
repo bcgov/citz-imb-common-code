@@ -2,6 +2,7 @@ import './styles.css';
 import { Greeting, Heading, PackageCard, Section } from 'src/components';
 import { PackageType } from 'src/constants/packages';
 import { Link, useLoaderData } from 'react-router-dom';
+import { Fragment } from 'react/jsx-runtime';
 
 export const Landing = () => {
   const packages = useLoaderData() as PackageType[];
@@ -21,9 +22,8 @@ export const Landing = () => {
       <Greeting />
       {/* Render each section */}
       {Object.entries(groupedPackages).map(([section, sectionPackages]) => (
-        <>
+        <Fragment key={section}>
           <Section
-            key={section}
             title={
               <Heading size="xx-small" bold>
                 {section}
@@ -44,7 +44,7 @@ export const Landing = () => {
             </div>
           </Section>
           <br />
-        </>
+        </Fragment>
       ))}
     </>
   );
