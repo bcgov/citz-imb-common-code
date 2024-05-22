@@ -11,6 +11,7 @@ on:
 env:
   IMAGE_TAG: ${{ github.event.inputs.image_tag }}
   ENVIRONMENT: 'test'
+  GH_TOKEN: ${{ github.token }}
 
 jobs:
   update-gitops-image-tag:
