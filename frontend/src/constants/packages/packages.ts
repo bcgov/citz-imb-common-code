@@ -6,6 +6,8 @@ export const packages: PackageType[] = [
     title: 'SSO React',
     iconType: 'Authenticate',
     pageRoute: 'sso-react',
+    documentationLink:
+      'https://developer.gov.bc.ca/docs/default/component/citz-imb-sso-react-npm-package',
     section: 'Single Sign-On',
     badge: 'experimental',
     summary:
@@ -18,6 +20,8 @@ export const packages: PackageType[] = [
     title: 'SSO Express',
     iconType: 'Authenticate',
     pageRoute: 'sso-express',
+    documentationLink:
+      'https://developer.gov.bc.ca/docs/default/component/citz-imb-sso-express-npm-package',
     section: 'Single Sign-On',
     badge: 'experimental',
     summary:
@@ -30,6 +34,7 @@ export const packages: PackageType[] = [
     title: 'SSO CSS API',
     iconType: 'JSON',
     pageRoute: 'sso-css-api',
+    documentationLink: 'https://github.com/bcgov/citz-imb-sso-css-api/wiki',
     section: 'Single Sign-On',
     badge: 'experimental',
     summary:
