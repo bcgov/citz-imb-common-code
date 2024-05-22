@@ -14,6 +14,8 @@ jest.mock('@/components', () => ({
   Badge: () => <div />,
 }));
 
+const documentationLink = 'http://example.com';
+
 // Test suite for Package page
 describe('Package page', () => {
   const mockProps = {
@@ -21,6 +23,7 @@ describe('Package page', () => {
     title: 'Test Package',
     summary: 'This is a test package.',
     badge: 'experimental' as PackageBadge,
+    documentationLink,
   };
 
   // Test case: Renders title and summary correctly
@@ -54,9 +57,6 @@ describe('Package page', () => {
   it('opens package documentation link in new tab', () => {
     const { getByText } = render(<Package {...mockProps} />);
     fireEvent.click(getByText('Package Documentation'));
-    expect(window.open).toHaveBeenCalledWith(
-      'https://github.com/bcgov/citz-imb-sso-react/wiki',
-      '_blank',
-    );
+    expect(window.open).toHaveBeenCalledWith(documentationLink, '_blank');
   });
 });
