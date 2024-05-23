@@ -6,14 +6,15 @@
     "up": "docker compose -f compose.yaml up -d",
     "up:override": "docker compose up -d",
     "down": "docker compose down",
-    "prune": "docker compose down --rmi all --volumes",
+    "prune": "docker compose down --rmi all --volumes && npm run clear-docker-cache",
     "install": "npm run install:frontend && npm run install:backend",
     "install:frontend": "cd frontend && rm -rf node_modules package-lock.json && npm i",
     "install:backend": "cd backend && rm -rf node_modules package-lock.json && npm i",
-    "rebuild": "npm run prune && npm run install && npm run up",
-    "rebuild:override": "npm run prune && npm run install && npm run up:override",
+    "rebuild": "npm run prune && npm run install && npm run up -- --force-recreate",
+    "rebuild:override": "npm run prune && npm run install && npm run up:override -- --force-recreate",
     "shell:frontend": "docker exec -it coco-frontend sh",
     "shell:backend": "docker exec -it coco-api sh",
-    "setup-git-aliases": "node scripts/setupGitAliases"
+    "setup-git-aliases": "node scripts/setupGitAliases",
+    "clear-docker-cache": "docker builder prune -f"
   }
 }
