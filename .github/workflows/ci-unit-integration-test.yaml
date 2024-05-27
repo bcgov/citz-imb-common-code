@@ -25,6 +25,8 @@ jobs:
             echo "diff=backend" >> $GITHUB_OUTPUT
           else
             echo "diff=frontend" >> $GITHUB_OUTPUT
+          fi
+          
       -  name : Run API Test Suite if diff lives in ./backend/**
          working-directory: ./backend
          if : ${{ steps.pull-request-diff-path.outputs.diff }} == 'backend'
