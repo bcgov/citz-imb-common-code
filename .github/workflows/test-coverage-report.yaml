@@ -173,10 +173,10 @@ jobs:
       - name: Download Artifacts
         uses: actions/download-artifact@v4
         with:
-          path: ${{ github.workspaces }}/aggregation
+          path: ${{ github.workspace }}/aggregation
 
       - name: WHERE AM I?
-        working-directory: ${{ github.workspaces }}/aggregation
+        working-directory: ${{ github.workspace }}/aggregation
         run: |
           ls -al
         
