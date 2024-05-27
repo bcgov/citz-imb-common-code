@@ -178,6 +178,21 @@ jobs:
         run: |
           ls -al frontend-coverage-report-json
           ls -al api-coverage-report-json
+
+      - name: Move JSON up a directory
+        run: |
+          cp ${{ github.workspace }}/aggregation/frontend-coverage-report-json/frontend-coverage.json ${{ github.workspace }}/aggregation/frontend-coverage.json
+          cp ${{ github.workspace }}/aggregation/api-coverage-report-json/api-coverage.json ${{ github.workspace }}/aggregation/api-coverage.json
+
+      # Sum the coverage reports
+      - name: Summing the coverage reports generated
+        run: ./cc-test-reporter sum-coverage aggregation/*-coverage.json -p 2 -o aggregration/summed-coverage.json
+
+      - name: WHERE AM I?
+        working-directory: ${{ github.workspace }}/aggregation
+        run: |
+          ls -al 
+
         
 
       
