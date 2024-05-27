@@ -1,30 +1,20 @@
 name:  Code Climate Test Coverage Reports Generation
 
 on:
-  pull_request:
-    types: [opened, synchronize] # Triggered by opened or changed pull requests.
-    branches: [main]
-    paths:
-      - '.github/workflows/test-coverage-report.yaml'
-      - 'backend/src/**' # Triggers on changes to files in the backend/ directory.
-      - 'frontend/src/**' # Triggers on changes to file in the frontend directory
-      - 'backend/jest.config.ts'
-      - 'frontend/jest.config.ts'     
+  push:
+    branches:
+    - main
 
 jobs:
   api-codeclimate-jest-coverage:
     runs-on: ubuntu-latest
     env:
-      #GIT_BRANCH: ${{ github.event.pull_request.head.ref }}
-      #GIT_COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
       CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
 
     steps:
       # Checkout code from Repo.
       - name: Checkout Repo
         uses: actions/checkout@v4
-        #with:
-          # fetch-depth: 0
 
       # Import Code Climate test reporter.
       - name: Import Code Climate
@@ -70,16 +60,12 @@ jobs:
   frontend-codeclimate-jest-coverage:
     runs-on: ubuntu-latest
     env:
-      #GIT_BRANCH: ${{ github.event.pull_request.head.ref }}
-      #GIT_COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
       CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
 
     steps:
       # Checkout code from Repo.
       - name: Checkout Repo
         uses: actions/checkout@v4
-        #with:
-          # fetch-depth: 0
 
       # Import Code Climate test reporter.
       - name: Import Code Climate
@@ -131,16 +117,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: [ api-codeclimate-jest-coverage, frontend-codeclimate-jest-coverage ]
     env:
-      #GIT_BRANCH: ${{ github.event.pull_request.head.ref }}
-      #GIT_COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
       CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
 
     steps:
       # Checkout code from Repo.
       - name: Checkout Repo
         uses: actions/checkout@v4
-        #with:
-          # fetch-depth: 0
 
       # Import Code Climate test reporter.
       - name: Import Code Climate
