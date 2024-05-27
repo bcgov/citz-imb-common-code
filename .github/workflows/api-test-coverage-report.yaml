@@ -1,4 +1,4 @@
-name:  API - Code Climate Test Coverage Report Generation
+name:  Code Climate Test Coverage Report Generation
 
 on:
   pull_request:
@@ -16,7 +16,7 @@ on:
       - '!backend/tsconfig.json'
 
 jobs:
-  codeclimate-jest-coverage:
+  api-codeclimate-jest-coverage:
     runs-on: ubuntu-latest
     env:
       GIT_BRANCH: ${{ github.event.pull_request.head.ref }}
@@ -62,10 +62,11 @@ jobs:
       # -t is for coverage type
       - name: Format Test Coverage
         run: |
-          ./cc-test-reporter format-coverage ${{ github.workspace }}/backed/coverage/lcov.info -t lcov --output ${{ github.workspace }}/backend/coverage/coverage.json
+          ./cc-test-reporter format-coverage ${{ github.workspace }}/backed/coverage/lcov.info -t lcov --output ${{ github.workspace }}/backend/coverage/api-coverage.json
 
-      # Upload coverage to Code Climate.
-      # -i is for input, -d for detached
-      - name: Upload Coverage
-        run: |
-          ./cc-test-reporter upload-coverage -d -i ${{ github.workspace }}/backend/coverage/coverage.json
+      # Upload JSON for debugging purposes
+      - name: Upload JSON for Aggregation
+        uses: actions/upload-artifact@v2
+        with:
+          name: api-coverage-report-json
+          path: ${{ github.workspace }}/backend/coverage/api-coverage.json
