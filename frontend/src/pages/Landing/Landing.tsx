@@ -4,8 +4,6 @@ import { PackageType } from 'src/constants/packages';
 import { Link, useLoaderData } from 'react-router-dom';
 import { Fragment } from 'react/jsx-runtime';
 
-// Brady doing a thing
-
 export const Landing = () => {
   const packages = useLoaderData() as PackageType[];
 
