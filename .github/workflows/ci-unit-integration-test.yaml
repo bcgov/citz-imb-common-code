@@ -33,16 +33,16 @@ jobs:
         run: |
           echo ${{ steps.pull-request-diff-path.outputs.diff }}
           
-      -  name : Run API Test Suite if diff lives in ./backend/**
-         working-directory: ./backend
-         if : ${{ steps.pull-request-diff-path.outputs.diff }} == backend
-         run: |
-           npm i 
-           npm run test
+      - name: Run API Test Suite if diff lives in ./backend/**
+        working-directory: ./backend
+        if: ${{ steps.pull-request-diff-path.outputs.diff }} == backend
+        run: |
+          npm i 
+          npm run test
            
       - name: Run Frontend Test Suite if diff lives in ./frontend/**
         working-directory: ./frontend
-        if : ${{ steps.pull-request-diff-path.outputs.diff }} == frontend
+        if: ${{ steps.pull-request-diff-path.outputs.diff }} == frontend
         run: |
           npm i
           npm run test
