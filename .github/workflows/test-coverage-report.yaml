@@ -15,8 +15,8 @@ jobs:
   api-codeclimate-jest-coverage:
     runs-on: ubuntu-latest
     env:
-      GIT_BRANCH: ${{ github.event.pull_request.head.ref }}
-      GIT_COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
+      #GIT_BRANCH: ${{ github.event.pull_request.head.ref }}
+      #GIT_COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
       CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
 
     steps:
@@ -54,12 +54,6 @@ jobs:
         run: |
           npm run coverage
 
-      # WHERE AM I?
-      - name: Find coverage file
-        working-directory: ./backend/coverage
-        run: |
-          ls -al
-
       # Use lcov to format coverage for Code Climate
       # -t is for coverage type
       - name: Format Test Coverage
@@ -76,8 +70,8 @@ jobs:
   frontend-codeclimate-jest-coverage:
     runs-on: ubuntu-latest
     env:
-      GIT_BRANCH: ${{ github.event.pull_request.head.ref }}
-      GIT_COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
+      #GIT_BRANCH: ${{ github.event.pull_request.head.ref }}
+      #GIT_COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
       CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
 
     steps:
@@ -137,8 +131,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: [ api-codeclimate-jest-coverage, frontend-codeclimate-jest-coverage ]
     env:
-      GIT_BRANCH: ${{ github.event.pull_request.head.ref }}
-      GIT_COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
+      #GIT_BRANCH: ${{ github.event.pull_request.head.ref }}
+      #GIT_COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
       CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
 
     steps:
@@ -173,12 +167,6 @@ jobs:
         with:
           path: ${{ github.workspace }}/aggregation
 
-      - name: WHERE AM I?
-        working-directory: ${{ github.workspace }}/aggregation
-        run: |
-          ls -al frontend-coverage-report-json
-          ls -al api-coverage-report-json
-
       - name: Move JSON up a directory
         run: |
           cp ${{ github.workspace }}/aggregation/frontend-coverage-report-json/frontend-coverage.json ${{ github.workspace }}/aggregation/frontend-coverage.json
@@ -188,13 +176,13 @@ jobs:
       - name: Summing the coverage reports generated
         run: ./cc-test-reporter sum-coverage aggregation/*-coverage.json -p 2 -o aggregation/summed-coverage.json
 
-      - name: WHERE AM I?
-        working-directory: ${{ github.workspace }}/aggregation
-        run: |
-          ls -al 
+      # Upload JSON for debugging purposes
+      - name: Upload JSON for debugging purposes
+        uses: actions/upload-artifact@v4
+        with:
+          name: summed-coverage
+          path: aggregation/summed-coverage.json 
 
-        
-
-      
-            
-            
+      # Upload total coverage report to Code Climate
+      - name: Upload coverage report to Code Climate
+        run: ./cc-test-reporter upload-coverage -d -i aggregation/summed-coverage.json 
