@@ -7,8 +7,8 @@ describe('formatDateString function', () => {
     // Mock an ISO date string
     const isoDateString = '2024-05-06T12:30:00Z';
     // Call the formatDateString function with the mock ISO date string
-    const formattedDate = formatDateString(isoDateString);
+    const formattedDate = formatDateString(isoDateString, 'UTC');
     // Check if the formatted date matches the expected format
-    expect(formattedDate).toMatch('May 6, 2024 at 05:30:00 AM');
+    expect(formattedDate).toMatch('May 6, 2024 at 12:30:00 PM');
   });
 });
