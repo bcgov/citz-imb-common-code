@@ -186,7 +186,7 @@ jobs:
 
       # Sum the coverage reports
       - name: Summing the coverage reports generated
-        run: ./cc-test-reporter sum-coverage aggregation/*-coverage.json -p 2 -o aggregration/summed-coverage.json
+        run: ./cc-test-reporter sum-coverage aggregation/*-coverage.json -p 2 -o aggregation/summed-coverage.json
 
       - name: WHERE AM I?
         working-directory: ${{ github.workspace }}/aggregation
