@@ -5,15 +5,11 @@ on:
     types: [opened, synchronize] # Triggered by opened or changed pull requests.
     branches: [main]
     paths:
-      - '.github/workflows/api-test-coverage-report.yaml'
-      - 'backend/**' # Triggers on changes to files in the backend/ directory.
-      - '!backend/.eslintrc.js' # Will not trigger on changes to the following.
-      - '!backend/__tests__'
-      - '!backend/prettierrc.js'
-      - '!backend/.docker'
-      - '!backend/package*'
-      - '!backend/nodemon.json'
-      - '!backend/tsconfig.json'
+      - '.github/workflows/test-coverage-report.yaml'
+      - 'backend/src/**' # Triggers on changes to files in the backend/ directory.
+      - 'frontend/src/**' # Triggers on changes to file in the frontend directory
+      - 'backend/jest.config.ts'
+      - 'frontend/jest.config.ts'     
 
 jobs:
   api-codeclimate-jest-coverage:
