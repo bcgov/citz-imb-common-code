@@ -176,7 +176,8 @@ jobs:
       - name: WHERE AM I?
         working-directory: ${{ github.workspace }}/aggregation
         run: |
-          ls -al
+          ls -al frontend-coverage-report-json
+          ls -al api-coverage-report-json
         
 
       
