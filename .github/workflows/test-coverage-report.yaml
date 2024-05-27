@@ -68,7 +68,7 @@ jobs:
       # -t is for coverage type
       - name: Format Test Coverage
         run: |
-          ./cc-test-reporter format-coverage ${{ github.workspace }}/backed/coverage/lcov.info -t lcov --output ${{ github.workspace }}/backend/coverage/api-coverage.json
+          ./cc-test-reporter format-coverage ${{ github.workspace }}/backend/coverage/lcov.info -t lcov --output ${{ github.workspace }}/backend/coverage/api-coverage.json
 
       # Upload JSON for debugging purposes
       - name: Upload JSON for Aggregation
