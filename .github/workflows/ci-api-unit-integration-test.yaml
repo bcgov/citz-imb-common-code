@@ -1,0 +1,28 @@
+name: API - CI Unit Integration Test Suite 
+
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review] # Triggered by opened or changed pull requests.
+    branches: [ main ]
+    paths:
+      - 'backend/src/**' # Triggers on changes to files in the backend/ directory.
+      - 'backend/jest.config.ts'
+  workflow_dispatch:
+
+jobs: 
+  backend-ci-unit-integration-test:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        working-directory: ./backend
+        run: |
+          npm i
+
+      - name: Run Unit Integration Test Suite
+        working-directory: ./backend
+        run: |
+          npm run test
