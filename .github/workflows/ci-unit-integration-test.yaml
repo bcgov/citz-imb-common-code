@@ -1,0 +1,40 @@
+name: CI Unit Integration Test Suite 
+
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review] # Triggered by opened or changed pull requests.
+    branches: [ main ]
+    paths:
+      - 'backend/src/**' # Triggers on changes to files in the backend/ directory.
+      - 'frontend/src/**' # Triggers on changes to files in the backend/ directory.
+      - '*/jest.config.ts'
+  workflow_dispatch:
+
+jobs: 
+  ci-unit-integration-test:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Output Path Logic
+        id: pull-request-diff-path
+        run: |
+          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q '^./backend'; then
+            echo "diff=backend" >> $GITHUB_OUTPUT
+          else
+            echo "diff=frontend" >> $GITHUB_OUTPUT
+      -  name : Run API Test Suite if diff lives in ./backend/**
+         working-directory: ./backend
+         if : ${{ steps.pull-request-diff-path.outputs.diff }} == 'backend'
+         run: |
+           npm i 
+           npm run test
+           
+      - name: Run Frontend Test Suite if diff lives in ./frontend/**
+        working-directory: ./frontend
+        if : ${{ steps.pull-request-diff-path.outputs.diff }} == 'frontend'
+        run: |
+          npm i
+          npm run test
