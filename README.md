@@ -175,7 +175,7 @@ $ npm run down
 ```
 
 ```bash
-# Prune all containers, images and volumes.
+# Prune all containers, images and volumes. Clears docker cache.
 $ npm run prune
 ```
 
@@ -195,12 +195,12 @@ $ npm run install:backend
 ```
 
 ```bash
-# Prunes, clean installs packages, and rebuilds containers.
+# Prunes, clears docker cache, clean installs packages, and rebuilds containers.
 $ npm run rebuild
 ```
 
 ```bash
-# Prunes, clean installs packages, and rebuilds containers.
+# Prunes, clears docker cache, clean installs packages, and rebuilds containers.
 # Uses `npm run up:override` instead of `npm run up`.
 #
 # See 'Testing Packages Locally' before using.
@@ -217,6 +217,11 @@ $ npm run shell:frontend
 # Shell into backend container (used when working with migrations).
 # Type 'exit' + ENTER to exit shell.
 $ npm run shell:backend
+```
+
+```bash
+# Clear docker cache.
+$ npm run clear-docker-cache
 ```
 
 ```bash
