@@ -1,4 +1,4 @@
-export const formatDateString = (isoDateString: string) => {
+export const formatDateString = (isoDateString: string, timeZone?: string) => {
   const date = new Date(isoDateString);
 
   const formatter = new Intl.DateTimeFormat('en-US', {
@@ -9,6 +9,7 @@ export const formatDateString = (isoDateString: string) => {
     minute: '2-digit',
     second: '2-digit',
     hour12: true,
+    timeZone,
   });
 
   return formatter.format(date);

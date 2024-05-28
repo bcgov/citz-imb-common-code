@@ -3,6 +3,9 @@
 [![Lifecycle:Experimental](https://img.shields.io/badge/Lifecycle-Experimental-339999)](Redirect-URL)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/fd6be08d6a3606ad9e0a/maintainability)](https://codeclimate.com/github/bcgov/citz-imb-common-code/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/fd6be08d6a3606ad9e0a/test_coverage)](https://codeclimate.com/github/bcgov/citz-imb-common-code/test_coverage)
+
 [![NodeJS](https://img.shields.io/badge/Node.js_20-43853D?style=for-the-badge&logo=node.js&logoColor=white)](NodeJS)
 [![Typescript](https://img.shields.io/badge/TypeScript_5-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](Typescript)
 [![React](https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=for-the-badge)](React)
@@ -172,7 +175,7 @@ $ npm run down
 ```
 
 ```bash
-# Prune all containers, images and volumes.
+# Prune all containers, images and volumes. Clears docker cache.
 $ npm run prune
 ```
 
@@ -192,12 +195,12 @@ $ npm run install:backend
 ```
 
 ```bash
-# Prunes, clean installs packages, and rebuilds containers.
+# Prunes, clears docker cache, clean installs packages, and rebuilds containers.
 $ npm run rebuild
 ```
 
 ```bash
-# Prunes, clean installs packages, and rebuilds containers.
+# Prunes, clears docker cache, clean installs packages, and rebuilds containers.
 # Uses `npm run up:override` instead of `npm run up`.
 #
 # See 'Testing Packages Locally' before using.
@@ -214,6 +217,11 @@ $ npm run shell:frontend
 # Shell into backend container (used when working with migrations).
 # Type 'exit' + ENTER to exit shell.
 $ npm run shell:backend
+```
+
+```bash
+# Clear docker cache.
+$ npm run clear-docker-cache
 ```
 
 ```bash
