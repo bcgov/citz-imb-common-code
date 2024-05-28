@@ -4,10 +4,6 @@ on:
   pull_request:
     types: [opened, synchronize, ready_for_review] # Triggered by opened or changed pull requests.
     branches: [ main ]
-    paths:
-      - 'backend/src/**' # Triggers on changes to files in the backend/ directory.
-      - 'frontend/src/**' # Triggers on changes to files in the backend/ directory.
-      - '*/jest.config.ts'
   workflow_dispatch:
 
 jobs: 
