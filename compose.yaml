@@ -1,27 +1,21 @@
 services:
-  coco-frontend:
-    container_name: coco-frontend
-    tty: true
-    environment:
-      - FRONTEND_PORT=${FRONTEND_PORT:-6500}
-    build:
-      context: ./frontend
-      dockerfile: .docker/Dockerfile.dev
-      args:
-        - NODE_IMAGE_TAG=${NODE_IMAGE_TAG:-21.5-bullseye-slim} # Node image tag
-    ports:
-      - ${FRONTEND_PORT:-6500}:6500
+  coco-db:
+    container_name: coco-db
+    image: postgres:${POSTGRES_IMAGE}
+    restart: unless-stopped
+    env_file: .env
     volumes:
-      - ./frontend/src:/app/src
-      - ./frontend/index.html:/app/index.html
-      - ./frontend/nginx.conf:/app/nginx.conf
-      - ./frontend/tsconfig.json:/app/tsconfig.json
-      - ./frontend/vite.config.ts:/app/vite.config.ts
-    depends_on:
-      coco-api:
-        condition: service_healthy
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
     networks:
       - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB} -p ${POSTGRES_PORT}"]
+      interval: 5s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
 
   coco-api:
     container_name: coco-api
@@ -47,8 +41,38 @@ services:
       - ./backend/tsconfig.json:/app/tsconfig.json
       - ./backend/package.json:/app/package.json
       - ./backend/package-lock.json:/app/package-lock.json
+    depends_on:
+      coco-db:
+        condition: service_healthy
     networks:
       - app-network
+
+  coco-frontend:
+    container_name: coco-frontend
+    tty: true
+    environment:
+      - FRONTEND_PORT=${FRONTEND_PORT:-6500}
+    build:
+      context: ./frontend
+      dockerfile: .docker/Dockerfile.dev
+      args:
+        - NODE_IMAGE_TAG=${NODE_IMAGE_TAG:-21.5-bullseye-slim} # Node image tag
+    ports:
+      - ${FRONTEND_PORT:-6500}:6500
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/index.html:/app/index.html
+      - ./frontend/nginx.conf:/app/nginx.conf
+      - ./frontend/tsconfig.json:/app/tsconfig.json
+      - ./frontend/vite.config.ts:/app/vite.config.ts
+    depends_on:
+      coco-api:
+        condition: service_healthy
+    networks:
+      - app-network
+
+volumes:
+  pgdata:
 
 networks:
   app-network:
