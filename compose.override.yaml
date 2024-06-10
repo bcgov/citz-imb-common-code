@@ -9,3 +9,4 @@ services:
     volumes:
       - ../citz-imb-sso-express/build:/app/node_modules/@bcgov/citz-imb-sso-express/build
       - ../citz-imb-sso-css-api/build:/app/node_modules/@bcgov/citz-imb-sso-css-api/build
+      - ../citz-imb-endpoint-builder/build:/app/node_modules/@bcgov/citz-imb-endpoint-builder/build
