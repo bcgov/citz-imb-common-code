@@ -12,11 +12,13 @@
     "test:integration": "jest --testPathPattern=/__tests__/integration"
   },
   "dependencies": {
+    "@bcgov/citz-imb-endpoint-builder": "file:../../citz-imb-endpoint-builder/releases/citz-imb-endpoint-builder-0.0.1.tgz",
     "@bcgov/citz-imb-sso-css-api": "1.0.0-alpha1",
     "@bcgov/citz-imb-sso-express": "1.0.0-alpha6",
     "cors": "2.8.5",
     "express": "4.19.2",
     "express-rate-limit": "7.2.0",
+    "typeorm": "0.3.20",
     "zod": "3.23.3"
   },
   "devDependencies": {
