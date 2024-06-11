@@ -22,7 +22,7 @@ export const dataSourceConfig: DataSourceOptions = {
   synchronize: false,
   migrationsRun: true,
   logging: VERBOSE_DEBUG === 'true' ?? false,
-  entities: [`src/**/*entity.${fileExtensions}`],
+  entities: [`src/entities/*.entity.${fileExtensions}`],
   migrations: [`src/database/migrations/*.${fileExtensions}`],
 };
 

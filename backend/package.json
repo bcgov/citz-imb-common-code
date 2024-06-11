@@ -9,7 +9,13 @@
     "coverage": "jest --coverage",
     "coverage:open": "node scripts/run-coverage-and-open-report.mjs",
     "test:unit": "jest --testPathPattern=/__tests__/unit",
-    "test:integration": "jest --testPathPattern=/__tests__/integration"
+    "test:integration": "jest --testPathPattern=/__tests__/integration",
+    "typeorm": "ts-node ./node_modules/typeorm/cli.js ",
+    "migration:generate": "npm run typeorm -- migration:generate -d src/database/dataSource.ts",
+    "migration:run": "npm run build && npm run typeorm -- migration:run -d src/database/dataSource.ts",
+    "migration:run:no-build": "npm run typeorm -- migration:run -d src/database/dataSource.ts",
+    "migration:revert": "npm run typeorm -- migration:revert -d src/database/dataSource.ts",
+    "migration:create": "npm run typeorm -- migration:create"
   },
   "dependencies": {
     "@bcgov/citz-imb-endpoint-builder": "file:../../citz-imb-endpoint-builder/releases/citz-imb-endpoint-builder-0.0.1.tgz",
