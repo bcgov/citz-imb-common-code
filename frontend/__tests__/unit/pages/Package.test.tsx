@@ -26,6 +26,10 @@ describe('Package page', () => {
     documentationLink,
   };
 
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
+
   // Test case: Renders title and summary correctly
   it('renders title and summary correctly', () => {
     const { getByText } = render(<Package {...mockProps} />);
@@ -58,5 +62,25 @@ describe('Package page', () => {
     const { getByText } = render(<Package {...mockProps} />);
     fireEvent.click(getByText('Package Documentation'));
     expect(window.open).toHaveBeenCalledWith(documentationLink, '_blank');
+  });
+
+  // Test case: Opens bug report link in new tab
+  it('opens bug report link in new tab', () => {
+    const { getByText } = render(<Package {...mockProps} />);
+    fireEvent.click(getByText('Bug Report'));
+    expect(window.open).toHaveBeenCalledWith(
+      'https://github.com/bcgov/citz-imb-sso-react/issues/new?assignees=&labels=bug&projects=&template=bug_report.md&title=Bug%3A+',
+      '_blank',
+    );
+  });
+
+  // Test case: Opens feature request link in new tab
+  it('opens feature request link in new tab', () => {
+    const { getByText } = render(<Package {...mockProps} />);
+    fireEvent.click(getByText('Feature Request'));
+    expect(window.open).toHaveBeenCalledWith(
+      'https://github.com/bcgov/citz-imb-sso-react/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=Request%3A+',
+      '_blank',
+    );
   });
 });
