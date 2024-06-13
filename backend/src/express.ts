@@ -1,9 +1,10 @@
-import express from 'express';
-import cors from 'cors';
-import rateLimit from 'express-rate-limit';
 import { sso } from '@bcgov/citz-imb-sso-express';
-import { CORS_OPTIONS, SSO_OPTIONS, RATE_LIMIT_OPTIONS } from './config';
-import { healthRouter, configRouter, githubRouter } from './modules';
+import cors from 'cors';
+import express from 'express';
+import rateLimit from 'express-rate-limit';
+import { CORS_OPTIONS, RATE_LIMIT_OPTIONS, SSO_OPTIONS } from './config';
+import { configRouter, githubRouter, healthRouter } from './modules';
+import { routes } from './routes';
 import { zodValidationMiddleware } from './utils';
 
 // Define Express App
@@ -37,5 +38,13 @@ app.use(zodValidationMiddleware);
 app.use('/health', healthRouter);
 app.use('/config', configRouter);
 app.use('/github', githubRouter);
+
+console.log('routes', routes);
+routes.stack.forEach((r) => {
+  console.log(`---------- ${r.route?.stack[0].method} ${r.route?.path} ----------`);
+  console.log(r.route);
+});
+
+app.use('/routes', routes);
 
 export default app;
