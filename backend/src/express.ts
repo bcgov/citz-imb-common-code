@@ -39,12 +39,6 @@ app.use('/health', healthRouter);
 app.use('/config', configRouter);
 app.use('/github', githubRouter);
 
-console.log('routes', routes);
-routes.stack.forEach((r) => {
-  console.log(`---------- ${r.route?.stack[0].method} ${r.route?.path} ----------`);
-  console.log(r.route);
-});
-
 app.use('/routes', routes);
 
 export default app;
