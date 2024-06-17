@@ -12,8 +12,8 @@
     "test:integration": "jest --testPathPattern=/__tests__/integration"
   },
   "dependencies": {
-    "@bcgov/citz-imb-sso-css-api": "1.0.0-alpha1",
-    "@bcgov/citz-imb-sso-express": "1.0.0-alpha6",
+    "@bcgov/citz-imb-sso-css-api": "1.0.0-rc",
+    "@bcgov/citz-imb-sso-express": "1.0.0-rc",
     "cors": "2.8.5",
     "express": "4.19.2",
     "express-rate-limit": "7.3.1",

@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@bcgov/bc-sans": "2.1.0",
-    "@bcgov/citz-imb-sso-react": "1.0.0-beta",
+    "@bcgov/citz-imb-sso-react": "1.0.0-rc",
     "@bcgov/design-system-react-components": "0.0.6",
     "@vitejs/plugin-react": "4.3.1",
     "react": "18.3.1",
