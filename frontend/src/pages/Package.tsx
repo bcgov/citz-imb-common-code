@@ -1,5 +1,7 @@
 import { PACKAGE_BADGE_COLORS, PACKAGE_BADGE_TOOLTIPS, PackageBadge } from '@/constants';
 import { Button } from '@bcgov/design-system-react-components';
+import bugReportIcon from 'src/assets/bug-report.svg';
+import featureRequestIcon from 'src/assets/feature-request.svg';
 import exchangeLabIcon from 'src/assets/exchange-lab-icon.svg';
 import githubIcon from 'src/assets/github-icon.png';
 import npmIcon from 'src/assets/npm-icon.webp';
@@ -17,6 +19,16 @@ export const Package = (props: PackageProps) => {
   const { repo, title, summary, badge, documentationLink } = props;
 
   // On press events.
+  const openBugReportInNewTab = () =>
+    window.open(
+      `https://github.com/bcgov/${repo}/issues/new?assignees=&labels=bug&projects=&template=bug_report.md&title=Bug%3A+`,
+      '_blank',
+    );
+  const openFeatureRequestInNewTab = () =>
+    window.open(
+      `https://github.com/bcgov/${repo}/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=Request%3A+`,
+      '_blank',
+    );
   const openGitHubRepoInNewTab = () => window.open(`https://github.com/bcgov/${repo}`, '_blank');
   const openNPMInNewTab = () =>
     window.open(`https://www.npmjs.com/package/@bcgov/${repo}`, '_blank');
@@ -58,6 +70,20 @@ export const Package = (props: PackageProps) => {
           <img src={exchangeLabIcon} alt="Documentation" width="25px" height="25px" />
           <Button variant="link" onPress={() => openDocsInNewTab()}>
             Package Documentation
+          </Button>
+        </Stack>
+        {/* BUG REPORT LINK */}
+        <Stack gap="0" additionalStyles={{ alignItems: 'center' }}>
+          <img src={bugReportIcon} alt="Bug Report" width="35px" height="35px" />
+          <Button variant="link" onPress={() => openBugReportInNewTab()}>
+            Bug Report
+          </Button>
+        </Stack>
+        {/* FEATURE REQUEST LINK */}
+        <Stack gap="0" additionalStyles={{ alignItems: 'center' }}>
+          <img src={featureRequestIcon} alt="Feature Request" width="30px" height="30px" />
+          <Button variant="link" onPress={() => openFeatureRequestInNewTab()}>
+            Feature Request
           </Button>
         </Stack>
       </Stack>
