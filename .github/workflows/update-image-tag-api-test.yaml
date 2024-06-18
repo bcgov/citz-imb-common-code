@@ -49,7 +49,7 @@ jobs:
 
         git add "$FILE_PATH"
 
-        git commit -m "Update API image tag to $NEW_TAG"
+        git commit -m "Update API image tag to $IMAGE_TAG"
 
         git push
 
