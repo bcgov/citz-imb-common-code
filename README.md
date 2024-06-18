@@ -52,9 +52,10 @@ Packages such as `@bcgov/citz-imb-sso-react` and `@bcgov/citz-imb-sso-express` c
 
 - The following package repos must be cloned to your machine in the same directory as this repo:
 
-[@bcgov/citz-imb-sso-react] - SSO React package.  
+[@bcgov/citz-imb-sso-react] - SSO React package.
 [@bcgov/citz-imb-sso-express] - SSO Express package.
 [@bcgov/citz-imb-sso-css-api] - SSO CSS API package.
+[@bcgov/citz-imb-endpoint-builder] - Endpoint Builder package.
 
 - You must run the `npm run build` command from each of these package repo directories.
 - To see changes in the Showcase app, you must rebuild using the `npm run up:override` or `npm run rebuild:override` scripts.
@@ -87,16 +88,16 @@ Since this mapping is done through docker, you may get type errors in your IDE b
 ├── src/
 |   ├── backend/                            # Express API.
 |   |   ├── scripts/                        # Utility scripts used to run the server.
-|   |   ├── src/                             
+|   |   ├── src/
 |   |   |   ├── modules/                    # Modules of functionality (routes, controllers, entities, services).
 |   |   |   └── utils/                      # Utility functions for the express api.
 |   |   ├── express.ts                      # Express configuration and base route configuration.
 |   |   ├── index.ts                        # Server initialization.
 |   |   └── package.json                    # Configure packages.
 |   ├── frontend/                           # React.
-|   |   ├── src/                             
+|   |   ├── src/
 |   |   |   ├── assets/                     # Images.
-|   |   |   ├── components/                 
+|   |   |   ├── components/
 |   |   |   |   └── common/                 # Common or reusable visual components.
 |   |   |   ├── css/                        # Base styles and variables.
 |   |   |   ├── pages/                      # Page components.
@@ -236,3 +237,4 @@ $ npm run setup-git-aliases
 [@bcgov/citz-imb-sso-react]: https://github.com/bcgov/citz-imb-sso-react
 [@bcgov/citz-imb-sso-express]: https://github.com/bcgov/citz-imb-sso-express
 [@bcgov/citz-imb-sso-css-api]: https://github.com/bcgov/citz-imb-sso-css-api
+[@bcgov/citz-imb-endpoint-builder]: https://github.com/bcgov/citz-imb-endpoint-builder
