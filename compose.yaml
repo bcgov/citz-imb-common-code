@@ -1,6 +1,6 @@
 services:
-  coco-db:
-    container_name: coco-db
+  coco-postgres:
+    container_name: coco-postgres
     image: postgres:${POSTGRES_IMAGE}
     restart: unless-stopped
     env_file: .env
@@ -42,7 +42,7 @@ services:
       - ./backend/package.json:/app/package.json
       - ./backend/package-lock.json:/app/package-lock.json
     depends_on:
-      coco-db:
+      coco-postgres:
         condition: service_healthy
     networks:
       - app-network
