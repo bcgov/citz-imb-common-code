@@ -51,8 +51,8 @@ exclude_patterns:
   - "techdocs/"
   - "**/__tests__/"
   - ".github/"
+  - "**/.docker/"
 
 plugins:
   fixme:
     enabled: true
-  - "**/.docker/"
