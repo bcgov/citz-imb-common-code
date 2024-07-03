@@ -18,8 +18,7 @@ jobs:
 
       - name: Get Last Commit on Main
         run: |
-          FIRST_COMMIT=$(git rev-parse HEAD)
-          echo "FIRST_COMMIT=FIRST_COMMIT" >> $GITHUB_ENV
+          echo "FIRST_COMMIT=$(git rev-parse HEAD)" >> $GITHUB_ENV
 
       - name: Check branch of Pull Request
         uses: actions/checkout@v4
@@ -29,8 +28,7 @@ jobs:
 
       - name: Get Last Commit on Pull Request
         run: |
-          LAST_COMMIT=$(git rev-parse HEAD)
-          echo "LAST_COMMIT=LAST_COMMIT" >> $GITHUB_ENV
+          echo "LAST_COMMIT=$(git rev-parse HEAD)" >> $GITHUB_ENV
 
       - name: Output Path Logic
         id: pull-request-diff-path
