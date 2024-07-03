@@ -25,7 +25,7 @@ jobs:
       - name: Check branch of Pull Request
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref }}
+          ref: ${{ github.head_ref }}
           fetch-depth: 0
 
       - name: Get Last Commit on Pull Request
