@@ -18,19 +18,24 @@ jobs:
 
       - name: Get Last Commit on Main
         run: |
-          LAST_COMMIT=$(git rev-parse HEAD)
-          echo "LAST_COMMIT=LAST_COMMIT" >> $GITHUB_ENV
+          FIRST_COMMIT=$(git rev-parse HEAD)
+          echo "FIRST_COMMIT=FIRST_COMMIT" >> $GITHUB_ENV
+
+      - name: Check branch of Pull Request
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
 
       - name: Get Last Commit on Pull Request
         run: |
-          git checkout main
-          FIRST_COMMIT=$(git rev-parse HEAD)
-          echo "FIRST_COMMIT=FIRST_COMMIT" >> $GITHUB_ENV
+          LAST_COMMIT=$(git rev-parse HEAD)
+          echo "LAST_COMMIT=LAST_COMMIT" >> $GITHUB_ENV
 
       - name: Output Path Logic
         id: pull-request-diff-path
         run: |
-          output=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+          output=$(git diff --name-only ${{ github.env.FIRST_COMMIT }} ${{ github.env.LAST_COMMIT }})
           if grep -q '^backend' "$output"; then
             echo "diff=backend" >> $GITHUB_OUTPUT
           else
