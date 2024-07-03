@@ -15,16 +15,11 @@ jobs:
         uses: actions/checkout@v4
         with:  
           fetch-depth: 0
-          
-      #- name: Create annotation for build error
-      #  run: echo "::error file=app.js,line=1::Missing semicolon"
 
       - name: Output Path Logic
         id: pull-request-diff-path
         run: |
-          output=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
-          console.log(`${output}`);
-          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q '^backend'; then
+          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^backend'; then
             echo "diff=backend" >> $GITHUB_OUTPUT
           else
             echo "diff=frontend" >> $GITHUB_OUTPUT
