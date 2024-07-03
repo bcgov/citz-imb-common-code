@@ -36,8 +36,7 @@ jobs:
       - name: Output Path Logic
         id: pull-request-diff-path
         run: |
-          output=$(git diff --name-only ${{ env.FIRST_COMMIT }} ${{ env.LAST_COMMIT }})
-          if grep -q '^backend' "$output"; then
+          if git diff --name-only ${{ env.FIRST_COMMIT }} ${{ env.LAST_COMMIT }} | grep -q '^backend'; then
             echo "diff=backend" >> $GITHUB_OUTPUT
           else
             echo "diff=frontend" >> $GITHUB_OUTPUT
