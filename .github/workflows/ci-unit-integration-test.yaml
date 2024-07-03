@@ -19,7 +19,7 @@ jobs:
       - name: Output Path Logic
         id: pull-request-diff-path
         run: |
-          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q '^./backend'; then
+          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q '^backend'; then
             echo "diff=backend" >> $GITHUB_OUTPUT
           else
             echo "diff=frontend" >> $GITHUB_OUTPUT
