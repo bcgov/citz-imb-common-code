@@ -1,10 +1,10 @@
 import request from 'supertest';
 import express from 'express';
 import router from '@/modules/github/router';
-import { zodValidationMiddleware } from '@/utils';
+import { expressUtilitiesMiddleware } from '@bcgov/citz-imb-express-utilities';
 
 const app = express();
-app.use(zodValidationMiddleware);
+app.use(expressUtilitiesMiddleware);
 app.use('/github', router);
 
 // Test suite for integration of GitHub issues route
