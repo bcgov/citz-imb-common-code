@@ -18,19 +18,14 @@ jobs:
 
       - name: Get Last Commit on Main
         run: |
-          FIRST_COMMIT=$(git rev-parse HEAD)
-          echo "FIRST_COMMIT=FIRST_COMMIT" >> $GITHUB_ENV
-          
-      - name: Checkout Branch
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref }}
-          fetch-depth: 0
+          LAST_COMMIT=$(git rev-parse HEAD)
+          echo "LAST_COMMIT=LAST_COMMIT" >> $GITHUB_ENV
 
       - name: Get Last Commit on Pull Request
         run: |
-          LAST_COMMIT=$(git rev-parse HEAD)
-          echo "LAST_COMMIT=LAST_COMMIT" >> $GITHUB_ENV
+          git checkout main
+          FIRST_COMMIT=$(git rev-parse HEAD)
+          echo "FIRST_COMMIT=FIRST_COMMIT" >> $GITHUB_ENV
 
       - name: Output Path Logic
         id: pull-request-diff-path
