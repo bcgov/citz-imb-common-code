@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@bcgov/citz-imb-endpoint-builder": "1.0.0-beta2",
+    "@bcgov/citz-imb-express-utilities": "1.0.0-beta3",
     "@bcgov/citz-imb-sso-css-api": "1.0.0-rc",
     "@bcgov/citz-imb-sso-express": "1.0.0-rc",
     "cors": "2.8.5",

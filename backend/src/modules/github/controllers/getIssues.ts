@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { HttpError, errorWrapper, httpStatusCode } from '../../../utils';
+import { HttpError, errorWrapper, HTTP_STATUS_CODES } from '@bcgov/citz-imb-express-utilities';
 import { paramSchemas, querySchemas } from '../schemas';
 
 /**
@@ -10,6 +10,7 @@ import { paramSchemas, querySchemas } from '../schemas';
  */
 export const getIssues = errorWrapper(async (req: Request, res: Response) => {
   const { getZodValidatedParams, getZodValidatedQuery } = req;
+
   const { repo } = getZodValidatedParams(paramSchemas.getIssues);
   const { state } = getZodValidatedQuery(querySchemas.getIssues);
 
@@ -18,11 +19,15 @@ export const getIssues = errorWrapper(async (req: Request, res: Response) => {
 
   const response = await fetch(url);
   if (!response.ok)
-    throw new HttpError(`Failed to fetch GitHub issues from ${repo}.`, httpStatusCode.BAD_REQUEST);
+    throw new HttpError(
+      HTTP_STATUS_CODES.BAD_REQUEST,
+      `Failed to fetch GitHub issues from ${repo}.`,
+    );
 
   // Get issues.
   const issues = await response.json();
-  if (!issues) throw new HttpError(`No GitHub issues found for ${repo}.`, httpStatusCode.NOT_FOUND);
+  if (!issues)
+    throw new HttpError(HTTP_STATUS_CODES.NOT_FOUND, `No GitHub issues found for ${repo}.`);
 
   // Filter out pull requests.
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
