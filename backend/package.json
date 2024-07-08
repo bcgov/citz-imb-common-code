@@ -18,7 +18,7 @@
     "migration:create": "npm run typeorm -- migration:create"
   },
   "dependencies": {
-    "@bcgov/citz-imb-endpoint-builder": "1.0.0-beta2",
+    "@bcgov/citz-imb-endpoint-builder": "1.0.0-beta3",
     "@bcgov/citz-imb-sso-css-api": "1.0.0",
     "@bcgov/citz-imb-sso-express": "1.0.0",
     "cors": "2.8.5",

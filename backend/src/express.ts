@@ -1,11 +1,18 @@
 import { sso } from '@bcgov/citz-imb-sso-express';
+import {
+  expressUtilitiesMiddleware,
+  healthModule,
+  configModule,
+} from '@bcgov/citz-imb-express-utilities';
 import cors from 'cors';
 import express from 'express';
 import rateLimit from 'express-rate-limit';
 import { CORS_OPTIONS, RATE_LIMIT_OPTIONS, SSO_OPTIONS } from './config';
-import { configRouter, githubRouter, healthRouter } from './modules';
+import { githubRouter } from './modules';
 import { routes } from './routes';
-import { zodValidationMiddleware } from './utils';
+
+import { ENV } from './config';
+const { ENVIRONMENT, DEBUG, VERBOSE_DEBUG } = ENV;
 
 // Define Express App
 const app = express();
@@ -31,14 +38,21 @@ app.use(rateLimit(RATE_LIMIT_OPTIONS));
 // Disabled because it exposes information about the used framework to potential attackers.
 app.disable('x-powered-by');
 
-// Add zod validation functions.
-app.use(zodValidationMiddleware);
+// Add express utils middleware.
+app.use(expressUtilitiesMiddleware);
 
 // Routing
-app.use('/health', healthRouter);
-app.use('/config', configRouter);
-app.use('/github', githubRouter);
 
+healthModule(app); // Route /health
+
+const configuration = {
+  ENVIRONMENT,
+  DEBUG,
+  VERBOSE_DEBUG,
+};
+configModule(app, configuration); // Route /config
+
+app.use('/github', githubRouter);
 app.use('/routes', routes);
 
 export default app;

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { getIssues } from '@/modules/github/controllers';
-import { HttpError, httpStatusCode } from '@/utils';
+import { HttpError, HTTP_STATUS_CODES } from '@bcgov/citz-imb-express-utilities';
 
 // Mock the Express request and response objects
 const req = {} as Request;
@@ -82,7 +82,7 @@ describe('getIssues controller', () => {
       await getIssues(req, res, nextFunction);
     } catch (error) {
       expect(error).toBeInstanceOf(HttpError);
-      expect((error as HttpError).statusCode).toBe(httpStatusCode.BAD_REQUEST);
+      expect((error as HttpError).statusCode).toBe(HTTP_STATUS_CODES.BAD_REQUEST);
       expect((error as HttpError).message).toContain(
         'Failed to fetch GitHub issues from developer-experience-team',
       );
@@ -105,7 +105,7 @@ describe('getIssues controller', () => {
       await getIssues(req, res, nextFunction);
     } catch (error) {
       expect(error).toBeInstanceOf(HttpError);
-      expect((error as HttpError).statusCode).toBe(httpStatusCode.NOT_FOUND);
+      expect((error as HttpError).statusCode).toBe(HTTP_STATUS_CODES.NOT_FOUND);
       expect((error as HttpError).message).toContain(
         'No GitHub issues found for developer-experience-team',
       );

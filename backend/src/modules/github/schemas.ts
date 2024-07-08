@@ -1,9 +1,9 @@
-import { zodProperty } from '../../utils';
+import { stringParam } from '@bcgov/citz-imb-express-utilities';
 import { z } from 'zod';
 
 export const paramSchemas = {
   getIssues: z.object({
-    repo: zodProperty.nonEmptyString('repo').describe('The name of the github repository.'),
+    repo: stringParam('repo').describe('The name of the github repository.'),
   }),
 };
 
